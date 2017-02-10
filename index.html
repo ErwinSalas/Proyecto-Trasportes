@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="loginModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Expediente Digital HASC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body id="loginBody" ng-controller="loginController">
+    <div id="LoginDiv" class="center">
+        <img src="assets/images/logo.png" alt="logo" width="250" height="250" id="logo">
+        <form>
+            <input type="text" ng-model="username" placeholder="Nombre de usuario" id="inputUsuario">
+            <input type="password" ng-model="password" placeholder="Contraseña" id="inputContraseña">
+            <button class="btn waves-effect waves-light center" type="submit" name="action" id="botonSubmit" ng-click="verify()">Entrar
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        <div ng-view=""></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="loginController.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+/* Own CSS  */
+
+.modal-content{
+    margin-left: 25%;
+    width: 300px;
+    height: 100%;
+}
+
+.modal-body{
+    height: 250px;
+}
+
+.modal-header{
+    background-color: #920405;
+    color: white;
+    text-align: center;
+}
+
+.modal-body button{
+    margin-left: 35%;
+}
+
+.modal-body form input{
+    border-radius: 2px;
+    border-color: gray;
+}
+
+input{
+    background-color: gray;
+}
+
+.modal-body span{
+    display: block;
+    margin-top: 10%;
+}
+
+#deleteBtn{
+    margin-top: 5px;
+}
+
+#eventDelete .modal-body{
+    height: 75px;
+}
