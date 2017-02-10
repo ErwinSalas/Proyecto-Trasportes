@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="block-header">
+        <h2>Usuarios</h2>
+    </div>
+    <!-- Widgets -->
+    <div class="row clearfix">
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+           <a  href="#/admin/user/create">
+               <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">person_add</i>
+                    </div>
+                    <div class="content">
+                        Nuevo
+                        <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- #END# Widgets -->
+
+    <!-- Basic Card -->
+
+    <div class="row clearfix" >
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="user in users" >
+            <div class="card " >
+                <div class="header">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="../assets/images/user.png" alt="logo" width="50" height="50" class="responsive-img" >
+                        </div>
+
+                        <h2 class="col-sm-8">
+                            Nombre: {{user.name}} <small>Description text here...</small>
+                        </h2>
+
+                    </div>
+
+                    <ul class="header-dropdown m-r--5">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a ng-click="removeUser(user.id)">Eliminar</a></li>
+                                <li><a href="#/admin/user/edit/{{user.id}}">Editar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <ul class="list">
+                        <li class="card-title">
+                            {{user.email}}
+                        </li>
+                        <li class="card-title">
+                            {{user.type}}
+                        </li>
+                        <li class="card-title">
+                            {{user.address}}
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
