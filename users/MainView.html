@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="adminModule">
+<html ng-app="userModule">
 
 <head>
     <meta charset="UTF-8">
@@ -27,17 +27,16 @@
     <!-- Preloader Css -->
     <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />
 
-    <!-- Sweet Alert Css -->
-    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
 
     <!-- Custom Css -->
     <link href="../assets/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="../assets/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="../assets/css/themes/theme-blue.css" rel="stylesheet" />
 </head>
 
-<body class="theme-blue-grey">
+<body class="theme-blue">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -302,13 +301,13 @@
                 <ul class="list">
                     <li class="header">PANEL ADMINISTRATIVO </li>
                     <li class="active">
-                        <a href="#/admin">
+                        <a href="#/user">
                             <i class="material-icons">home</i>
                             <span>inicio</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#/admin/expedients/home">
+                        <a href="#/user/reserve">
                             <i class="material-icons">assignment</i>
                             <span>Reservar</span>
                         </a>
@@ -352,9 +351,13 @@
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="../bower_components/ui-listView/src/"></script>
+
+    <!--
     <script type="text/javascript" src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="../bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
     <script type="text/javascript" src="../bower_components/fullcalendar/dist/gcal.js"></script>
+    -->
     <!-- app Js -->
     <script src="app.js"></script>
     <!-- services -->
@@ -364,10 +367,8 @@
     <!-- dashboard controller Js -->
     <script src="controllers/dashboardCtrl.js"></script>
     <!-- userCreate controller Js -->
-    <script src="controllers/usersCtrl.js"></script>
+    <script src="controllers/reservationsCtrl.js"></script>
     <!-- request controller Js -->
-    <script src="controllers/requestCtrl.js"></script>
-    <script src="controllers/expedientCtrl.js"></script>
 
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>

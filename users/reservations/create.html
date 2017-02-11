@@ -1,0 +1,87 @@
+<div class="container-fluid">
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2 class="tecTitles">
+                       Reservar Transporte
+                    </h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);">Editar</a></li>
+                                <li><a href="javascript:void(0);">Eliminar</a></li>
+                                <li><a href="javascript:void(0);">Detalles</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <form ng-submit="saveUser()">
+
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label >Placa</label>
+                                <select class="form-control show-tick">
+                                    <option value="">Placa</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label >Chofer</label>
+                                <select class="form-control show-tick">
+                                    <option value="">Chofer</option>
+                                    <option value=1>SI</option>
+                                    <option value=0>NO</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <label for="place">Lugar</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="reserve.place" type="text" id="place" class="form-control" placeholder="Enter your email address">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label >Hora de Salida</label>
+                                <input ng-model="reserve.exitHour" type="datetime"  class="form-control" placeholder="Enter your email address">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label >Hora de Llegada</label>
+                                <input ng-model="reserve.enterHour" type="datetime"  class="form-control" placeholder="Enter your email address">
+
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label >Fecha de Salida</label>
+                                <input ng-model="reserve.exitDate" type="date" class="form-control" placeholder="Enter your email address">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label >Fecha de Llegada</label>
+                                <input ng-model="reserve.enterDate" type="date" class="form-control" placeholder="Enter your email address">
+
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger m-t-18 waves-effect">Reservar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Vertical Layout -->
+</div>

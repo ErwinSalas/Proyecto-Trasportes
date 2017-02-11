@@ -11,7 +11,7 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
 
         $http({
             method : "GET",
-            url : "http://localhost:8000/users"
+            url : "http://localhost:8000/reservations"
         }).then(function mySucces(response) {
             usersList = response.data;
             console.log(usersList);

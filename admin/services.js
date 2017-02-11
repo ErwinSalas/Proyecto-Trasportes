@@ -3,7 +3,7 @@
  */
 angular.module('adminModule')
 .factory('UserResource',function($resource){
-          return $resource("http://localhost:8000/users/:id",{id:"@id"},{
+          return $resource("http://localhost:8000/reservations/:id",{id:"@id"},{
             update : {method:'PUT',params:{id:"@id"}}
         });
 })

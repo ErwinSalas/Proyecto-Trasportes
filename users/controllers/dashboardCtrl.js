@@ -2,7 +2,7 @@
  * Created by Erwin on 25/10/2016.
  */
 
-angular.module('adminModule')
+angular.module('userModule')
     .controller('dashboardCtrl', function($scope) {
     /* config object */
 
