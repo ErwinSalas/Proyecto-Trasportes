@@ -12,6 +12,10 @@ angular.module('userModule',["ngRoute","ngResource"])
                 templateUrl:'reservations/create.html',
                 controller: 'reservationsCreateCtrl'
             })
+            .when("/user/fleet",{
+                templateUrl:'fleet/index.html',
+                controller: 'fleetIndexCtrl'
+            })
 
 
     }
