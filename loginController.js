@@ -29,7 +29,7 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                     sessionStorage.setItem("user", JSON.stringify(user[0]));
                     window.location.href = ('http://localhost:63342/hasc/Angular-Client/admin/MainView.html');
                 }
-                else if(type == "doctor"){
+                else if(type == "funcionario"){ //* hacer los funcionarios
                     sessionStorage.setItem("user", JSON.stringify(user[0]));
                     window.location.href = ('http://localhost:63342/hasc/Angular-Client/doctors/MainView.html');
                 }
