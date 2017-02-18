@@ -2,8 +2,8 @@
  * Created by Pavilion on 17/2/2017.
  */
 
-angular.module('adminModule')
-    .controller('fleetIndexCtrl', function($scope,FleetResource,$location, $timeout) {
+angular.module('userModule')
+    .controller('fleetIndexCtrl', function($scope,FleetResource) {
         /* config object */
         $scope.fleets = FleetResource.query();
         console.log($scope.fleets)
