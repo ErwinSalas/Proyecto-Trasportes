@@ -10,24 +10,22 @@
                         <img src="../assets/images/car-silhouette-modern.jpg" alt="logo" width="100" height="100" class="responsive-img" >
                     </div>
 
-                    <h2 class="col-sm-8">
-                        Marca : {{fleets.Model}}
+                    <h2 class="col-sm-10">
+                        Marca : {{fleet.Model}}
+                        <small >
+                            <ul class="list ">
+                                <li class="card-title">
+                                    Placa :{{fleet.CarID}}
+                                </li>
+                                <li class="card-title">
+                                    Capacidad: {{fleet.Capacity}}
+                                </li>
 
+
+                            </ul>
+                        </small>
                     </h2>
-                    <small class="row">
-                        <ul class="list col-md-4">
-                            <li class="card-title">
-                                Placa :{{fleets.CarID}}
-                            </li>
-                            <li class="card-title">
-                                Capacidad: {{fleets.Capacity}}
-                            </li>
-                            <li class="card-title">
-                                {{user.address}}
-                            </li>
 
-                        </ul>
-                    </small>
 
                 </div>
 
