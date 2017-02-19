@@ -1,41 +1,26 @@
-/**
- * Created by josah on 20 nov 2016.
- */
 var app = angular.module('loginModule',["ngRoute","ngResource"])
-    .controller('loginController', function($scope,$http) {
-        /* config object */
+    .controller('loginController', function($scope, $http) {
+        // datos desde la vista.
         $scope.username = "";
         $scope.password = "";
 
-        var usersList = [];
+        $scope.doLogin = function() {
+            $http({
+                method : "GET",
+                url : 'http://transportec.azurewebsites.net/user/login/web?username={0}&password={1}'
+                    .format(Base64.toBase64($scope.username, true).toString(), Base64.toBase64($scope.password, true).toString())
+            }).then(function mySucces(response) {
+                console.log(response.data);
+                var meta = response.data.metadata;
+                if(meta.operationResult == "OK") {
+                    var content = response.data.content;
+                    var userData = content.owner;
 
-        $http({
-            method : "GET",
-            url : "http://localhost:8000/reservations"
-        }).then(function mySucces(response) {
-            usersList = response.data;
-            console.log(usersList);
-        });
-
-        $scope.verify = function(){
-
-            var user = $.grep(usersList, function(current){
-                return ((current.name == $scope.username) && (current.password == $scope.password))
+                    window.location.href = ('{0}/MainView.html'.format(userData.userType == "Customer" ? "users" : "admin"));
+                } else {
+                    alert("Credenciales incorrectas");
+                }
             });
 
-            if (user.length == 1){
-                var type = user[0].type;
-                if(type == "admin"){
-                    sessionStorage.setItem("user", JSON.stringify(user[0]));
-                    window.location.href = ('http://localhost:63342/hasc/Angular-Client/admin/MainView.html');
-                }
-                else if(type == "funcionario"){ //* hacer los funcionarios
-                    sessionStorage.setItem("user", JSON.stringify(user[0]));
-                    window.location.href = ('http://localhost:63342/hasc/Angular-Client/doctors/MainView.html');
-                }
-            }
-            else{
-                alert("Usuario o contraseña incorrectos");
-            }
         }
 });
