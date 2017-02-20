@@ -3,23 +3,30 @@
  */
 
 angular.module('userModule')
-    .controller('dashboardCtrl', function($scope) {
+    .controller('dashboardCtrl', function($scope,$http) {
     /* config object */
 
-    var usuario = JSON.parse(sessionStorage.getItem("user"));
+    var authToken = localStorage.getItem('session.token');
+    console.log(authToken);
+    $http({
+            method: "GET",
+            url: 'http://transportec.azurewebsites.net/messages/getAll?authToken={0}'
+                .format(authToken)
+    }
 
-    $scope.uiConfig = {
-        calendar:{
-            height: 450,
-            editable: true,
-            header:{
-                left: 'month basicWeek basicDay agendaWeek agendaDay',
-                center: 'title',
-                right: 'today prev,next'
-            },
-            dayClick: $scope.alertEventOnClick,
-            eventDrop: $scope.alertOnDrop,
-            eventResize: $scope.alertOnResize
-        }
-    };
+    ).success(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log("entro", response);
+        $scope.messages = response.content;
+    }).error(function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log("fallo", response);
+        $scope.messages= response;
+    });
+
+
+
+
 });

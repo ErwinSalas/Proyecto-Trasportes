@@ -17,9 +17,11 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                 console.log(response.data);
                 var meta = response.data.metadata;
                 if (meta.operationResult == "OK") {
-                    var content = response.data.content;
-                    var userData = content.owner;
 
+                    var content = response.data.content;
+                    console.log(content);
+                    var userData = content.owner;
+                    console.log(userData);
                     saveSession(content);
 
                     window.location.href = ('{0}/MainView.html'.format(userData.userType == "Customer" ? "users" : "admin"));

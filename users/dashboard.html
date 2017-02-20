@@ -73,8 +73,31 @@
                         </li>
                     </ul>
                 </div>
-                <div class="body" >
+                <div class="body" ng-repeat="message in messages" style="height: auto">
+                    <div class="col-lg-2 col-md-2 col-sm-5 col-xs-12" >
+                        <div class="info-box  hover-expand-effect">
+                            <div class="icon ">
+                                <i class="material-icons">forum</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">{{message.Title}}</div>
+                                <div class="number count-to" >
+                                    <small >
+                                        <ul class="list ">
+                                            <li class="card-title">
+                                                Mensaje :{{message.Content}}
+                                            </li>
+                                            <li class="card-title">
+                                                Publicacíon: {{message.Publication}}
+                                            </li>
 
+
+                                        </ul>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
