@@ -39,6 +39,12 @@ const LS_REMEMBER_SESSION = "rememberSession";
 
 // =========================================================
 
+/**
+ * Dirección raíz del API.
+ * @type {string}
+ */
+const API_ROOT = "http://transportec.azurewebsites.net";
+
 
 /**
  * Formatea una cadena de texto en base a los parámetros proporcionados.
@@ -66,24 +72,3 @@ function getFormattedDate(dt) {
   );
 }
 
-/**
- * Encripta una cadena de texto con AES.
- * @param plainText Texto plano.
- * @param key Clave de encriptación.
- * @returns {*|string} Retorna una cadena de texto encriptada.
- */
-function encryptText(plainText, key) {
-  var encrypted = CryptoJS.AES.encrypt(plainText, key);
-  return encrypted.toString();
-}
-
-/**
- * Desencripta una cadena de texto procesada con AES.
- * @param encryptedText Cadena de texto encriptada en AES.
- * @param key Clave para desencriptar.
- * @returns {*|string} Cadena de texto plano.
- */
-function decryptText(encryptedText, key) {
-  var decrypted = CryptoJS.AES.decrypt(encryptedText, key);
-  return decrypted.toString(CryptoJS.enc.Utf8);
-}
