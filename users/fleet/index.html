@@ -2,7 +2,32 @@
 <!-- Basic Card -->
 
 <div class="row clearfix" >
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="fleet in fleets" >
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleets">
+        <div class="info-box  hover-expand-effect">
+            <div class="icon ">
+                <i class="material-icons">directions_car</i>
+            </div>
+            <div class="content">
+                <div class="text">
+                    Marca : {{fleet.Model}}
+                </div>
+                <small >
+                    <ul class="list ">
+                        <li class="card-title">
+                            Placa :{{fleet.CarID}}
+                        </li>
+                        <li class="card-title">
+                            Capacidad: {{fleet.Capacity}}
+                        </li>
+
+
+                    </ul>
+                </small>
+
+            </div>
+        </div>
+    </div>
+    <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="fleet in fleets" >
         <div class="card " >
             <div class="header">
                 <div class="row">
@@ -10,28 +35,26 @@
                         <img src="../assets/images/car-silhouette-modern.jpg" alt="logo" width="100" height="100" class="responsive-img" >
                     </div>
 
-                    <h2 class="col-sm-8">
-                        Marca : {{fleets.Model}}
+                    <h2 class="col-sm-10">
+                        Marca : {{fleet.Model}}
+                        <small >
+                            <ul class="list ">
+                                <li class="card-title">
+                                    Placa :{{fleet.CarID}}
+                                </li>
+                                <li class="card-title">
+                                    Capacidad: {{fleet.Capacity}}
+                                </li>
 
+
+                            </ul>
+                        </small>
                     </h2>
-                    <small class="row">
-                        <ul class="list col-md-4">
-                            <li class="card-title">
-                                Placa :{{fleets.CarID}}
-                            </li>
-                            <li class="card-title">
-                                Capacidad: {{fleets.Capacity}}
-                            </li>
-                            <li class="card-title">
-                                {{user.address}}
-                            </li>
 
-                        </ul>
-                    </small>
 
                 </div>
 
-                <ul class="header-dropdown m-r--5">
+                <ul class="header-dropdown m-r&#45;&#45;5">
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">more_vert</i>
@@ -45,7 +68,7 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
 </div>
 
 
