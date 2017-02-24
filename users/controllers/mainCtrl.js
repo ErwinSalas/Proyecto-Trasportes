@@ -3,7 +3,7 @@
  */
 
 angular.module('userModule')
-    .controller('mainCtrl', function($scope) {
+    .controller('mainCtrl', function($scope,$location) {
     /* config object */
 
        /* var usuario = JSON.parse(sessionStorage.getItem("user"));
@@ -12,5 +12,7 @@ angular.module('userModule')
         $scope.email= usuario.email;*/
         $scope.user = "Ejemplo";
         $scope.email = "Ejemplo@TEC.ac.cr";
+        window.location.href = ('#/user');
+
 
 });

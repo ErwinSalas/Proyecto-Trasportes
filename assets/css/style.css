@@ -2939,10 +2939,12 @@ section.content {
       background-color: #fff;
       color: #555; }
   .card .header {
-    color: #555;
+    color: #ffffff;
     padding: 20px;
     position: relative;
+    background-color: #140e39;
     border-bottom: 1px solid rgba(204, 204, 204, 0.35); }
+
     .card .header .header-dropdown {
       position: absolute;
       top: 20px;
@@ -2965,7 +2967,7 @@ section.content {
       margin: 0;
       font-size: 18px;
       font-weight: normal;
-      color: #111; }
+      color: #fff; }
       .card .header h2 small {
         display: block;
         font-size: 12px;
@@ -3053,7 +3055,7 @@ section.content {
   .info-box .icon {
     display: inline-block;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.12);
+    background-color: #140e39;
     width: 80px; }
     .info-box .icon i {
       color: #fff;
