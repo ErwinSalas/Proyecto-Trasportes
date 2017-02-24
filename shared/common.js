@@ -72,3 +72,17 @@ function getFormattedDate(dt) {
   );
 }
 
+/**
+ * Convierte una fecha a formato para enviar solicitud al servidor.
+ * @param datetime Objeto de fecha y hora.
+ * @returns {String} Fecha formateada.
+ */
+function dateToUrlParameter(datetime) {
+    return "{0}-{1}-{2}-{3}-{4}".format(
+        datetime.getFullYear(),
+        datetime.getMonth() + 1,
+        datetime.getDate(),
+        datetime.getHours(),
+        datetime.getMinutes());
+}
+
