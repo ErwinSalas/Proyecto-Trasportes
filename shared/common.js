@@ -3,6 +3,16 @@
  * Código común.
  */
 
+
+var closeSideBar=function () {
+  if (window_width<=600){
+    var $body = $('body');
+    var $overlay = $('.overlay');
+    $body.toggleClass('overlay-open');
+    if ($body.hasClass('overlay-open')) { $overlay.fadeIn(); } else { $overlay.fadeOut(); }
+  }
+
+}
 // ===== CONSTANTES ========================================
 
 /**

@@ -4,7 +4,18 @@
 angular.module('userModule')
     .controller('reservationsCreateCtrl', function($scope) {
         /* config object */
-        $scope.user = {};
+        $scope.arrivalDate=null;
+        $scope.arrivalHour=null;
+        $scope.departureDate=null;
+        $scope.departureHour=null;
+        var dateTransform=dateToUrlParameter(arrival)
+
+
+
+
+        $scope.reservation = {
+            Arrival: dateToUrlParameter()
+        };
 
 
     })

@@ -21,45 +21,36 @@
                     </ul>
                 </div>
                 <div class="body">
-                    <form ng-submit="saveUser()">
+                    <form ng-submit="sendReservation()">
 
-                        <div class="row clearfix">
-                            <div class="col-sm-6">
-                                <label >Placa</label>
-                                <select class="form-control show-tick">
-                                    <option value="">Placa</option>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="30">30</option>
-                                    <option value="40">40</option>
-                                    <option value="50">50</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <label >Chofer</label>
-                                <select class="form-control show-tick">
-                                    <option value="">Chofer</option>
-                                    <option value=1>SI</option>
-                                    <option value=0>NO</option>
 
-                                </select>
-                            </div>
-                        </div>
                         <label for="place">Lugar</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reserve.place" type="text" id="place" class="form-control" placeholder="Lugar">
+                                <input ng-model="reserve.DestinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
+                            </div>
+                        </div>
+                        <label for="place">Encargado</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="reserve.Responsable" type="text" id="Responsable" class="form-control" placeholder="Lugar">
+                            </div>
+                        </div>
+                        <label for="place">Pasajeros</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="reserve.Pasenger" type="number" id="Pasenger" class="form-control" placeholder="Lugar">
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Hora de Salida</label>
-                                <input ng-model="reserve.exitHour" type="time"  class="form-control" placeholder="">
+                                <input ng-model="departureHour" type="time"  class="form-control" placeholder="">
 
                             </div>
                             <div class="col-sm-6">
                                 <label >Hora de Llegada</label>
-                                <input ng-model="reserve.enterHour" type="time"  class="form-control" placeholder="">
+                                <input ng-model="arrivalHour" type="time"  class="form-control" placeholder="">
 
                             </div>
                         </div>
@@ -67,13 +58,31 @@
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Fecha de Salida</label>
-                                <input ng-model="reserve.exitDate" type="date" class="form-control" placeholder="Enter your email address">
+                                <input ng-model="departureDate" type="date" class="form-control" placeholder="Enter your email address">
 
                             </div>
                             <div class="col-sm-6">
                                 <label >Fecha de Llegada</label>
-                                <input ng-model="reserve.enterDate" type="date" class="form-control" placeholder="Enter your email address">
+                                <input ng-model="arrivalDate" name="arrivalDate" type="date" class="form-control" placeholder="Enter your email address">
 
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label >Auto</label>
+                                <select class="form-control show-tick" ng-model="reservation.VehicleID">
+                                    <option value="">Placa</option>
+
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label >Asignarme</label>
+                                <select class="form-control show-tick">
+                                    <option value="">Chofer</option>
+                                    <option value=1>SI</option>
+                                    <option value=0>NO</option>
+
+                                </select>
                             </div>
                         </div>
 

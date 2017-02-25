@@ -52,6 +52,7 @@ $.AdminBSB.leftSideBar = {
 
         //Close sidebar
         $(window).click(function (e) {
+            console.log("Close sidebar");
             var $target = $(e.target);
             if (e.target.nodeName.toLowerCase() === 'i') { $target = $(e.target).parent(); }
 

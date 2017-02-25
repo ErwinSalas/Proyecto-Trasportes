@@ -3,25 +3,11 @@
  */
 
 angular.module('userModule')
-    .controller('fleetIndexCtrl', function($scope,$http) {
+    .controller('fleetIndexCtrl', function($scope,FleetResource) {
         /* config object */
-
-
-        $http.get(
-            'http://transportec.azurewebsites.net/fleet/getFleet'
-        ).success(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log("entro", response);
-            $scope.fleets = response.content;
-        }).error(function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("fallo", response);
-            $scope.fleets= response;
+        $scope.getFleet=FleetResource.respuesta(function (res) {
+            console.log("res ", res);
+            $scope.fleets=res
         });
-        console.log( $scope.fleets)
-
-
 
     });

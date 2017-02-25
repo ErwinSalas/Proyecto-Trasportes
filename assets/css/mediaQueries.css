@@ -1,0 +1,19 @@
+@media (max-width: 600px) {
+    .info-box {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        max-height: 80px;
+        display: flex;
+        cursor: default;
+        background-color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 4px; }
+    section.content {
+        margin: 80px 15px 0 315px;
+        -moz-transition: 0.5s;
+        -o-transition: 0.5s;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+}
