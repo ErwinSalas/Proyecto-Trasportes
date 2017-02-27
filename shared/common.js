@@ -5,7 +5,9 @@
 
 
 var closeSideBar=function () {
-  if (window_width<=600){
+  var $window = $(window);
+  console.log($window.width());
+  if($window.width()<=700){
     var $body = $('body');
     var $overlay = $('.overlay');
     $body.toggleClass('overlay-open');

@@ -2,12 +2,44 @@
 
     <!-- Widgets -->
 
-    <!-- #END# Widgets -->
-    <!-- CPU Usage -->
+    <!-- New message -->
+    <div class="modal fade modal-margin" id="defaultModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content"  ng-submit="postMessage()">
+                <div class="modal-header bagTecBlue">
+                    <h4 class=" whiteText" id="defaultModalLabel">Redactar mensaje</h4>
+                </div>
+                <div class="modal-body" >
+                    <label for="Title">Titulo</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input ng-model="message.Title" type="text" id="Title" class="form-control" placeholder="Titulo">
+                        </div>
+                    </div>
+                    <label for="message">Mensaje</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input ng-model="message.Content" type="text" id="message" class="form-control" placeholder="digite su mensaje">
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect" data-dismiss="modal">Enviar</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end new  message -->
     <div class="card" >
 
         <div class="header">
-            <h2>Mensajes</h2>
+            <h2 >Mensajes</h2>
+            <div class="header-dropdown m-r--5 ">
+                <a class="btn-floating btn-sm " data-toggle="modal" data-target="#defaultModal"><i class="material-icons">add</i></a>
+            </div>
         </div>
         <ul class="list-group-custom" ng-repeat="message in messages">
             <li class=" info-box  hover-expand-effect">
