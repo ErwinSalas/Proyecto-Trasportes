@@ -274,15 +274,18 @@
         </div>
     </nav>
     <!-- #Top Bar -->
+    <!-- Se enlaza el controller al sidebar -->
+    <!-- en el se encuentran los datos de usuario que aparecen en el sidebar -->
     <section ng-controller="mainCtrl">
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
-            <!-- User Info -->
+            <!-- Informacion del usuario -->
             <div class="user-info ">
                 <div class="image ">
                     <img src="../assets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
+                    <!-- Menu de cierre de session -->
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user}}</div>
                     <div class="email">{{email}}</div>
                     <div class="btn-group user-helper-dropdown">
@@ -346,22 +349,19 @@
         <!-- #END# Left Sidebar -->
 
     </section>
-
+    <!-- Contenedor en el que se insertaran las vistas del ng-route -->
     <section class="content" ng-view="">
+        <!--Los templates que se cargan aqui son los que se declaran en el archivo app.js -->
     </section>
-     <!-- jquery, moment, and angular have to get included before fullcalendar -->
+
+    <!-- Dependencias de angular  -->
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="../bower_components/ui-listView/src/"></script>
-
-    <!--
-    <script type="text/javascript" src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script type="text/javascript" src="../bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="../bower_components/fullcalendar/dist/gcal.js"></script>
-    -->
+    <!-- Funciones y variables compartidas entre madulos  -->
     <script src="../shared/common.js"></script>
     <!-- app Js -->
     <script src="app.js"></script>
