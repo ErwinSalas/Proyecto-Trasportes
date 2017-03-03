@@ -29,11 +29,35 @@ angular.module('userModule')
         return {respuesta: respuesta};
 
     })
+    .factory('GetAvailableFleetResource',function($http){
+        var authToken = localStorage.getItem('session.token');
+
+        var res = function(data,callback){
+            $http.get(
+                'http://transportec.azurewebsites.net/fleet/getAvailableVehicles?start={0}&end={1}authToken={2}'
+                    .format(data.start,data.end,authToken)
+            ).success(function successCallback(response) {
+                // Esta funcion es la que se ejecuta
+                // cuando la peticion es exitosa
+                //response es la variable en la que se devuelven los datos
+                //En este caso particular nuestro response esta estructurado de manera que
+                //los datos que interesan estan en el atributo content
+                //Se devuelve un callback el cual se ejecuta en el controller
+                callback(response.content);
+            }).error(function errorCallback(response) {
+                //En caso de fallo en la peticion entra en esta funcion
+                console.log("fallo", response);
+                callback(response.content);
+            });
+        };
+        return {response: res};
+
+    })
 
 
     .factory('MessageResource', function ($http) {
         /*
-        Este factory
+
         * */
         var authToken = localStorage.getItem('session.token');
         var factory = {
