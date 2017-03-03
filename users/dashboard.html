@@ -5,7 +5,7 @@
     <!-- New message -->
     <div class="modal fade modal-margin" id="defaultModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-            <form class="modal-content"  ng-submit="postMessage()">
+            <form class="modal-content"  >
                 <div class="modal-header bagTecBlue">
                     <h4 class=" whiteText" id="defaultModalLabel">Redactar mensaje</h4>
                 </div>
@@ -26,7 +26,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-link waves-effect" data-dismiss="modal">Enviar</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" ng-click="postMessage()">Enviar</button>
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>

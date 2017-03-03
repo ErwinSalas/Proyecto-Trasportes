@@ -9,16 +9,56 @@
     <link rel="stylesheet" href="assets/css/login.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Angular-ui-calendar -->
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+
+
+    <!-- Bootstrap Core Css -->
+    <link href=plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="assets/css/themes/theme-blue.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/mediaQueries.css">
 
 </head>
+
 <body id="loginBody" ng-controller="loginController">
+<nav class="navbar white">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="javascript:void(0);" class="bars"></a>
+            <a class="navbar-brand " >
+                <img src="assets/images/TEC-logo-blanco.png">
+            </a>
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Call Search -->
+
+                <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
     <div id="LoginDiv" class="center">
         <img src="assets/images/transportec_logo.png" alt="logo" width="200" height="200" id="logo">
         <form>
             <input type="text" ng-model="username" placeholder="Nombre de usuario" id="inputUsuario">
             <input type="password" ng-model="password" placeholder="Contraseña" id="inputContraseña">
-            <button class="btn waves-effect waves-light center" type="submit" name="action" id="botonSubmit" ng-click="doLogin()">Entrar
-                <i class="material-icons right">send</i>
+            <button class="btn bagTecBlue center" type="submit" name="action" id="botonSubmit" ng-click="doLogin()">Entrar
+                <i class="material-icons right"></i>
             </button>
         </form>
         <div ng-view=""></div>

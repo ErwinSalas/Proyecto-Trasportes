@@ -10,8 +10,9 @@ angular.module('userModule')
         console.log("res ", res);
         $scope.messages=res
     });
-    $scope.postMessage=function() {
-        MessageResource.setMessage($scope.message);
+        $scope.postMessage=function() {
+            console.log("envio",$scope.message)
+            MessageResource.setMessage($scope.message);
 
-    }
+        }
 });
