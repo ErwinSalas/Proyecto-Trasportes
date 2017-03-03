@@ -16,7 +16,10 @@ angular.module('userModule',["ngRoute","ngResource"])
                 templateUrl:'fleet/index.html',
                 controller: 'fleetIndexCtrl'
             })
-
+            .when("/user/reserves",{
+                templateUrl:'reserves/myreserves.html',
+                controller: 'myreservesCtrl'
+            })
 
     }
 ]);

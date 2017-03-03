@@ -98,3 +98,7 @@ function dateToUrlParameter(datetime) {
         datetime.getMinutes());
 }
 
+function datetimeToUrlParameter(date, time) {
+    return "{0}-{1}".format(date, time.replace(':', '-'));
+}
+
