@@ -10,15 +10,20 @@ angular.module('userModule')
         $scope.departureHour=null;
 
         var urlParams = {
-            start: datetimeToUrlParameter(arrivalDate,arrivalHour),
-            end : datetimeToUrlParameter(departureDate,departureHour)
+            start: datetimeToUrlParameter($scope.arrivalDate,$scope.arrivalHour),
+            end : datetimeToUrlParameter($scope.departureDate,$scope.departureHour)
 
         };
         function inputDateHandler(e){
-            $scope.getFleet=GetAvailableFleetResource.respuesta(urlParams,function (res) {
-                console.log("res ", res);
-                $scope.fleets=res
-            });
+            if(new date($scope.departureDate)> new date()) {
+                if ($scope.arrivalDate != null && $scope.arrivalHour != null && $scope.departureDate != null && $scope.departureHour != null){
+                    $scope.getFleet = GetAvailableFleetResource.respuesta(urlParams, function (res) {
+                        console.log("res ", res);
+                        $scope.fleets = res
+                    });
+                }
+            }
+
         }
 
 

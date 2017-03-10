@@ -47,7 +47,24 @@
 
                             </div>
                         </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label >Auto</label>
+                                <select class="form-control show-tick" ng-model="reservation.VehicleID" ng-repeat="fleet in fleets">
+                                    <option value="">{{fleet}}</option>
 
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label >Asignarme</label>
+                                <select class="form-control show-tick">
+                                    <option value="">Chofer</option>
+                                    <option value=1>SI</option>
+                                    <option value=0>NO</option>
+
+                                </select>
+                            </div>
+                        </div>
                         <label for="place">Lugar</label>
                         <div class="form-group">
                             <div class="form-line">
@@ -67,24 +84,7 @@
                             </div>
                         </div>
 
-                        <div class="row clearfix">
-                            <div class="col-sm-6">
-                                <label >Auto</label>
-                                <select class="form-control show-tick" ng-model="reservation.VehicleID">
-                                    <option value="">Placa</option>
 
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <label >Asignarme</label>
-                                <select class="form-control show-tick">
-                                    <option value="">Chofer</option>
-                                    <option value=1>SI</option>
-                                    <option value=0>NO</option>
-
-                                </select>
-                            </div>
-                        </div>
 
                         <button type="submit" class="btn btn-danger m-t-18 waves-effect">Reservar</button>
                     </form>

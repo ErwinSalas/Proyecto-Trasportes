@@ -99,6 +99,7 @@ function dateToUrlParameter(datetime) {
 }
 
 function datetimeToUrlParameter(date, time) {
+    console.log(time);
     return "{0}-{1}".format(date, time.replace(':', '-'));
 }
 
