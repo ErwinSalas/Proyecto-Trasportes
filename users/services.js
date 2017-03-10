@@ -98,4 +98,29 @@ angular.module('userModule')
             }
         };
         return factory;
+    })
+
+    .factory('ReserveResource', function ($http) {
+        var authToken = localStorage.getItem('session.token');
+        var factory = {
+            getReserve: function (callback) {
+                $http({
+                        method: "GET",
+                        url: API_ROOT+'/reservation/get?id=FEF0E69018CCA62B&authToken=2a7eec6fc9c5a64ad2a12f7bcd4ba780236ffecaea7edf8a6487a63c2132bf2a'
+                        /*.format(authToken)*/
+                    }
+                ).success(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log("entro", response);
+                    callback(response.content);
+                }).error(function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("fallo", response);
+                    callback(response.content);
+                });
+            }
+        };
+        return factory;
     });

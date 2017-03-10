@@ -20,6 +20,14 @@ angular.module('userModule',["ngRoute","ngResource"])
                 templateUrl:'reserves/myreserves.html',
                 controller: 'myreservesCtrl'
             })
-
+            .when("/user/reserves/info",{
+                templateUrl:'reserves/myreservesInfo.html',
+                controller: 'myreservesCtrl'
+            })
+            .when("/user/ticket",{
+                templateUrl:'ticket.html',
+                controller: 'fleetIndexCtrl'
+            })
+        
     }
 ]);

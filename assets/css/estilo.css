@@ -1,0 +1,30 @@
+
+body.centraTabla table {
+
+	margin: 0 auto;
+	text-align: center;
+	
+}
+aside.margenesTablas table{
+	width: 970px;
+	height: 100px;
+}
+aside.margenesTabla table{
+	width: 970px;
+	height: 100px;
+}
+nav.margenesTabla table{
+	width: 970px;
+	height: 100px;
+}
+footer.margenesTabla table{
+
+	width: 970px;
+	height: 100px;
+}
+div.inpTabla input{
+	text-align: center;
+	width: 80px;
+	height: 20px;
+
+}
