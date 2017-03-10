@@ -38,15 +38,17 @@
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Fecha de Salida</label>
-                                <input ng-model="departureDate" type="date" class="form-control" placeholder="Enter your email address">
+                                <input ng-model="departureDate" name="departureDate" type="date" class="form-control" placeholder="Enter your email address">
 
                             </div>
                             <div class="col-sm-6">
                                 <label >Fecha de Llegada</label>
-                                <input ng-model="arrivalDate" name="arrivalDate" type="date" class="form-control" placeholder="Enter your email address">
+                                <input  name="arrivalDate" ng-model="arrivalDate" type="date" class="form-control" placeholder="Enter your email address">
 
                             </div>
                         </div>
+                        <a class="btn btn-danger m-t-19 waves-effect" id="btnCheck" >Comprobar</a>
+                        <hr>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Auto</label>

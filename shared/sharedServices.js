@@ -9,7 +9,7 @@ angular.module('sharedServices')
             checkAvailability: function (start, end) {
                 $http({
                     method: 'GET',
-                    url: 'http://transportec.azurewebsites.net/fleet/getAvailableVehicles?start={0}&end={1}&authToken={2}'
+                    url: API_ROOT+'/fleet/getAvailableVehicles?start={0}&end={1}&authToken={2}'
                         .format(start, end, token)
                 }).success(function (response) {
                     if (checkOperationResult(response.metadata) == RESULT_OK) {

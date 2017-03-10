@@ -11,7 +11,7 @@ angular.module('userModule')
 
         var respuesta = function(callback){
             $http.get(
-                'http://transportec.azurewebsites.net/fleet/getFleet'
+                API_ROOT +'/fleet/getFleet'
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
                 // cuando la peticion es exitosa
@@ -34,7 +34,7 @@ angular.module('userModule')
 
         var res = function(data,callback){
             $http.get(
-                'http://transportec.azurewebsites.net/fleet/getAvailableVehicles?start={0}&end={1}authToken={2}'
+                API_ROOT +'/fleet/getAvailableVehicles?start={0}&end={1}authToken={2}'
                     .format(data.start,data.end,authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
@@ -65,7 +65,7 @@ angular.module('userModule')
             setMessage: function (message){
                 $http({
                     method  : 'POST',
-                    url     : 'http://transportec.azurewebsites.net/messages/post?authToken={0}'
+                    url     : API_ROOT + '/messages/post?authToken={0}'
                         .format(authToken),
                     data    : message
 
@@ -81,7 +81,7 @@ angular.module('userModule')
             },
             getMessages: function(callback){
 
-                $http.get('http://transportec.azurewebsites.net/messages/getAll?authToken={0}'
+                $http.get(API_ROOT+'/messages/getAll?authToken={0}'
                     .format(authToken)
                     )
                     .success(function successCallback(response) {
