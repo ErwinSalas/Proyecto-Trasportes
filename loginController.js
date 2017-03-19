@@ -8,13 +8,16 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
         /**
          * Ejecuta el inicio de sesión.
          */
+
         $scope.doLogin = function () {
             $http({
                 method: "GET",
-                url: 'http://transportec.azurewebsites.net/user/login/web?username={0}&password={1}'
+                url: API_ROOT+'/user/login/web?username={0}&password={1}'
                     .format(Base64.toBase64($scope.username, true).toString(), Base64.toBase64($scope.password, true).toString())
             }).then(function mySucces(response) {
                 console.log(response.data);
+                console.log((API_ROOT+'/user/login/web?username={0}&password={1}')
+                    .format(Base64.toBase64($scope.username, true).toString(), Base64.toBase64($scope.password, true).toString()))
                 var meta = response.data.metadata;
                 if (meta.operationResult == "OK") {
 

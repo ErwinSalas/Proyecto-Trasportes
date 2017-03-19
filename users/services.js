@@ -34,7 +34,7 @@ angular.module('userModule')
 
         var res = function(data,callback){
             $http.get(
-                API_ROOT +'/fleet/getAvailableVehicles?start={0}&end={1}authToken={2}'
+                API_ROOT +'/fleet/getAvailableVehicles?start={0}&end={1}&authToken={2}'
                     .format(data.start,data.end,authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
@@ -106,7 +106,7 @@ angular.module('userModule')
             getReserve: function (callback) {
                 $http({
                         method: "GET",
-                        url: API_ROOT+'/reservation/get?id=FEF0E69018CCA62B&authToken=2a7eec6fc9c5a64ad2a12f7bcd4ba780236ffecaea7edf8a6487a63c2132bf2a'
+                        url: API_ROOT + '/reservation/get?id=FEF0E69018CCA62B&authToken=2a7eec6fc9c5a64ad2a12f7bcd4ba780236ffecaea7edf8a6487a63c2132bf2a'
                         /*.format(authToken)*/
                     }
                 ).success(function successCallback(response) {
@@ -119,7 +119,24 @@ angular.module('userModule')
                     // or server returns response with an error status.
                     console.log("fallo", response);
                     callback(response.content);
-                });
+                })
+            },
+            setReserve: function (reservation) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/reservation/reserve?authToken={0}'
+                        .format(authToken),
+                    data: reservation
+
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data.errors)
+                        } else {
+                            console.log("set message success")
+                        }
+                    });
             }
         };
         return factory;
