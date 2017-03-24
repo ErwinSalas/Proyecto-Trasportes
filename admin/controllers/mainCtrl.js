@@ -6,8 +6,8 @@ angular.module('adminModule')
     .controller('mainCtrl', function($scope) {
     /* config object */
 
-        var usuario = JSON.parse(sessionStorage.getItem("user"));
-
-        $scope.user = usuario.name;
-        $scope.email= usuario.email;
+        /*var usuario = JSON.parse(sessionStorage.getItem("user"));*/
+        $scope.user = "Ejemplo";
+        $scope.email = "Ejemplo@TEC.ac.cr";
+        window.location.href = ('#/admin');
 });

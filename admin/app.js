@@ -24,6 +24,11 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
             controller: 'usersEditCtrl'
 
         })
+        .when("/admin/reserves",{
+            templateUrl:'reservesAdmi/reservesAdmi.html',
+            controller: 'reservesAdmiCtrl'
+
+        })
 
     }
 ]);
