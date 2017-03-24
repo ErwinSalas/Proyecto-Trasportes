@@ -21,16 +21,16 @@
                     </ul>
                 </div>
                 <div class="body">
-                    <form ng-submit="sendReservation()">
+                    <form >
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Hora de Salida</label>
-                                <input ng-model="departureHour" type="time"  class="form-control" placeholder="">
+                                <input id="departureHour" ng-model="departureHour" type="time"  class="form-control" placeholder="">
 
                             </div>
                             <div class="col-sm-6">
                                 <label >Hora de Llegada</label>
-                                <input ng-model="arrivalHour" type="time"  class="form-control" placeholder="">
+                                <input id="arrivalHour" ng-model="arrivalHour" type="time"  class="form-control" placeholder="">
 
                             </div>
                         </div>
@@ -38,28 +38,31 @@
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Fecha de Salida</label>
-                                <input ng-model="departureDate" name="departureDate" type="date" class="form-control" placeholder="Enter your email address">
+                                <input id="departureDate" ng-model="departureDate" type="date" class="form-control" placeholder="Enter your email address">
 
                             </div>
                             <div class="col-sm-6">
                                 <label >Fecha de Llegada</label>
-                                <input  name="arrivalDate" ng-model="arrivalDate" type="date" class="form-control" placeholder="Enter your email address">
+                                <input  id="arrivalDate" ng-model="arrivalDate"  type="date" class="form-control" placeholder="Enter your email address">
 
                             </div>
                         </div>
-                        <a class="btn btn-danger m-t-19 waves-effect" id="btnCheck" >Comprobar</a>
+                        <button class="btn btn-danger waves-effect"  id="btnCheck" data-type="success">Comprobar</button>
+
                         <hr>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Auto</label>
-                                <select class="form-control show-tick" ng-model="reservation.VehicleID" ng-repeat="fleet in fleets">
-                                    <option value="">{{fleet}}</option>
+                                <select class="form-control show-tick" ng-model="reservation.VehicleID" >
+                                    <option ng-repeat="fleet in fleets" value="{{fleet}}">
+                                        {{fleet}}
+                                    </option>
 
                                 </select>
                             </div>
                             <div class="col-sm-6">
                                 <label >Asignarme</label>
-                                <select class="form-control show-tick">
+                                <select class="form-control show-tick" ng-model="reservation.RequestDriver">
                                     <option value="">Chofer</option>
                                     <option value=1>SI</option>
                                     <option value=0>NO</option>
@@ -70,29 +73,29 @@
                         <label for="place">Lugar</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reserve.DestinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
+                                <input ng-model="reservation.DestinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
                             </div>
                         </div>
                         <label for="place">Encargado</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reserve.Responsable" type="text" id="Responsable" class="form-control" placeholder="Lugar">
+                                <input ng-model="reservation.Responsable" type="text" id="Responsable" class="form-control" placeholder="Persona a cargo ">
                             </div>
                         </div>
                         <label for="place">Pasajeros</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reserve.Pasenger" type="number" id="Pasenger" class="form-control" placeholder="Lugar">
+                                <input ng-model="reservation.Pasenger" type="number" id="Pasenger" class="form-control" placeholder="Cantidad de pasajeros">
                             </div>
                         </div>
-
-
-
-                        <button type="submit" class="btn btn-danger m-t-18 waves-effect">Reservar</button>
+                        <button type="submit" class="btn btn-danger m-t-18 waves-effect" ng-click="postReservation()">Reservar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- #END# Vertical Layout -->
+
+
+
 </div>
