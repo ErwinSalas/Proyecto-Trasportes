@@ -2,11 +2,13 @@ angular.module('userModule')
     .controller('myreservesCtrl', function($scope,$http) {
         /* config object */
 
-
+        var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.user') );
+        console.log("session use", user);
         $http({
                 method: "GET",
-                url: API_ROOT+'/reservation/get?user=alejandro&authToken=36f18befbb3f15c3e56dc9aea5c83bf93a8d9730689a7f7337468e078d5ba24d'
-                /*.format(authToken)*/
+                url: API_ROOT+'/reservation/get?user={0}&authToken={1}'
+                    .format(user.username,authToken)
             }
         ).success(function successCallback(response) {
             // this callback will be called asynchronously

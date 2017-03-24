@@ -3,18 +3,20 @@
  */
 angular.module('userModule')
     .controller('reservationsCreateCtrl', function($scope,GetAvailableFleetResource,ReserveResource) {
+        $scope.setDates=function(arrival,departure){
+            $scope.reservation={
+                Arrival :arrival,
+                Departure:departure
+            };
+        };
         $scope.postReservation=function() {
+            var user = JSON.parse( localStorage.getItem('session.user') );
+            $scope.reservation.RequestingUser= user.username;
             console.log("envio",$scope.reservation)
             ReserveResource.setReserve($scope.reservation);
 
         };
 
-        function obtainDateInterval(start,end){
-            $scope.reservation={
-                Departure: start,
-                Arrival: end
-            }
-        }
         document.getElementById("btnCheck").addEventListener("click", function(){
             var arrivalDate= document.getElementById("arrivalDate").value;
             var arrivalHour= document.getElementById("arrivalHour").value;
@@ -32,7 +34,7 @@ angular.module('userModule')
                         $scope.fleets = res
 
                     });
-                    obtainDateInterval(urlParams.start,urlParams.end);
+                    $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
                 }
                 swal({
                     title: "Comprobación Exitosa",

@@ -143,6 +143,23 @@ angular.module('userModule')
                     console.log("fallo", response);
                     callback(response.content);
                 });
+            },
+            setReserve: function (reservation) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/reservation/reserve?authToken={0}'
+                        .format(authToken),
+                    data: reservation
+
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data.errors);
+                        } else {
+                            console.log("set reservation success",data);
+                        }
+                    });
             }
         };
         return factory;
