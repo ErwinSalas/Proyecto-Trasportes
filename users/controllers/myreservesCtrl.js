@@ -1,11 +1,11 @@
 angular.module('userModule')
-    .controller('myreservesCtrl', function($scope,$http, ReserveResource) {
+    .controller('myreservesCtrl', function($scope,$http) {
         /* config object */
 
 
         $http({
                 method: "GET",
-                url: API_ROOT+'/reservation/get?user=miguel&authToken=07a250ceead9d84a3096f8168b32a568ef203f4c79447be188f2ee194d951ef6'
+                url: API_ROOT+'/reservation/get?user=alejandro&authToken=36f18befbb3f15c3e56dc9aea5c83bf93a8d9730689a7f7337468e078d5ba24d'
                 /*.format(authToken)*/
             }
         ).success(function successCallback(response) {
@@ -21,23 +21,22 @@ angular.module('userModule')
         });
         console.log( $scope.reservations);
 
-        $scope.reserveSelectedArray = [];
+        $scope.reserveSelectedID = "";
 
-        $scope.reserveSelected = function (listReservation, reserveID) {
-            for (reserve = 0, len = listReservation.length, result = []; reserve < len; reserve++){
+        $scope.reserveSelected = function (reserveID) {
+            /*for (reserve = 0, len = listReservation.length, result = []; reserve < len; reserve++){
                 if (reserveID == listReservation[reserve].ReservationID){
                     reserveSelectedArray = listReservation[reserve];
                 }
-            }
-            console.log("salio");
-            console.log(reserveSelectedArray)
+            }*/
+            reserveSelectedID = reserveID;
+            console.log("ID Salio");
+            console.log(reserveSelectedID);
+
+            window.location.href = '#/user/reserves/info/'+reserveSelectedID;
 
         };
 
-        $scope.getReserve=ReserveResource.getReserve(function (res) {
-            console.log("res ", res);
-            $scope.reserve=res
-        });
 
         $scope.reservationstatus = "done";
 

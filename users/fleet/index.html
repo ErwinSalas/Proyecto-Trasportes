@@ -3,26 +3,28 @@
 
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleets">
-        <div class="info-box  hover-expand-effect">
-            <div class="icon ">
-                <i class="material-icons">directions_car</i>
-            </div>
-            <div class="content">
-                <div class="text">
-                    Marca : {{fleet.Model}}
+        <a ng-init="idvalue=fleet.CarID" ng-click="fleetSelected(idvalue)">
+            <div class="info-box  hover-expand-effect">
+                <div class="icon ">
+                    <i class="material-icons">directions_car</i>
                 </div>
-                <small >
+                <div class="content">
+                    <div class="text">
+                        Marca : {{fleet.Model}}
+                    </div>
+                    <small >
 
 
-                    Placa :{{fleet.CarID}}
+                        Placa :{{fleet.CarID}}
 
-                    Capacidad: {{fleet.Capacity}}
+                        Capacidad: {{fleet.Capacity}}
 
 
-                </small>
+                    </small>
 
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="fleet in fleets" >
         <div class="card " >

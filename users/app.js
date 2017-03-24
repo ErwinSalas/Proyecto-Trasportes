@@ -20,13 +20,17 @@ angular.module('userModule',["ngRoute","ngResource"])
                 templateUrl:'reserves/myreserves.html',
                 controller: 'myreservesCtrl'
             })
-            .when("/user/reserves/info",{
+            .when("/user/reserves/info/:valueID",{
                 templateUrl:'reserves/myreservesInfo.html',
-                controller: 'myreservesCtrl'
+                controller: 'myreservesInfoCtrl'
             })
             .when("/user/ticket",{
                 templateUrl:'ticket.html',
-                controller: 'fleetIndexCtrl'
+                controller: 'myreservesCtrl'
+            })
+            .when("/user/fleet/info/:valueID",{
+                templateUrl:'fleet/fleetInfo.html',
+                controller: 'fleetInfoCtrl'
             })
         
     }

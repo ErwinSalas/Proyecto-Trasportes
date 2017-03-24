@@ -10,4 +10,14 @@ angular.module('userModule')
             $scope.fleets=res
         });
 
+        $scope.carSelectedID = "";
+
+        $scope.fleetSelected = function (carID) {
+            carSelectedID = carID;
+            console.log("ID Salio");
+            console.log(carSelectedID);
+
+            window.location.href = '#/user/fleet/info/'+carSelectedID;
+
+        };
     });

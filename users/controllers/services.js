@@ -6,7 +6,7 @@ angular.module('starter.services', [])
             var deferred = $q.defer();
             var promise = deferred.promise;
 
-            var USERS_LOCATION = 'http://transportec.azurewebsites.net/login/web?username={0}&password={1}'
+            var USERS_LOCATION = API_ROOT+'/login/web?username={0}&password={1}'
               .format(Base64.toBase64(username, true).toString(), Base64.toBase64(password, true).toString());
 
       
