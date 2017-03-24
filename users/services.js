@@ -34,7 +34,7 @@ angular.module('userModule')
 
         var res = function(data,callback){
             $http.get(
-                API_ROOT +'/fleet/getAvailableVehicles?start={0}&end={1}&authToken={2}'
+                API_ROOT +'/fleet/getAvailableVehicles?start={0}&end={1}authToken={2}'
                     .format(data.start,data.end,authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
