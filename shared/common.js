@@ -103,3 +103,12 @@ function datetimeToUrlParameter(date, time) {
     return "{0}-{1}".format(date, time.replace(':', '-'));
 }
 
+/**
+ * Genera una fecha en formato ISO8601 a partir de una fecha y una hora.
+ * @param date Fecha.
+ * @param time Hora.
+ * @returns {String} Fecha y hora fusionada en formato ISO8601.
+ */
+function datetimeToISO8601(date, time) {
+  return "{0}T{1}".format(date, time);
+}
