@@ -7,7 +7,7 @@ angular.module('adminModule')
     /* config object */
 
         /*var usuario = JSON.parse(sessionStorage.getItem("user"));*/
-        $scope.user = "Ejemplo";
-        $scope.email = "Ejemplo@TEC.ac.cr";
+        $scope.user = "Admin";
+        $scope.email = "Admin@TEC.ac.cr";
         window.location.href = ('#/admin');
 });

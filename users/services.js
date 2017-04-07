@@ -57,7 +57,6 @@ angular.module('userModule')
 
     .factory('MessageResource', function ($http) {
         /*
-
         * */
         var authToken = localStorage.getItem('session.token');
         var factory = {

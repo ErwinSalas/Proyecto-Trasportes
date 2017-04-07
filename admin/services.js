@@ -1,5 +1,5 @@
 /**
- * Created by Erwin on 27/10/2016.
+ * Created by ADRIAN on 24/3/2017.
  */
 angular.module('adminModule')
 /*
@@ -7,11 +7,55 @@ angular.module('adminModule')
  deviuelve instancias de un objeto o variable en este caso es un arreglo de
  objetos json
  */
-    .factory('GetFleetResources',function($http){
+
+    //Fleet get
+    .factory('FleetResources',function($http){
+        var factory = {
+            getFleet: function ( callback) {
+                $http.get(
+                    API_ROOT +'/fleet/getFleet'
+                ).success(function successCallback(response) {
+                    // Esta funcion es la que se ejecuta
+                    // cuando la pet    icion es exitosa
+                    //response es la variable en la que se devuelven los datos
+                    //En este caso particular nuestro response esta estructurado de manera que
+                    //los datos que interesan estan en el atributo content
+                    //Se devuelve un callback el cual se ejecuta en el controller
+                    callback(response.content);
+                }).error(function errorCallback(response) {
+                    //En caso de fallo en la peticion entra en esta funcion
+                    console.log("fallo", response);
+                    callback(response.content);
+                });
+            },
+            setNewCar: function (fleet) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/fleet/addVehicle?authToken={0}'
+                        .format(authToken),
+                    data: fleet
+
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data);
+                        } else {
+                            console.log("set new car success",data);
+                        }
+                    });
+            }
+        };
+        return factory;
+
+
+    })
+    //Driver get
+    .factory('GetDriverResource',function($http){
 
         var respuesta = function(callback){
             $http.get(
-                API_ROOT +'/fleet/getFleet'
+                API_ROOT +'/driver/getAll?authToken=0addc2ea5c9aff2cd4de144d3642ffe0ca8b1dddc99beafd8b125b137e188242'
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
                 // cuando la peticion es exitosa
