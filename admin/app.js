@@ -25,9 +25,13 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
 
         })
         .when("/admin/reserves",{
-            templateUrl:'reservesAdmi/reservesAdmi.html',
-            controller: 'reservesAdmiCtrl'
+            templateUrl:'reservesAdmi/reservesAdmin.html',
+            controller: 'reservesAdminCtrl'
 
+        })
+        .when("/admin/reserves/info/:valueID",{
+            templateUrl:'reservesAdmi/reservesAdminInfo.html',
+            controller: 'reservesAdminInfoCtrl'
         })
 
     }
