@@ -13,6 +13,23 @@ form{
     border-style: double;
     margin-top: 8em;
 }
+.btn-login{
+    margin-bottom: 10%;
+}
+@media (max-width: 800px) {
+    #LoginDiv{
+        width: 80%;
+        height: 60%;
+    }
+    form{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .btn-login{
+        margin-bottom: 30%;
+    }
+
+}
 
 #loginBody{
     background-color: #ffffff;
