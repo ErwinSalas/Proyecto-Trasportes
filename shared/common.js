@@ -112,3 +112,9 @@ function datetimeToUrlParameter(date, time) {
 function datetimeToISO8601(date, time) {
   return "{0}T{1}".format(date, time);
 }
+function signOut(){
+  localStorage.removeItem("session.user");
+  localStorage.removeItem("session.token");
+  window.location.href = ('../index.html');
+
+}
