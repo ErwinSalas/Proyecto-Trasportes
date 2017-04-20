@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                       Create Fleet
+                       Crear Flotilla
                     </h2>
                     <ul class="header-dropdown m-r--5">
                         <li class="dropdown">
@@ -25,45 +25,45 @@
                 </div>
                 <div class="body">
                     <form ng-submit="saveUser()">
-                        <label for="make">Brand</label>
+                        <label for="brand">Marca</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newCar.Brand" type="text" id="make" class="form-control" placeholder="Enter the make">
+                                <input ng-model="newCar.brand" type="text" id="brand" class="form-control" placeholder="Ingrese la Marca">
                             </div>
                         </div>
-                        <label for="model">Model</label>
+                        <label for="model">Modelo</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newCar.Model" type="text" id="model" class="form-control" placeholder="Enter the model">
+                                <input ng-model="newCar.model" type="text" id="model" class="form-control" placeholder="Ingrese el Modelo">
                             </div>
                         </div>
-                        <label for="plate">Plate</label>
+                        <label for="vehicleId">Placa</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newCar.CarID" type="text" id="plate" class="form-control" placeholder="Enter the plate">
-                            </div>
-                        </div>
-
-                        <label for="transmission">Transmission</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newCar.Traction" type="text" id="transmission" class="form-control" placeholder="Enter the transmission">
-                            </div>
-                        </div>
-                        <label for="passengers">Passengers</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input  ng-model="newCar.Capacity" type="text" id="passengers" class="form-control" placeholder="Enter the passengers">
-                            </div>
-                        </div>
-                        <label for="dependence">Dependence</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input  ng-model="newCar.Dependence" type="text" id="dependence" class="form-control" placeholder="Enter the dependence">
+                                <input ng-model="newCar.vehicleId" type="text" id="vehicleId" class="form-control" placeholder="Ingrese la Placa">
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postCar()">Register</button>
+                        <label for="traction">Transmicción</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="newCar.traction" type="text" id="traction" class="form-control" placeholder="Ingrese la Transmicción">
+                            </div>
+                        </div>
+                        <label for="capacity">Capacidad</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input  ng-model="newCar.capacity" type="text" id="capacity" class="form-control" placeholder="Ingrese la cantidad de Pasajeros">
+                            </div>
+                        </div>
+                        <label for="dependence">Dependencia</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input  ng-model="newCar.dependence" type="text" id="dependence" class="form-control" placeholder="Ingrese la Dependencia">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postCar()">Registrar</button>
 
                     </form>
                 </div>

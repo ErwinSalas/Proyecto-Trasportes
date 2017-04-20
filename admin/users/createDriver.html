@@ -7,36 +7,36 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Create Driver
+                        Crear Chofer
                     </h2>
                 </div>
                 <div class="body">
                     <form ng-submit="saveUser()">
-                        <label for="Identification">Identification</label>
+                        <label for="identification">Identificación</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newDriver.Identification" type="text" id="Identification" class="form-control" placeholder="Enter the Identification">
+                                <input ng-model="newDriver.identification" type="text" id="identification" class="form-control" placeholder="Ingrese la Identificación">
                             </div>
                         </div>
-                        <label for="FirstName">FirstName</label>
+                        <label for="firstName">Primer Nombre</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newDriver.FirstName" type="text" id="FirstName" class="form-control" placeholder="Enter the FirstName">
+                                <input ng-model="newDriver.firstName" type="text" id="firstName" class="form-control" placeholder="Ingrese el Primer Nombre">
                             </div>
                         </div>
-                        <label for="LastName">LastName</label>
+                        <label for="lastName">Apellidos</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newDriver.LastName" type="text" id="LastName" class="form-control" placeholder="Enter the LastName">
+                                <input ng-model="newDriver.lastName" type="text" id="lastName" class="form-control" placeholder="Ingrese los Apellidos">
                             </div>
                         </div>
-                        <label for="Headquarter">Headquarter</label>
+                        <label for="Headquarter">Sede</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newDriver.Headquarter" type="text" id="Headquarter" class="form-control" placeholder="Enter the Headquarter">
+                                <input ng-model="newDriver.headquarter" type="text" id="headquarter" class="form-control" placeholder="Ingrese la Sede">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postDriver()">Register</button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postDriver()">Registrar</button>
 
                     </form>
                 </div>
