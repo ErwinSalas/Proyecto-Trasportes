@@ -16,18 +16,19 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                     .format(Base64.toBase64($scope.username, true).toString(), Base64.toBase64($scope.password, true).toString())
             }).then(function mySucces(response) {
                 console.log(response.data);
-                console.log((API_ROOT+'/user/login/web?username={0}&password={1}')
+                console.log((API_ROOT + '/user/login/web?username={0}&password={1}')
                     .format(Base64.toBase64($scope.username, true).toString(), Base64.toBase64($scope.password, true).toString()))
                 var meta = response.data.metadata;
-                if (meta.operationResult == "OK") {
+
+                if (meta.operationResult == 'Ok') {
 
                     var content = response.data.content;
                     console.log(content);
-                    var userData = content.owner;
+                    var userData = content.user;
                     console.log(userData);
                     saveSession(content);
 
-                    window.location.href = ('{0}/MainView.html'.format(userData.userType == "Customer" ? "users" : "admin"));
+                    window.location.href = ('{0}/MainView.html'.format(userData.userType == "Admin" ? "admin" : "users"));
                 } else {
                     alert("Credenciales incorrectas");
                 }
@@ -39,8 +40,8 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
          * @param json JSON de origen.
          */
         function saveSession(json) {
-            localStorage.setItem("session.token", json.token);
-            localStorage.setItem("session.user", JSON.stringify(json.owner));
+            localStorage.setItem("session.token", json.session.token);
+            localStorage.setItem("session.owner", JSON.stringify(json.user));
             console.log("Sesión guardada.");
         }
     });
