@@ -5,9 +5,10 @@
 angular.module('adminModule')
     .controller('fleetAdminCtrl', function($scope,FleetResources) {
         /* config object */
-        $scope.newCar={};
+        $scope.newCar={
+            headquarter:"SanCarlos"
+        };
         $scope.postCar=function() {
-            
             console.log("envio",$scope.newCar);
             FleetResources.setNewCar($scope.newCar);
 
@@ -16,6 +17,14 @@ angular.module('adminModule')
             console.log("res ", res);
             $scope.fleetAdmin=res
         });
+     
+        $scope.carSelectedID = "";
+        $scope.selectedId = function (carId) {
+            carSelectedID = carId;
+            console.log("Entro ID");
+            console.log("<>_<>_<>_<>_<> "+carSelectedID);
+            window.location.href = '#/admin/fleetAdmin/fleetAdminInfo/'+carSelectedID;
+        }
 
     });
     

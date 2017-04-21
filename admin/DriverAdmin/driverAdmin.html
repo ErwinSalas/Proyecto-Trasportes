@@ -3,6 +3,7 @@
 </a>
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="driver in driverAdmin">
+        <a ng-init="idvalue=driver.identification" ng-click="driverSelected(idvalue)">
         <div class="info-box  hover-expand-effect">
             <div class="icon ">
                 <i class="material-icons">perm_identity</i>
@@ -19,5 +20,6 @@
                 </small>
             </div>
         </div>
+        </a>
     </div>
 </div>

@@ -1,10 +1,9 @@
-
-
 <a class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" href="#/admin/fleetAdmin/create">
     <i class="material-icons">add</i>
 </a>
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleetAdmin">
+        <a ng-init="idvalue=fleet.vehicleId" ng-click="selectedId(idvalue)">
         <div class="info-box  hover-expand-effect">
             <div class="icon ">
                 <i class="material-icons">directions_car</i>
@@ -15,14 +14,13 @@
                     Modelo : {{fleet.model}}
                 </div>
                 <small >
-                    Placa :{{fleet.carId}}
+                    Placa :{{fleet.vehicleId}}
                     Capacidad: {{fleet.capacity}}
                     Sede: {{fleet.headquarter}}
                 </small>
             </div>
         </div>
+        </a>
     </div>
-
 </div>
-
 <!--perm_identity-->

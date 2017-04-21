@@ -6,7 +6,7 @@ angular.module('adminModule')
         console.log("session use", user);
         $http({
                 method: "GET",
-                url: API_ROOT+'/reservation/get?filter=0&authToken={0}'
+                url: API_ROOT+'/reservation/get?filter=all&authToken={0}'
                     .format(authToken)
             }
         ).success(function successCallback(response) {

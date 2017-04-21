@@ -11,14 +11,27 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
             .when("/admin/user/edit",{
                 templateUrl:'users/edit.html'
             })
+            //Se conecta la vista de crear flotilla
             .when("/admin/fleetAdmin/create",{
-                templateUrl:'users/create.html',
-                controller: 'usersCreateCtrl'
+                templateUrl:'FleetAdmin/create.html',
+                controller: 'fleetAdminCtrl'
             })
+            //Se conecta la vista de información de la flotilla 
+            .when("/admin/fleetAdmin/fleetAdminInfo/:valueID",{
+                templateUrl:'FleetAdmin/fleetAdminInfo.html',
+                controller: 'fleetAdminInfoCtrl'
+            })
+            //Se conecta la vista de crear Choferes
             .when("/admin/driverAdmin/createDriver",{
-                templateUrl:'users/createDriver.html',
-                controller: 'usersCreateCtrl'
+                templateUrl:'DriverAdmin/createDriver.html',
+                controller: 'driverAdminCtrl'
             })
+            //Se conecta la vista de información de los choferes
+            .when("/admin/driverAdmin/driverAdminInfo/:valueID",{
+                templateUrl:'DriverAdmin/driverAdminInfo.html',
+                controller: 'driverInfoCtrl'
+            })
+
             .when("/admin/user/home",{
                 templateUrl:'users/index.html',
                 controller: 'usersHomeCtrl'
@@ -37,12 +50,13 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 templateUrl:'reservesAdmi/reservesAdminInfo.html',
                 controller: 'reservesAdminInfoCtrl'
             })
-            .when("/admin/fleetAdmin",{//Se conecta la vista con el controlador
+            //Se conecta la vista con el controlador de la flotilla
+            .when("/admin/fleetAdmin",{
                 templateUrl:'FleetAdmin/fleetAdmin.html',
                 controller: 'fleetAdminCtrl'
-
             })
-            .when("/admin/driverAdmin",{//Se conecta la vista con el controlador
+            //Se conecta la vista con el controlador de los choferes
+            .when("/admin/driverAdmin",{
                 templateUrl:'DriverAdmin/driverAdmin.html',
                 controller: 'driverAdminCtrl'
 

@@ -9,22 +9,9 @@
                     <h2>
                        Crear Flotilla
                     </h2>
-                    <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <!--
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);">Editar</a></li>
-                                <li><a href="javascript:void(0);">Eliminar</a></li>
-                                <li><a href="javascript:void(0);">Detalles</a></li>
-                            </ul>-->
-                        </li>
-                    </ul>
                 </div>
                 <div class="body">
-                    <form ng-submit="saveUser()">
+                    <form ng-submit="postCar()">
                         <label for="brand">Marca</label>
                         <div class="form-group">
                             <div class="form-line">
@@ -53,7 +40,13 @@
                         <label for="capacity">Capacidad</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input  ng-model="newCar.capacity" type="text" id="capacity" class="form-control" placeholder="Ingrese la cantidad de Pasajeros">
+                                <input  ng-model="newCar.capacity" type="number" id="capacity" class="form-control" placeholder="Ingrese la cantidad de Pasajeros">
+                            </div>
+                        </div>
+                        <label for="mileage">Kilometraje</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input  ng-model="newCar.mileage" type="number" id="mileage" class="form-control" placeholder="Ingrese el Kilometraje">
                             </div>
                         </div>
                         <label for="dependence">Dependencia</label>
@@ -64,7 +57,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postCar()">Registrar</button>
-
+                        <a class="btn btn-primary m-t-15 waves-effect" href="#/admin/fleetAdmin/">Atras</a>
                     </form>
                 </div>
             </div>

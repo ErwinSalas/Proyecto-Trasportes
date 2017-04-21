@@ -4,8 +4,10 @@
 angular.module('adminModule')
     .controller('driverAdminCtrl', function($scope,DriverResource) {
     /* config object */
-        $scope.newDriver={};
-        $scope.postDriver=function() {
+        $scope.newDriver={
+            isActive:true
+        };
+        $scope.saveDriver=function() {
             console.log("Envio ", $scope.newDriver);
             DriverResource.setNewDriver($scope.newDriver);
         }
@@ -13,7 +15,13 @@ angular.module('adminModule')
             console.log("res ", res);
             $scope.driverAdmin=res;
     });
-        console.log("hi ");
+        $scope.choferSelectedID = "";
+        $scope.driverSelected = function (choferId) {
+            choferSelectedID = choferId;
+            console.log("Entro ID");
+            console.log("<>_<>_<>_<>_<> "+choferSelectedID);
+            window.location.href = '#/admin/driverAdmin/driverAdminInfo/'+choferSelectedID;
+        }
 });
 
 

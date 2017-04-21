@@ -7,13 +7,13 @@ angular.module('adminModule')
  deviuelve instancias de un objeto o variable en este caso es un arreglo de
  objetos json
  */
-
     //Fleet 
     .factory('FleetResources',function($http){
+        var authToken = localStorage.getItem('session.token');
         var factory = {
             getFleet: function ( callback) {
                 $http.get(
-                    API_ROOT +'/fleet/getFleet?filter=all&headquarter=SanCarlos&authToken=10373961307af37c41c1f5570d25664670ec51740b591f76fe3378c743b72618'
+                    API_ROOT +'/fleet/getFleet?filter=all&headquarter=SanCarlos&authToken={0}'.format(authToken)
                 ).success(function successCallback(response) {
                     // Esta funcion es la que se ejecuta
                     // cuando la pet    icion es exitosa
@@ -31,10 +31,8 @@ angular.module('adminModule')
             setNewCar: function (fleet) {
                 $http({
                     method: 'POST',
-                    url: API_ROOT + '/fleet/addVehicle?authToken={0}'
-                        .format(authToken),
+                    url: API_ROOT + '/fleet/addVehicle?authToken={0}'.format(authToken),
                     data: fleet
-
                 })
                     .success(function (data) {
                         if (data.errors) {
@@ -47,15 +45,14 @@ angular.module('adminModule')
             }
         };
         return factory;
-
-
     })
     //Driver 
     .factory('DriverResource',function($http){
+        var authToken = localStorage.getItem('session.token');
         var factory = {
             getDriver: function(callback){
                 $http.get(
-                    API_ROOT +'/driver/getDrivers?filter=all&headquarter=SanCarlos&authToken=978f1e24f776e38fef5152fe23c36cf7230f2f1b4ba4f938ecdb04b9c9487868'
+                    API_ROOT +'/driver/getDrivers?filter=all&headquarter=SanCarlos&authToken={0}'.format(authToken)
                 ).success(function successCallback(response) {
                     // Esta funcion es la que se ejecuta
                     // cuando la peticion es exitosa
@@ -73,8 +70,7 @@ angular.module('adminModule')
             setNewDriver: function (driver) {
                 $http({
                     method: 'POST',
-                    url: API_ROOT + '/driver/add?authToken={0}'
-                        .format(authToken),
+                    url: API_ROOT + '/driver/add?authToken={0}'.format(authToken),
                     data: driver
                 })
                     .success(function (data) {
@@ -90,6 +86,53 @@ angular.module('adminModule')
         return factory;
     })
 
+    .factory('FleetCarResources', function ($http) {
+        var authToken = localStorage.getItem('session.token');
+        var factory = {
+            getCarInfo: function (carID, callback) {
+                $http({
+                        method: "GET",
+                        url: API_ROOT+'/fleet/getVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken)
+                    }
+                ).success(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log("entro", response);
+                    callback(response.content);
+                }).error(function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("fallo", response);
+                    callback(response.content);
+                });
+            }
+        };
+        return factory;
+    })
+  
+    .factory('DriversResources', function ($http) {
+        var authToken = localStorage.getItem('session.token');
+        var factory = {
+            getDriverInfo: function (driverID, callback) {
+                $http({
+                        method: "GET",
+                        url: API_ROOT+'/driver/getDriver?driverId={0}&authToken={1}'.format(driverID, authToken)
+                    }
+                ).success(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log("entro", response);
+                    callback(response.content);
+                }).error(function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("fallo", response);
+                    callback(response.content);
+                });
+            }
+        };
+        return factory;
+    })
     .factory('ReserveResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var factory = {
@@ -129,5 +172,4 @@ angular.module('adminModule')
             }
         };
         return factory;
-
     });

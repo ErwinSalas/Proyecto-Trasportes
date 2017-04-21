@@ -322,14 +322,14 @@
 			}
 			(function () {
 	        if (window.matchMedia) {
-	            var mediaQueryList = window.matchMedia('print');
+						var mediaQueryList = window.matchMedia('print');
 
-	            mediaQueryList.addListener(function (mql) {
-	                if (mql.matches) {
-	                    ocultarImprimir();
-	                } else {
-	                    mostarboton();
-	                }
+						mediaQueryList.addListener(function (mql) {
+							if (mql.matches) {
+								ocultarImprimir();
+							} else {
+								mostarboton();
+							}
 	            });
 	        }
 	        window.onbeforeprint = ocultarImprimir;
