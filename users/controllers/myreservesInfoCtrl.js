@@ -6,8 +6,8 @@ angular.module('userModule')
         $scope.getReserve = ReserveResource.getReserve(reserveSelectedID, function (res) {
             $scope.reserve=res;
             console.log("La resInfo ", $scope.reserve);
-            if($scope.reserve.AssignedDriver == null){
-                $scope.reserve.AssignedDriver = "No";
+            if($scope.reserve.assignedDriver == null){
+                $scope.reserve.assignedDriver = "No";
             }
         });
     }); 
