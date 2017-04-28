@@ -3,7 +3,7 @@ angular.module('userModule')
         /* config object */
 
         var authToken = localStorage.getItem('session.token');
-        var user = JSON.parse( localStorage.getItem('session.user') );
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         console.log("session use", user);
         $http({
                 method: "GET",

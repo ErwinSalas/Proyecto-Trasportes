@@ -8,10 +8,10 @@ angular.module('userModule')
     objetos json
     */
     .factory('GetFleetResource',function($http){
-
+        var authToken = localStorage.getItem('session.token');
         var respuesta = function(callback){
             $http.get(
-                API_ROOT +'/fleet/getFleet'
+                API_ROOT +'/fleet/getFleet?filter=all&headquarter=SanCarlos&authToken={0}'.format(authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
                 // cuando la peticion es exitosa
@@ -31,10 +31,9 @@ angular.module('userModule')
     })
     .factory('GetAvailableFleetResource',function($http){
         var authToken = localStorage.getItem('session.token');
-
         var res = function(data,callback){
             $http.get(
-                API_ROOT +'/fleet/getAvailableVehicles?start={0}&end={1}&authToken={2}'
+                API_ROOT +'/fleet/checkAvailability?headquarter=SanCarlos&start={0}&end={1}&authToken={2}'
                     .format(data.start,data.end,authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
@@ -51,36 +50,14 @@ angular.module('userModule')
             });
         };
         return {response: res};
-
     })
-
-
-    .factory('MessageResource', function ($http) {
+    .factory('MessageResources', function ($http) {
         /*
         * */
         var authToken = localStorage.getItem('session.token');
         var factory = {
-
-            setMessage: function (message){
-                $http({
-                    method  : 'POST',
-                    url     : API_ROOT + '/messages/post?authToken={0}'
-                        .format(authToken),
-                    data    : message
-
-                })
-                    .success(function(data) {
-                        if (data.errors) {
-                            // Showing errors.
-                            console.log("set message error", data.errors)
-                        } else {
-                            console.log("set message success")
-                        }
-                    });
-            },
             getMessages: function(callback){
-
-                $http.get(API_ROOT+'/messages/getAll?authToken={0}'
+                $http.get(API_ROOT+'/message/get?headquarter=SanCarlos&authToken={0}'
                     .format(authToken)
                     )
                     .success(function successCallback(response) {
@@ -98,7 +75,6 @@ angular.module('userModule')
         };
         return factory;
     })
-
     .factory('FleetCarResource', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var factory = {
@@ -122,7 +98,6 @@ angular.module('userModule')
         };
         return factory;
     })
-
     .factory('ReserveResource', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var factory = {
@@ -149,7 +124,6 @@ angular.module('userModule')
                     url: API_ROOT + '/reservation/reserve?authToken={0}'
                         .format(authToken),
                     data: reservation
-
                 })
                     .success(function (data) {
                         if (data.errors) {

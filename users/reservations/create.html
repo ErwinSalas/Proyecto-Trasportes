@@ -53,7 +53,7 @@
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Auto</label>
-                                <select class="form-control show-tick" ng-model="reservation.VehicleID" >
+                                <select class="form-control show-tick" ng-model="reservation.vehicleId" >
                                     <option ng-repeat="fleet in fleets" value="{{fleet}}">
                                         {{fleet}}
                                     </option>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label >Asignarme</label>
-                                <select class="form-control show-tick" ng-model="reservation.RequestDriver">
+                                <select class="form-control show-tick" ng-model="reservation.requestDriver">
                                     <option value="">Chofer ?</option>
                                     <option value="true">SI</option>
                                     <option value="false">NO</option>
@@ -73,19 +73,19 @@
                         <label for="place">Lugar</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reservation.DestinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
+                                <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
                             </div>
                         </div>
                         <label for="place">Encargado</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reservation.Responsable" type="text" id="Responsable" class="form-control" placeholder="Persona a cargo ">
+                                <input ng-model="reservation.responsable" type="text" id="responsable" class="form-control" placeholder="Persona a cargo ">
                             </div>
                         </div>
                         <label for="place">Pasajeros</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="reservation.Pasenger" type="number" id="Pasenger" class="form-control" placeholder="Cantidad de pasajeros">
+                                <input ng-model="reservation.pasenger" type="number" id="pasenger" class="form-control" placeholder="Cantidad de pasajeros">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-danger m-t-18 waves-effect" ng-click="postReservation()">Reservar</button>

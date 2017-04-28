@@ -5,13 +5,13 @@ angular.module('userModule')
     .controller('reservationsCreateCtrl', function($scope,GetAvailableFleetResource,ReserveResource) {
         $scope.setDates=function(arrival,departure){
             $scope.reservation={
-                Arrival :arrival,
-                Departure:departure
+                arrival :arrival,
+                departure:departure
             };
         };
         $scope.postReservation=function() {
-            var user = JSON.parse( localStorage.getItem('session.user') );
-            $scope.reservation.RequestingUser= user.username;
+            var user = JSON.parse( localStorage.getItem('session.owner') );
+            $scope.reservation.requestingUser= user.username;
             console.log("envio",$scope.reservation)
             ReserveResource.setReserve($scope.reservation);
 

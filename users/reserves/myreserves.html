@@ -1,27 +1,21 @@
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="reservation in reservations">
-        <a ng-init="idvalue=reservation.ReservationID" ng-click="reserveSelected(idvalue)">
+        <a ng-init="idvalue=reservation.reservationId" ng-click="reserveSelected(idvalue)">
             <div class="info-box  hover-expand-effect">
                 <div class="icon ">
                     <i class="material-icons">{{reservationstatus}}</i>
                 </div>
                 <div class="content">
                     <div class="text">
-                        Lugar : {{reservation.DestinationPlace}}
+                        Lugar : {{reservation.destinationPlace}}
                     </div>
                     <small >
-
-
-                        Solicitante :{{reservation.RequestingUser}}
+                        Solicitante :{{reservation.requestingUser}}
                         <div alling="right">
-                            Fecha :{{reservation.RequestDT}}
+                            Fecha :{{reservation.requestDt}}
                         </div>
-
-
                     </small>
-
                 </div>
-
             </div>
         </a>
     </div>

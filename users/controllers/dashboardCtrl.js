@@ -3,10 +3,18 @@
  */
 
 angular.module('userModule')
-    .controller('dashboardCtrl', function($scope,MessageResource) {
+    .controller('dashboardCtrl', function($scope,MessageResources) {
     /* config object */
-
-    $scope.getMessages=MessageResource.getMessages(function (res) {
+    var user = JSON.parse( localStorage.getItem('session.owner') );
+        $scope.message={
+            title : "Hola",
+            body : "No hay servicio",
+            headquarter :user.headquarter,
+            owner : user.username
+        };
+    //$scope.messages.headquarter = "SanCarlos";
+    //$scope.messages.owner = user.username;
+    $scope.getMessages=MessageResources.getMessages(function (res) {
         console.log("res ", res);
         $scope.messages=res
     });

@@ -1,25 +1,20 @@
 /**
- * Created by Erwin on 25/10/2016.
+ * Created by Adrian on 28/04/2017.
  */
-
 angular.module('adminModule')
-    .controller('dashboardCtrl', function($scope) {
-    /* config object */
-
-    var usuario = JSON.parse(sessionStorage.getItem("user"));
-
-    $scope.uiConfig = {
-        calendar:{
-            height: 450,
-            editable: true,
-            header:{
-                left: 'month basicWeek basicDay agendaWeek agendaDay',
-                center: 'title',
-                right: 'today prev,next'
-            },
-            dayClick: $scope.alertEventOnClick,
-            eventDrop: $scope.alertOnDrop,
-            eventResize: $scope.alertOnResize
+    .controller('dashboardCtrl', function($scope,MessageResource) {
+        /* config object */
+        var user = JSON.parse( localStorage.getItem('session.owner') );
+        $scope.message={
+            headquarter :user.headquarter,
+            owner : user.username
+        };
+        $scope.getMessages=MessageResource.getMessages(function (res) {
+            console.log("res ", res);
+            $scope.messages=res
+        });
+        $scope.postMessage=function() {
+            console.log("envio",$scope.message)
+            MessageResource.setMessage($scope.message);
         }
-    };
-});
+    });

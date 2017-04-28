@@ -2,12 +2,12 @@ angular.module('adminModule')
     .controller('reservesAdminCtrl', function($scope,$http) {
         /* config object */
         var authToken = localStorage.getItem('session.token');
-        var user = JSON.parse( localStorage.getItem('session.user') );
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         console.log("session use", user);
         $http({
                 method: "GET",
-                url: API_ROOT+'/reservation/get?filter=all&authToken={0}'
-                    .format(authToken)
+                url: API_ROOT+'/reservation/get?headquarter={0}&authToken={1}'
+                    .format(user.headquarter,authToken)
             }
         ).success(function successCallback(response) {
             // this callback will be called asynchronously
