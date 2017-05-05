@@ -29,5 +29,11 @@
         margin-top: -4px;
         margin-right: 30px;
     }
+    #btnPassajers{
+        float: right;
+        bottom: 21px;
+        position: absolute;
+        right: 14px;
+    }
 
 }

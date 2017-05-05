@@ -66,29 +66,127 @@
                                     <option value="">Chofer ?</option>
                                     <option value="true">SI</option>
                                     <option value="false">NO</option>
-
                                 </select>
                             </div>
                         </div>
-                        <label for="place">Lugar</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Encargado</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.responsable" type="text" id="responsable" class="form-control" placeholder="Persona a cargo ">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Telefono del Encargado</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.responsableTelephone" type="text" id="responsableTelephone" class="form-control" placeholder="Telefono de Persona a cargo ">
+                                </div>
                             </div>
                         </div>
-                        <label for="place">Encargado</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="reservation.responsable" type="text" id="responsable" class="form-control" placeholder="Persona a cargo ">
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Lugar</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Pasajeros</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.pasenger" type="number" id="pasenger" class="form-control" placeholder="Cantidad de pasajeros">
+                                </div>
                             </div>
                         </div>
-                        <label for="place">Pasajeros</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="reservation.pasenger" type="number" id="pasenger" class="form-control" placeholder="Cantidad de pasajeros">
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Tipo Actividad</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.activityType" type="text" id="activityType" class="form-control" placeholder="Tipo de Actividad">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Justificación</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación">
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-danger m-t-18 waves-effect" ng-click="postReservation()">Reservar</button>
+                        <br>
+                        <label for="place" style="display: block; text-align: center">Información de Pasajeros</label>
+                        <label for="place">Identificación</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="usuariosD.identification" type="text" id="identification" class="form-control" placeholder="Identificación">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Primer Nombre</label>
+                                <div class="form-line">
+                                    <input ng-model="usuariosD.firstName" type="text" id="firstName" class="form-control" placeholder="Escriba el Primer Nombre">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Apellidos</label>
+                                <div class="form-line">
+                                    <input ng-model="usuariosD.lastName" type="text" id="lastName" class="form-control" placeholder="Escriba los Apellidos">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Punto de encuentro</label>
+                                <div class="form-line">
+                                    <input ng-model="usuariosD.placeToCollect" type="text" id="placeToCollect" class="form-control" placeholder="Escriba el Punto de encuentro">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Lugar donde vive</label>
+                                <div class="form-line">
+                                    <input ng-model="usuariosD.placeToLeave" type="text" id="placeToLeave" class="form-control" placeholder="Escriba el Lugar donde vive">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label >Hora de Salida</label>
+                                <input id="departureHourE" ng-model="departureHour" type="time"  class="form-control" placeholder="">
+                            </div>
+                            <div class="col-sm-6">
+                                <label >Hora de Llegada</label>
+                                <input id="arrivalHourE" ng-model="arrivalHour" type="time"  class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-danger m-t-18 waves-effect" ng-click="agregarPasajero()">Agregar Usuarios</button>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <button id="btnPassajers" type="button" class="btn bg-red waves-effect" style="float: right" data-toggle="modal" data-target="#defaultModal">Lista Pasajeros</button>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" style="display: none;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" style="display: block; margin: auto" class="btn bg-deep-orange m-t-18 waves-effect" ng-click="postReservation()">Reservar</button>
                     </form>
                 </div>
             </div>

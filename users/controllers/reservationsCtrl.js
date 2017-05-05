@@ -16,6 +16,18 @@ angular.module('userModule')
             ReserveResource.setReserve($scope.reservation);
 
         };
+        $scope.members = [];
+
+
+        $scope.agregarPasajero = function(){
+            $scope.usuariosD = {
+                departureTime: datetimeToUrlParameter(departureDate, departureHour),
+                returnTime: datetimeToUrlParameter(arrivalDate, arrivalHour)
+            };
+            scope.members.push();
+            console.log(scope.usuariosD);
+        }
+        
 
         document.getElementById("btnCheck").addEventListener("click", function(){
             var arrivalDate= document.getElementById("arrivalDate").value;
