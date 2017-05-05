@@ -1,31 +1,58 @@
-
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Nombre: {{carInfo.brand}}</th><th> {{carInfo.model}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Placa</td>
-        <td>{{carInfo.vehicleId}}</td>
-    </tr>
-    <tr>
-        <td>Transmision</td>
-        <td>{{carInfo.traction}}</td>
-    </tr>
-    <tr>
-        <td>Pasajeros</td>
-        <td>{{carInfo.capacity}}</td>
-    </tr>
-    <tr>
-        <td>Kilometraje</td>
-        <td>{{carInfo.mileage}}</td>
-    </tr>
-    <tr>
-        <td>Dependencia</td>
-        <td>{{carInfo.dependence}}</td>
-    </tr>
-    </tbody>
-</table>
-<a class="waves-effect waves-light btn" href="#/user/fleet/">Atras</a>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <div class="card">
+        <div class=" header">
+            <h2>Detalles del vehiculo</h2>
+        </div>
+        <div class="body">
+            <div class="table-responsive">
+                <table class="table table-hover dashboard-task-infos">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Dato</th>
+                        <th>Informacion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Marca</td>
+                        <td>{{carInfo.brand}}</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Modelo</td>
+                        <td>{{carInfo.model}}</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Placa</td>
+                        <td>{{carInfo.vehicleId}}</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Transmision</td>
+                        <td>{{carInfo.traction}}</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Capacidad</td>
+                        <td>{{carInfo.capacity}}</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Kilometraje</td>
+                        <td>{{carInfo.mileage}}</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Dependencia</td>
+                        <td>{{carInfo.dependence}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a class="waves-effect waves-light btn" href="#/user/fleet/">Atras</a>
+</div>

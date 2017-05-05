@@ -1,22 +1,43 @@
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Identificación: {{driverInfo.identification}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Primer Nombre</td>
-        <td>{{driverInfo.firstName}}</td>
-    </tr>
-    <tr>
-        <td>Apellidos</td>
-        <td>{{driverInfo.lastName}}</td>
-    </tr>
-    <tr>
-        <td>Sede</td>
-        <td>{{driverInfo.headquarter}}</td>
-    </tr>
-    </tbody>
-</table>
-<a class="waves-effect waves-light btn" href="#/admin/driverAdmin/">Atras</a>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <div class="card">
+        <div class=" header">
+            <h2>Detalles del chofer</h2>
+        </div>
+        <div class="body">
+            <div class="table-responsive">
+                <table class="table table-hover dashboard-task-infos">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Dato</th>
+                        <th>Informacion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Identificacion</td>
+                        <td>{{driverInfo.identification}}</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Nombre</td>
+                        <td>{{driverInfo.firstName}}</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Apellido</td>
+                        <td>{{driverInfo.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sede</td>
+                        <td>{{driverInfo.headquarter}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a class="waves-effect waves-light btn" href="#/admin/driverAdmin/">Atras</a>
+</div>

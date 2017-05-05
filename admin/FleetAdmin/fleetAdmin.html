@@ -1,6 +1,3 @@
-<a class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" href="#/admin/fleetAdmin/create">
-    <i class="material-icons">add</i>
-</a>
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleetAdmin">
         <a ng-init="idvalue=fleet.vehicleId" ng-click="selectedId(idvalue)">
@@ -22,4 +19,9 @@
         </a>
     </div>
 </div>
+
+<a class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" href="#/admin/fleetAdmin/create">
+    <i class="material-icons">add</i>
+</a>
+
 <!--perm_identity-->
