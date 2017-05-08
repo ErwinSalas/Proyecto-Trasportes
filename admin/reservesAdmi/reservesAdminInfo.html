@@ -1,48 +1,65 @@
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Solicitante: {{reserve.requestingUser}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Placa</td>
-        <td>{{reserve.vehicleId}}</td>
-    </tr>
-    <tr>
-        <td>Chofer</td>
-        <td>{{reserve.assignedDriver}}</td>
-    </tr>
-    <tr>
-        <td>Lugar</td>
-        <td>{{reserve.destinationPlace}}</td>
-    </tr>
-    <tr>
-        <td>Hora de salida</td>
-        <td>{{reserve.departure}}</td>
-    </tr>
-    <tr>
-        <td>Hora de llegada</td>
-        <td>{{reserve.arrival}}</td>
-    </tr>
-    <tr>
-        <td>Fecha de salida</td>
-        <td>{{reserve.departure}}</td>
-    </tr>
-    <tr>
-        <td>Fecha de llegada</td>
-        <td>{{reserve.arrival}}</td>
-    </tr>
-    <tr>
-        <td>Numero de pasajeros</td>
-        <td>{{reserve.passengers}}</td>
-    </tr>
-    <tr>
-        <td>Estado</td>
-        <td>{{reserve.reservationStatus}}</td>
-    </tr>
-    </tbody>
-</table>
-<a class="waves-effect waves-light btn" ng-click="reserveAction(1)">Aceptar</a>
-<a class="waves-effect waves-light btn" ng-click="reserveAction(2)">Denegar</a>
-<a class="waves-effect waves-light btn" href="#/admin/reserves/">Atras</a>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <div class="card">
+        <div class=" header">
+            <h2>Detalles de la reserva</h2>
+        </div>
+        <div class="body">
+            <div class="table-responsive">
+                <table class="table table-hover dashboard-task-infos">
+                    <thead>
+                    <tr>
+                        <th>Dato</th>
+                        <th>Informacion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Solicitante</td>
+                        <td>{{reserve.requestingUser}}</td>
+                    </tr>
+                    <tr>
+                        <td>Placa</td>
+                        <td>{{reserve.vehicleId}}</td>
+                    </tr>
+                    <tr>
+                        <td>Chofer</td>
+                        <td>{{reserve.assignedDriver}}</td>
+                    </tr>
+                    <tr>
+                        <td>Lugar</td>
+                        <td>{{reserve.destinationPlace}}</td>
+                    </tr>
+                    <tr>
+                        <td>Hora de salida</td>
+                        <td>{{reserve.departure}}</td>
+                    </tr>
+                    <tr>
+                        <td>Hora de llegada</td>
+                        <td>{{reserve.arrival}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de salida</td>
+                        <td>{{reserve.departure}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de llegada</td>
+                        <td>{{reserve.arrival}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pasajeros</td>
+                        <td>{{reserve.passengers}}</td>
+                    </tr>
+                    <tr>
+                        <td>Estado</td>
+                        <td>{{reserve.reservationStatus}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div><a class="btn btn-success waves-effect" style="left: 10%; bottom: 18px" ng-click="reserveAction(1)">Aceptar</a>
+        <a class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction(2)">Denegar</a></div>
+    </div>
+
+    <a class="waves-effect waves-light btn" href="#/admin/reserves/">Atras</a>
+</div>

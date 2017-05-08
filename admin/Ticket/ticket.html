@@ -5,7 +5,7 @@
 	<!-- Titulo de la pagina -->
 	<title>Boleta de reserva</title>
 	<!-- se importa los estilos (css) -->
-	<link href="../assets/css/estilo.css" rel="stylesheet">
+	<link href="../../assets/css/estilo.css" rel="stylesheet">
 	<meta charset="UTF-8">
 
 
@@ -339,7 +339,7 @@
 
 	    	}());
 
-			printDivCSS = new String ('<link href="../assets/css/estilo.css" rel="stylesheet" type="text/css">')
+			printDivCSS = new String ('<link href="../../assets/css/estilo.css" rel="stylesheet" type="text/css">')
 			function printDiv(divId) {
 				window.frames["print_frame"].document.body.innerHTML=printDivCSS + document.getElementById(divId).innerHTML;
 				window.frames["print_frame"].window.focus();
@@ -350,11 +350,11 @@
 
 	</div>
 
-	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../../bower_components/angular/angular.min.js"></script>
 	<!-- reservationCreate controller Js -->
-	<script src="controllers/fleetCtrl.js"></script>
+	<script src="../../users/controllers/fleetCtrl.js"></script>
 	<!-- services -->
-	<script src="services.js"></script>
+	<script src="../../users/services.js"></script>
 
 </body> <!-- Final del cuerpo del HTML -->
 </html>  <!-- Final del HTML -->

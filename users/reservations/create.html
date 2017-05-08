@@ -93,16 +93,21 @@
                             <div class="col-sm-6">
                                 <label for="place">Pasajeros</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.pasenger" type="number" id="pasenger" class="form-control" placeholder="Cantidad de pasajeros">
+                                    <input ng-model="reservation.passengers" type="number" id="passengers" class="form-control" placeholder="Cantidad de pasajeros">
                                 </div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label for="place">Tipo Actividad</label>
-                                <div class="form-line">
-                                    <input ng-model="reservation.activityType" type="text" id="activityType" class="form-control" placeholder="Tipo de Actividad">
-                                </div>
+                                <select class="form-control show-tick" ng-model="reservation.activityType" >
+                                    <option value="Academic">
+                                        Academic
+                                    </option>
+                                    <option value="Administrative">
+                                        Administrative
+                                    </option>
+                                </select>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Justificación</label>
@@ -116,20 +121,20 @@
                         <label for="place">Identificación</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="usuariosD.identification" type="text" id="identification" class="form-control" placeholder="Identificación">
+                                <input ng-model="identificationE" type="text" id="identificationE" class="form-control" placeholder="Identificación">
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label for="place">Primer Nombre</label>
                                 <div class="form-line">
-                                    <input ng-model="usuariosD.firstName" type="text" id="firstName" class="form-control" placeholder="Escriba el Primer Nombre">
+                                    <input ng-model="firstNameE" type="text" id="firstNameE" class="form-control" placeholder="Escriba el Primer Nombre">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Apellidos</label>
                                 <div class="form-line">
-                                    <input ng-model="usuariosD.lastName" type="text" id="lastName" class="form-control" placeholder="Escriba los Apellidos">
+                                    <input ng-model="lastNameE" type="text" id="lastNameE" class="form-control" placeholder="Escriba los Apellidos">
                                 </div>
                             </div>
                         </div>
@@ -137,29 +142,29 @@
                             <div class="col-sm-6">
                                 <label for="place">Punto de encuentro</label>
                                 <div class="form-line">
-                                    <input ng-model="usuariosD.placeToCollect" type="text" id="placeToCollect" class="form-control" placeholder="Escriba el Punto de encuentro">
+                                    <input ng-model="placeToCollectE" type="text" id="placeToCollectE" class="form-control" placeholder="Escriba el Punto de encuentro">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Lugar donde vive</label>
                                 <div class="form-line">
-                                    <input ng-model="usuariosD.placeToLeave" type="text" id="placeToLeave" class="form-control" placeholder="Escriba el Lugar donde vive">
+                                    <input ng-model="placeToLeaveE" type="text" id="placeToLeaveE" class="form-control" placeholder="Escriba el Lugar donde vive">
                                 </div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Hora de Salida</label>
-                                <input id="departureHourE" ng-model="departureHour" type="time"  class="form-control" placeholder="">
+                                <input id="departureHourE" ng-model="departureTimeE" type="time"  class="form-control" placeholder="">
                             </div>
                             <div class="col-sm-6">
                                 <label >Hora de Llegada</label>
-                                <input id="arrivalHourE" ng-model="arrivalHour" type="time"  class="form-control" placeholder="">
+                                <input id="arrivalHourE" ng-model="returnTimeE" type="time"  class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
-                                <button type="submit" class="btn btn-danger m-t-18 waves-effect" ng-click="agregarPasajero()">Agregar Usuarios</button>
+                                <button type="button" class="btn btn-danger m-t-18 waves-effect" ng-click="agregarPasajero()">Agregar Usuarios</button>
 
                             </div>
                             <div class="col-sm-6">
@@ -170,18 +175,28 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                                        <h4 class="modal-title" id="defaultModalLabel">Lista de pasajeros</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                        <div ng-repeat="passager in members">
+                                            <button class="btn bg-cyan waves-effect m-b-15" type="button" data-toggle="collapse" data-target="#{{ $index }}" aria-expanded="false" aria-controls="collapseExample">
+                                                {{passager.firstName}} {{passager.lastName}}
+                                            </button>
+                                            <a class="btn-floating btn-sm "><i class="material-icons" style="cursor:pointer; float: right" ng-click="eliminarPasajero($index)">delete</i></a>
+                                            <div class="collapse in" id="{{ $index }}" aria-expanded="false">
+                                                <div class="well">
+                                                    Identificacion: {{passager.identification}}<br>
+                                                    Nombre: {{passager.firstName}} {{passager.lastName}}<br>
+                                                    Lugar donde se recogera: {{passager.placeToCollect}}<br>
+                                                    Lugar donde se dejara: {{passager.placeToLeave}}
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atras</button>
                                     </div>
                                 </div>
                             </div>

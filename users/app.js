@@ -24,10 +24,6 @@ angular.module('userModule',["ngRoute","ngResource"])
                 templateUrl:'reserves/myreservesInfo.html',
                 controller: 'myreservesInfoCtrl'
             })
-            .when("/user/ticket",{
-                templateUrl:'ticket.html',
-                controller: 'myreservesCtrl'
-            })
             .when("/user/fleet/info/:valueID",{
                 templateUrl:'fleet/fleetInfo.html',
                 controller: 'fleetInfoCtrl'
