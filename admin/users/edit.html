@@ -1,56 +1,41 @@
 <div class="container-fluid">
     <div class="block-header">
-        <h2>Actualizar Datos</h2>
+        <h2>Actualizar Flotilla</h2>
     </div>
-    <!-- Widgets -->
-
-    <!-- #END# Widgets -->
 
     <!-- Basic Card -->
-        <div class="row clearfix" >
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleetAdmin">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
                 <div class="card " >
                     <div class="header">
                         <h2>
-                            {{user.name}}
+                            {{fleet.vehicleId}}
                         </h2>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                     <div class="body">
                         <form ng-submit="saveUser()">
                             <ul class="list">
                                 <li class="card-title">
-                                    <label for="name">Usuario</label>
+                                    <label for="name">Marca</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input ng-model="user.name" type="text" id="name" class="form-control" placeholder="{{user.name}}">
+                                            <input ng-model="fleet.name" type="text" id="name" class="form-control" placeholder="{{user.name}}">
                                         </div>
                                     </div>
                                 </li>
                                 <li class="card-title">
-                                    <label for="email">Email</label>
+                                    <label for="email">Modelo</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input ng-model="user.email" type="text" id="email" class="form-control" placeholder="{{user.email}}">
+                                            <input ng-model="fleet.email" type="text" id="email" class="form-control" placeholder="{{user.email}}">
                                         </div>
                                     </div>
                                 </li>
                                 <li class="card-title">
-                                    <label for="type">tipo</label>
+                                    <label for="capacity">Capacidad</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input ng-model="user.type" type="text" id="type" class="form-control" placeholder="{{user.type}}">
+                                            <input ng-model="fleet.capacity" type="text" id="capacity" class="form-control" placeholder="{{user.type}}">
                                         </div>
                                     </div>
                                 </li>

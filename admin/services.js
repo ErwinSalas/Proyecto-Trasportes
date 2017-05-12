@@ -52,7 +52,7 @@ angular.module('adminModule')
         var factory = {
             getDriver: function(callback){
                 $http.get(
-                    API_ROOT +'/driver/getDrivers?filter=all&headquarter=SanCarlos&authToken={0}'.format(authToken)
+                    API_ROOT +'/driver/getDrivers?filter=active&headquarter=SanCarlos&authToken={0}'.format(authToken)
                 ).success(function successCallback(response) {
                     // Esta funcion es la que se ejecuta
                     // cuando la peticion es exitosa
@@ -105,6 +105,20 @@ angular.module('adminModule')
                     console.log("fallo", response);
                     callback(response.content);
                 });
+            },
+            deleteCar: function (carID) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/fleet/deleteVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken)
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data);
+                        } else {
+                            console.log("delete car success",data);
+                        }
+                    });
             }
         };
         return factory;
@@ -129,6 +143,20 @@ angular.module('adminModule')
                     console.log("fallo", response);
                     callback(response.content);
                 });
+            },
+            deleteDriver: function (driverId) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/driver/delete?id={0}&authToken={1}'.format(driverId, authToken)
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data);
+                        } else {
+                            console.log("delete car success",data);
+                        }
+                    });
             }
         };
         return factory;
@@ -173,7 +201,6 @@ angular.module('adminModule')
         };
         return factory;
     })
-    //saghgfcuhsdkcfgbsdncyuifs,joxlkdfcgiuhdmf,jgk
     .factory('MessageResource', function ($http) {
     /*
      * */

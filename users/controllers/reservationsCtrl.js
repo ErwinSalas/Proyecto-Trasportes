@@ -18,8 +18,7 @@ angular.module('userModule')
 
         };
         $scope.members = [];
-
-
+        
         $scope.agregarPasajero = function(){
             var identificationE= document.getElementById("identificationE").value;
             var firstNameE= document.getElementById("firstNameE").value;
@@ -54,16 +53,12 @@ angular.module('userModule')
                 confirmButtonColor: "#140e39",
                 timer: 1000,
                 showConfirmButton: false
-
-
-
             });
         };
 
         $scope.eliminarPasajero = function(index){
             $scope.members.splice(index, 1);
         };
-
 
         document.getElementById("btnCheck").addEventListener("click", function(){
             var arrivalDate= document.getElementById("arrivalDate").value;
@@ -73,14 +68,12 @@ angular.module('userModule')
             var urlParams = {
                 start: datetimeToUrlParameter(departureDate,departureHour),
                 end : datetimeToUrlParameter(arrivalDate,arrivalHour)
-
             };
            if(new Date(departureDate)>= new Date()) {
                 if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
                     $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
                         console.log("res ", res);
                         $scope.fleets = res
-
                     });
                     $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
                 }
@@ -90,19 +83,13 @@ angular.module('userModule')
                     confirmButtonColor: "#140e39",
                     timer: 1000,
                     showConfirmButton: false
-
-
-
                 });
             }
             else{
 
                 sweetAlert("Error...", "No existen autos dispoonibles en la fecha solicitada", "error");
             }
-
-
         }
-
     );
 
 
