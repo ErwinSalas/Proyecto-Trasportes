@@ -57,9 +57,12 @@
                 </table>
             </div>
         </div>
-        <div><a class="btn btn-success waves-effect" style="left: 10%; bottom: 18px" ng-click="reserveAction(1)">Aceptar</a>
-        <a class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction(2)">Denegar</a></div>
+        <div><a class="btn btn-success waves-effect" style="left: 10%; bottom: 18px" ng-click="reserveAction(true)">Aceptar</a>
+        <a class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction(false)">Denegar</a></div>
     </div>
 
     <a class="waves-effect waves-light btn" href="#/admin/reserves/">Atras</a>
+    <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="createTicket()">
+        <i class="material-icons">print</i>
+    </button>
 </div>

@@ -61,5 +61,10 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 controller: 'driverAdminCtrl'
 
             })
+            .when("/admin/reserves/ticket/:valueID",{
+                templateUrl:'Ticket/ticket.html',
+                controller: 'ticketCtrl'
+
+            })
     }
 ]);

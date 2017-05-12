@@ -1,5 +1,5 @@
 
-body.centraTabla table {
+div.centraTabla table {
 
 	margin: 0 auto;
 	text-align: center;
@@ -27,4 +27,7 @@ div.inpTabla input{
 	width: 80px;
 	height: 20px;
 
+}
+#smallTicket{
+	display: none;
 }

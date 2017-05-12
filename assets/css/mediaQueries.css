@@ -35,5 +35,12 @@
         position: absolute;
         right: 14px;
     }
+    #ticketBody{
+        display: none;
+    }
+    #smallTicket{
+        display: block;
+        font-size: 200px;
+    }
 
 }

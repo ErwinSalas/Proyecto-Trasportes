@@ -15,16 +15,20 @@ angular.module('adminModule')
 
         $scope.reserveAction = function (action) {
             $scope.reservationStatus={
-                AssignedDriver :$scope.reserve.AssignedDriver,
-                Justification:"justifique aqui",
-                ReservationId:$scope.reserve.ReservationID,
-                Status:action
+                assignedDriver :$scope.reserve.assignedDriver,
+                responseNotes:"justifique aqui",
+                reservationId:$scope.reserve.reservationId,
+                accepted:action
             };
             console.log("envio",$scope.reservationStatus);
             ReserveResources.setReserveStatus($scope.reservationStatus);
             
             window.location.href = '#/admin/reserves/';
 
+        };
+
+        $scope.createTicket= function () {
+            window.location.href = '#/admin/reserves/ticket/'+reserveSelectedID;
         };
         
     }); 

@@ -15,6 +15,18 @@ angular.module('userModule')
             // when the response is available
             console.log("entro", response);
             $scope.reservations = response.content;
+            for (i = 0; i < $scope.reservations.length; i++) {
+                if ($scope.reservations[i].reservationStatus == "Accepted"){
+                    $scope.reservationsAcepted.push($scope.reservations[i])
+                }
+                if ($scope.reservations[i].reservationStatus == "Pending"){
+                    $scope.reservationsPending.push($scope.reservations[i])
+                }
+                if ($scope.reservations[i].reservationStatus == "Denied"){
+                    $scope.reservationsDenied.push($scope.reservations[i])
+                }
+            }
+            $scope.reservationsMain = $scope.reservationsPending;
         }).error(function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -23,14 +35,16 @@ angular.module('userModule')
         });
         console.log( $scope.reservations);
 
+        $scope.reservationsMain = [];
+        $scope.reservationsAcepted = [];
+        $scope.reservationsPending = [];
+        $scope.reservationsDenied = [];
+
+        $scope.reservationstatus = "query_builder";
+
         $scope.reserveSelectedID = "";
 
         $scope.reserveSelected = function (reserveID) {
-            /*for (reserve = 0, len = listReservation.length, result = []; reserve < len; reserve++){
-                if (reserveID == listReservation[reserve].ReservationID){
-                    reserveSelectedArray = listReservation[reserve];
-                }
-            }*/
             reserveSelectedID = reserveID;
             console.log("ID Salio");
             console.log(reserveSelectedID);
@@ -39,20 +53,19 @@ angular.module('userModule')
 
         };
 
-
-        $scope.reservationstatus = "done";
-
-        function statusIcon(status) {
-            if (status ==1){
+        $scope.changeList = function (status) {
+            if (status == "Accepted"){
+                $scope.reservationsMain = $scope.reservationsAcepted;
                 $scope.reservationstatus = "done";
             }
-            if (status ==2){
+            if (status == "Pending"){
+                $scope.reservationsMain = $scope.reservationsPending;
                 $scope.reservationstatus = "query_builder";
             }
-            if (status ==3){
+            if (status == "Denied"){
+                $scope.reservationsMain = $scope.reservationsDenied;
                 $scope.reservationstatus = "error";
             }
-        }
-
+        };
 
     });
