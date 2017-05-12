@@ -12,24 +12,38 @@
                 </div>
                 <div class="body">
                     <form ng-submit="postCar()">
-                        <label for="brand">Marca</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newCar.brand" type="text" id="brand" class="form-control" placeholder="Ingrese la Marca">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <center>
+                                    <img id="img" src="http://localhost:63342/Proyecto-Trasportes/assets/images/preview_replacement_by_jacksparr0w.png" align="center" width="200" height="200">
+
+                                </center>
+                                 <input id="file-upload"  type="file" formenctype="multipart/form-data"  />
                             </div>
-                        </div>
-                        <label for="model">Modelo</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newCar.model" type="text" id="model" class="form-control" placeholder="Ingrese el Modelo">
+                            <div class="col-md-8">
+                                <label for="brand">Marca</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input ng-model="newCar.brand" type="text" id="brand" class="form-control" placeholder="Ingrese la Marca">
+                                    </div>
+                                </div>
+                                <label for="model">Modelo</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input ng-model="newCar.model" type="text" id="model" class="form-control" placeholder="Ingrese el Modelo">
+                                    </div>
+                                </div>
+                                <label for="vehicleId">Placa</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input ng-model="newCar.vehicleId" type="text" id="vehicleId" class="form-control" placeholder="Ingrese la Placa">
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-                        <label for="vehicleId">Placa</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newCar.vehicleId" type="text" id="vehicleId" class="form-control" placeholder="Ingrese la Placa">
-                            </div>
-                        </div>
+
+
 
                         <label for="traction">Transmicción</label>
                         <div class="form-group">
@@ -63,5 +77,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" >
+        function readFile(evt) {
+            var files = evt.target.files; // FileList object
+
+            // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+
+                var reader = new FileReader();
+
+                reader.onload = (function(e) {
+                    var filePreview = document.getElementById('img');
+                    //e.target.result contents the base64 data from the image uploaded
+                    filePreview.src = e.target.result;
+                });
+
+                reader.readAsDataURL(f);
+            }
+        }
+
+        document.getElementById('file-upload').addEventListener('change', readFile, false);
+
+    </script>
     <!-- #END# Vertical Layout -->
 </div>

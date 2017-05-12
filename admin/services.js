@@ -6,6 +6,11 @@ angular.module('adminModule')
  Los factory en angular estan basados en el patron de diseño factoria el cual
  deviuelve instancias de un objeto o variable en este caso es un arreglo de
  objetos json
+
+ Estos objetos encapsulan las funciones para obtener crear editar y borrar datos de un recurso especifico
+ algunos de estas funciones devuelben callbacks los cuales son ejecutados cuando sean necesarios del lado
+ del controlador
+
  */
     //Fleet 
     .factory('FleetResources',function($http){
@@ -35,12 +40,8 @@ angular.module('adminModule')
                     data: fleet
                 })
                     .success(function (data) {
-                        if (data.errors) {
-                            // Showing errors.
-                            console.log("set message error", data);
-                        } else {
-                            console.log("set new car success",data);
-                        }
+                        return true;
+
                     });
             }
         };
@@ -237,6 +238,47 @@ angular.module('adminModule')
                 // or server returns response with an error status.
                 console.log("fallo", response);
                 callback(response.content);
+                });
+            }
+        };
+        return factory;
+    })
+    .factory('MediaFleetResource', function ($http) {
+        /*
+         * */
+        var authToken = localStorage.getItem('session.token');
+        var factory = {
+
+            setImg: function (id,img){
+                $http({
+                    method  : 'POST',
+                    url     : API_ROOT + 'fleet/changePicture?vehicleId={0}&authToken={1}'
+                        .format(id,authToken),
+                    data    : img
+                })
+                    .success(function(data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data.errors)
+                        } else {
+                            console.log("set message success")
+                        }
+                    });
+            },
+            getImg: function(id,callback){
+                $http.get(API_ROOT+'fleet/getPicture?vehicleId={0}&authToken={1}'
+                        .format(id,authToken)
+                    )
+                    .success(function successCallback(response) {
+                        //
+                        // when the response is available
+                        console.log("entro", response);
+                        callback(response.content);
+                    }).error(function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("fallo", response);
+                    callback(response.content);
                 });
             }
         };

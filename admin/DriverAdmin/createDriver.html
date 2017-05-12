@@ -12,24 +12,34 @@
                 </div>
                 <div class="body">
                     <form ng-submit="saveDriver()">
-                        <label for="identification">Identificación</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newDriver.identification" type="text" id="identification" class="form-control" placeholder="Ingrese la Identificación">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <center>
+                                    <img id="img" src="http://localhost:63342/Proyecto-Trasportes/assets/images/preview_replacement_by_jacksparr0w.png" align="center" width="200" height="200">
+
+                                </center>
+                                <input id="file-upload"  type="file" formenctype="multipart/form-data"  />
                             </div>
-                        </div>
-                        <label for="firstName">Primer Nombre</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newDriver.firstName" type="text" id="firstName" class="form-control" placeholder="Ingrese el Primer Nombre">
+                            <div class="col-md-8">
+                                <label for="identification">Identificación</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input ng-model="newDriver.identification" type="text" id="identification" class="form-control" placeholder="Ingrese la Identificación">
+                                    </div>
+                                </div>
+                                <label for="firstName">Primer Nombre</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input ng-model="newDriver.firstName" type="text" id="firstName" class="form-control" placeholder="Ingrese el Primer Nombre">
+                                    </div>
+                                </div>
+                                <label for="lastName">Apellidos</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input ng-model="newDriver.lastName" type="text" id="lastName" class="form-control" placeholder="Ingrese los Apellidos">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <label for="lastName">Apellidos</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newDriver.lastName" type="text" id="lastName" class="form-control" placeholder="Ingrese los Apellidos">
-                            </div>
-                        </div>
                         <label for="Headquarter">Sede</label>
                         <div class="form-group">
                             <div class="form-line">
@@ -43,5 +53,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" >
+        function readFile(evt) {
+            var files = evt.target.files; // FileList object
+
+            // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+
+                var reader = new FileReader();
+
+                reader.onload = (function(e) {
+                    var filePreview = document.getElementById('img');
+                    //e.target.result contents the base64 data from the image uploaded
+                    filePreview.src = e.target.result;
+                });
+
+                reader.readAsDataURL(f);
+            }
+        }
+
+        document.getElementById('file-upload').addEventListener('change', readFile, false);
+
+    </script>
     <!-- #END# Vertical Layout -->
 </div>

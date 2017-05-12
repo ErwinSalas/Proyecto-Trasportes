@@ -3,14 +3,17 @@
  */
 
 angular.module('adminModule')
-    .controller('fleetAdminCtrl', function($scope,FleetResources) {
+    .controller('fleetAdminCtrl', function($scope,FleetResources,MediaFleetResource) {
         /* config object */
         $scope.newCar={
             headquarter:"SanCarlos"
         };
         $scope.postCar=function() {
             console.log("envio",$scope.newCar);
-            FleetResources.setNewCar($scope.newCar);
+            var isPost = FleetResources.setNewCar($scope.newCar);
+            if(isPost){
+                MediaFleetResource.setImg($scope.newCar.vehicleId);
+            }
 
         };
         $scope.getAllFleet=FleetResources.getFleet(function (res) {
@@ -24,7 +27,9 @@ angular.module('adminModule')
             console.log("Entro ID");
             console.log("<>_<>_<>_<>_<> "+carSelectedID);
             window.location.href = '#/admin/fleetAdmin/fleetAdminInfo/'+carSelectedID;
-        }
+        };
+
+
 
     });
     
