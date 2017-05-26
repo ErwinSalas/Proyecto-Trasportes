@@ -69,7 +69,7 @@ angular.module('userModule')
                 start: datetimeToUrlParameter(departureDate,departureHour),
                 end : datetimeToUrlParameter(arrivalDate,arrivalHour)
             };
-           if(new Date(departureDate)>= new Date()) {
+           if(new Date(departureDate)> new Date()) {
                 if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
                     $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
                         console.log("res ", res);
