@@ -11,7 +11,7 @@ angular.module('adminModule')
             console.log("Envio ", $scope.newDriver);
             var isPost = DriverResource.setNewDriver($scope.newDriver);
             if(isPost){
-                MediaDResource.setImg($scope.newDriver.identification);
+                MediaDriverResource.setImg($scope.newDriver.identification);
             }
 
         }
