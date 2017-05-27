@@ -12,10 +12,27 @@ angular.module('adminModule')
  del controlador
 
  */
-    //Fleet 
-    .factory('FleetResources',function($http){
+    //Fleet
+    .factory('FleetCarResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var factory = {
+            getCarInfo: function (carID, callback) {
+                $http({
+                        method: "GET",
+                        url: API_ROOT+'/fleet/getVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken)
+                    }
+                ).success(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log("entro", response);
+                    callback(response.content);
+                }).error(function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("fallo", response);
+                    callback(response.content);
+                });
+            },
             getFleet: function ( callback) {
                 $http.get(
                     API_ROOT +'/fleet/getFleet?filter=all&headquarter=SanCarlos&authToken={0}'.format(authToken)
@@ -33,20 +50,39 @@ angular.module('adminModule')
                     callback(response.content);
                 });
             },
-            setNewCar: function (fleet) {
+            setNewCar: function (fleet,callback) {
                 $http({
                     method: 'POST',
                     url: API_ROOT + '/fleet/addVehicle?authToken={0}'.format(authToken),
                     data: fleet
                 })
-                    .success(function (data) {
-                        return true;
+                .success(function (data) {
+                    callback(data);
 
+                }).error(function(data){
+                    console.log("error setNewCar",data);
+                    callback(data);
+                });
+            },
+            deleteCar: function (carID) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/fleet/deleteVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken)
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data);
+                        } else {
+                            console.log("delete car success",data);
+                        }
                     });
             }
         };
         return factory;
     })
+
+
     //Driver 
     .factory('DriverResource',function($http){
         var authToken = localStorage.getItem('session.token');
@@ -87,44 +123,7 @@ angular.module('adminModule')
         return factory;
     })
 
-    .factory('FleetCarResources', function ($http) {
-        var authToken = localStorage.getItem('session.token');
-        var factory = {
-            getCarInfo: function (carID, callback) {
-                $http({
-                        method: "GET",
-                        url: API_ROOT+'/fleet/getVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken)
-                    }
-                ).success(function successCallback(response) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-                    console.log("entro", response);
-                    callback(response.content);
-                }).error(function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                    console.log("fallo", response);
-                    callback(response.content);
-                });
-            },
-            deleteCar: function (carID) {
-                $http({
-                    method: 'POST',
-                    url: API_ROOT + '/fleet/deleteVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken)
-                })
-                    .success(function (data) {
-                        if (data.errors) {
-                            // Showing errors.
-                            console.log("set message error", data);
-                        } else {
-                            console.log("delete car success",data);
-                        }
-                    });
-            }
-        };
-        return factory;
-    })
-  
+
     .factory('DriversResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var factory = {
@@ -249,10 +248,10 @@ angular.module('adminModule')
         var authToken = localStorage.getItem('session.token');
         var factory = {
 
-            setImg: function (id,img){
+            setImg: function (img,id){
                 $http({
                     method  : 'POST',
-                    url     : API_ROOT + 'fleet/changePicture?vehicleId={0}&authToken={1}'
+                    url     : API_ROOT + '/fleet/changePicture?vehicleId={0}&authToken={1}'
                         .format(id,authToken),
                     data    : img
                 })
@@ -266,7 +265,7 @@ angular.module('adminModule')
                     });
             },
             getImg: function(id,callback){
-                $http.get(API_ROOT+'fleet/getPicture?vehicleId={0}&authToken={1}'
+                $http.get(API_ROOT+'/fleet/getPicture?vehicleId={0}&authToken={1}'
                         .format(id,authToken)
                     )
                     .success(function successCallback(response) {

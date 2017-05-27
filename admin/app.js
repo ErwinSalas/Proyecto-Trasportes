@@ -14,7 +14,7 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
             //Se conecta la vista de crear flotilla
             .when("/admin/fleetAdmin/create",{
                 templateUrl:'FleetAdmin/create.html',
-                controller: 'fleetAdminCtrl'
+                controller: 'fleetCreateCtrl'
             })
             //Se conecta la vista de información de la flotilla 
             .when("/admin/fleetAdmin/fleetAdminInfo/:valueID",{
