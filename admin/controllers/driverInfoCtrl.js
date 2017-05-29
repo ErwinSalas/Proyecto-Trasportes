@@ -2,11 +2,11 @@
  * Created by ADRIAN on 21/4/2017.
  */
 angular.module('adminModule')
-    .controller('driverInfoCtrl', function($scope,$routeParams,DriversResources) {
+    .controller('driverInfoCtrl', function($scope,$routeParams,DriverResources) {
         /* config object */
         $scope.valueID = $routeParams.valueID;
         console.log(choferSelectedID);
-        $scope.getDriverInfo = DriversResources.getDriverInfo(choferSelectedID, function (res) {
+        $scope.getDriverInfo = DriverResources.getDriverInfo(choferSelectedID, function (res) {
             $scope.driverInfo=res;
             console.log("La resInfo ", $scope.driverInfo);
 
@@ -31,7 +31,7 @@ angular.module('adminModule')
                     showConfirmButton: false
                 });
 
-                $scope.deleteDriver = DriversResources.deleteDriver(choferSelectedID);
+                $scope.deleteDriver = DriverResources.deleteDriver(choferSelectedID);
                 window.location.href = '#/admin/driverAdmin/';
 
             });

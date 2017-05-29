@@ -2,20 +2,20 @@
  * Created by ADRIAN on 24/3/2017.
 */
 angular.module('adminModule')
-    .controller('driverAdminCtrl', function($scope,DriverResource) {
+    .controller('driverAdminCtrl', function($scope,DriverResources) {
     /* config object */
         $scope.newDriver={
             isActive:true
         };
         $scope.saveDriver=function() {
             console.log("Envio ", $scope.newDriver);
-            var isPost = DriverResource.setNewDriver($scope.newDriver);
+            var isPost = DriverResources.setNewDriver($scope.newDriver);
             if(isPost){
                 MediaDriverResource.setImg($scope.newDriver.identification);
             }
 
         }
-        $scope.getAllDrivers=DriverResource.getDriver(function (res) {
+        $scope.getAllDrivers=DriverResources.getDriver(function (res) {
             console.log("res ", res);
             $scope.driverAdmin=res;
     });

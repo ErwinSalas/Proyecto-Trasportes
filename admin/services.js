@@ -84,7 +84,7 @@ angular.module('adminModule')
 
 
     //Driver 
-    .factory('DriverResource',function($http){
+    .factory('DriverResources',function($http){
         var authToken = localStorage.getItem('session.token');
         var factory = {
             getDriver: function(callback){
@@ -118,15 +118,7 @@ angular.module('adminModule')
                             console.log("set new driver success",data);
                         }
                     });
-            }
-        }
-        return factory;
-    })
-
-
-    .factory('DriversResources', function ($http) {
-        var authToken = localStorage.getItem('session.token');
-        var factory = {
+            },
             getDriverInfo: function (driverID, callback) {
                 $http({
                         method: "GET",
@@ -161,6 +153,7 @@ angular.module('adminModule')
         };
         return factory;
     })
+    
     .factory('ReserveResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var factory = {
