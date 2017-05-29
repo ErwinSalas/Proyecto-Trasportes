@@ -31,3 +31,19 @@ div.inpTabla input{
 #smallTicket{
 	display: none;
 }
+
+.hideInfo{
+	display: block;
+}
+
+.ShowInfo{
+	display: none;
+}
+#ShowBtnEditSave{
+	display: none;
+}
+#ShowBtnEditCancel{
+	display: none;
+	float: right;
+	bottom: 30px;
+}

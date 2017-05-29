@@ -15,7 +15,7 @@ angular.module('adminModule')
 
         $scope.reserveAction = function (action) {
             $scope.reservationStatus={
-                assignedDriver :$scope.reserve.assignedDriver,
+                assignedDriver :null,
                 responseNotes:"justifique aqui",
                 reservationId:$scope.reserve.reservationId,
                 accepted:action

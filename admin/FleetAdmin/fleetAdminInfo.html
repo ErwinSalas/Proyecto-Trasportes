@@ -17,12 +17,12 @@
                     <tr>
                         <td>1</td>
                         <td>Marca</td>
-                        <td>{{carInfo.brand}}</td>
+                        <td><div class="hideInfo">{{carInfo.brand}}</div> <div class="ShowInfo"><input ng-model="newFleet.brand" type="text" id="brand" class="form-control" placeholder="Ingrese la Marca"></div></td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>Modelo</td>
-                        <td>{{carInfo.model}}</td>
+                        <td><div class="hideInfo">{{carInfo.model}}</div> <div class="ShowInfo"><input ng-model="newFleet.model" type="text" id="model" class="form-control" placeholder="Ingrese el Modelo"></div></td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -32,30 +32,32 @@
                     <tr>
                         <td>4</td>
                         <td>Transmision</td>
-                        <td>{{carInfo.traction}}</td>
+                        <td><div class="hideInfo">{{carInfo.traction}}</div> <div class="ShowInfo"><input ng-model="newFleet.traction" type="text" id="traction" class="form-control" placeholder="Ingrese la Transmicción"></div></td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>Capacidad</td>
-                        <td>{{carInfo.capacity}}</td>
+                        <td><div class="hideInfo">{{carInfo.capacity}}</div> <div class="ShowInfo"><input  ng-model="newFleet.capacity" type="number" id="capacity" class="form-control" placeholder="Ingrese la cantidad de Pasajeros"></div></td>
                     </tr>
                     <tr>
                         <td>6</td>
                         <td>Kilometraje</td>
-                        <td>{{carInfo.mileage}}</td>
+                        <td><div class="hideInfo">{{carInfo.mileage}}</div> <div class="ShowInfo"><input  ng-model="newFleet.mileage" type="number" id="mileage" class="form-control" placeholder="Ingrese el Kilometraje"></div></td>
                     </tr>
                     <tr>
                         <td>7</td>
                         <td>Dependencia</td>
-                        <td>{{carInfo.dependence}}</td>
+                        <td><div class="hideInfo">{{carInfo.dependence}}</div> <div class="ShowInfo"><input  ng-model="newFleet.dependence" type="text" id="dependence" class="form-control" placeholder="Ingrese la Dependencia"></div></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            <button type="button" class="btn btn-success waves-effect" id="ShowBtnEditSave" ng-click="postFleet()">Guardar</button>
+            <button type="button" class="btn btn-danger waves-effect" id="ShowBtnEditCancel" ng-click="cancelEditCar()">Cancelar</button>
         </div>
     </div>
     <a class="waves-effect waves-light btn" href="#/admin/fleetAdmin/">Atras</a>
-    <button type="button" class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:12%; right: 2%">
+    <button type="button" class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:12%; right: 2%" ng-click="editCar()">
         <i class="material-icons">mode_edit</i>
     </button>
     <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="deleteMessage()">

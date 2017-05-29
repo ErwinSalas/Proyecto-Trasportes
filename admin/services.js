@@ -35,7 +35,7 @@ angular.module('adminModule')
             },
             getFleet: function ( callback) {
                 $http.get(
-                    API_ROOT +'/fleet/getFleet?filter=all&headquarter=SanCarlos&authToken={0}'.format(authToken)
+                    API_ROOT +'/fleet/getFleet?filter=enabled&headquarter=SanCarlos&authToken={0}'.format(authToken)
                 ).success(function successCallback(response) {
                     // Esta funcion es la que se ejecuta
                     // cuando la pet    icion es exitosa

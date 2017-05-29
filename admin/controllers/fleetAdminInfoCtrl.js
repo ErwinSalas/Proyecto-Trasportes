@@ -36,4 +36,53 @@ angular.module('adminModule')
 
             });
         };
+
+        $scope.editCar =function() {
+            var x = document.getElementsByClassName("ShowInfo");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "block";
+            }
+            var x2 = document.getElementsByClassName("hideInfo");
+            var i2;
+            for (i2 = 0; i2 < x2.length; i2++) {
+                x2[i2].style.display = "none";
+            }
+
+            var x3 = document.getElementById("ShowBtnEditSave").style.display = 'block';
+            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'block';
+
+        };
+
+        $scope.cancelEditCar =function() {
+            var x = document.getElementsByClassName("ShowInfo");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            var x2 = document.getElementsByClassName("hideInfo");
+            var i2;
+            for (i2 = 0; i2 < x2.length; i2++) {
+                x2[i2].style.display = "block";
+            }
+
+            var x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
+            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'none';
+            document.getElementById("brand").value = "";
+            document.getElementById("model").value = "";
+            document.getElementById("traction").value = "";
+            document.getElementById("capacity").value = "";
+            document.getElementById("mileage").value = "";
+            document.getElementById("dependence").value = "";
+        };
+
+        $scope.newFleet={
+
+        };
+        $scope.postFleet=function() {
+            console.log("envio",$scope.newFleet);
+
+
+        };
+
     });

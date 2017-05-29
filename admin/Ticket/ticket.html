@@ -297,50 +297,12 @@
 						</table>
 					</footer>
 
-					<!-- DARLE FORMAT BTN IMPRIMIR -->
-
-					<center>
-						<a href="javascript:printDiv('hola')">Print</a>
-						<button id="oculto" onclick="printDiv('hola')">Imprimir</button>
-					</center>
-
-					<script>
-						/*function ocultarImprimir(){
-						 document.getElementById('oculto').style.visibility = 'hidden';
-						 window.print();
-						 }
-						 function mostarboton(){
-						 document.getElementById('oculto').style.visibility = 'visible';
-						 }
-						 (function () {
-						 if (window.matchMedia) {
-						 var mediaQueryList = window.matchMedia('print');
-
-						 mediaQueryList.addListener(function (mql) {
-						 if (mql.matches) {
-						 ocultarImprimir();
-						 } else {
-						 mostarboton();
-						 }
-						 });
-						 }
-						 window.onbeforeprint = ocultarImprimir;
-						 window.onafterprint = mostarboton;
-
-						 }());
-
-						 printDivCSS = new String ('<link href="../../assets/css/estilo.css" rel="stylesheet" type="text/css">')
-						 function printDiv(divId) {
-						 window.frames["print_frame"].document.body.innerHTML=printDivCSS + document.getElementById(divId).innerHTML;
-						 window.frames["print_frame"].window.focus();
-						 window.frames["print_frame"].window.print();
-						 }*/
-
-					</script>
-
 				</div>
 				<div id="smallTicket" class="material-icons">description</div>
 			</div>
 		</div>
 	</div>
+	<button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="printElem('ticketBody')">
+		<i class="material-icons">print</i>
+	</button>
 </div>
