@@ -1,5 +1,5 @@
 angular.module('adminModule')
-    .controller('fleetAdminInfoCtrl', function($scope,$routeParams,FleetCarResources) {
+    .controller('fleetAdminInfoCtrl', function($scope,$timeout,$routeParams,FleetCarResources) {
         /* config object */
         $scope.valueID = $routeParams.valueID;
         console.log(carSelectedID);
@@ -66,7 +66,7 @@ angular.module('adminModule')
                 x2[i2].style.display = "block";
             }
 
-            var x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
+            var  x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
             var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'none';
             document.getElementById("brand").value = "";
             document.getElementById("model").value = "";
@@ -81,8 +81,18 @@ angular.module('adminModule')
         };
         $scope.postFleet=function() {
             console.log("envio",$scope.newFleet);
-
-
+            FleetCarResources.editCar($routeParams.valueID,$scope.newFleet);
+            swal({
+                title: "Vehiculo editado",
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.href = '#/admin/fleetAdmin';
+            }, 2000 );
+            //window.location.href = '#/admin/fleetAdmin';
         };
 
     });

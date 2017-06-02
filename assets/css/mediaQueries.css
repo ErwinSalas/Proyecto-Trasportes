@@ -35,6 +35,9 @@
         position: absolute;
         right: 14px;
     }
+    #ticketMain{
+        width: 100%;
+    }
     #ticketBody{
         display: none;
     }

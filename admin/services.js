@@ -77,6 +77,21 @@ angular.module('adminModule')
                             console.log("delete car success",data);
                         }
                     });
+            },
+            editCar: function (carID,fleet) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/fleet/vnext/editVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken),
+                    data: fleet
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data.errors);
+                        } else {
+                            console.log("set edit success",data);
+                        }
+                    });
             }
         };
         return factory;
@@ -147,6 +162,21 @@ angular.module('adminModule')
                             console.log("set message error", data);
                         } else {
                             console.log("delete car success",data);
+                        }
+                    });
+            },
+            editDriver: function (driverID,fleet) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/driver/vnext/edit?identification={0}&authToken={1}'.format(driverID, authToken),
+                    data: fleet
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data.errors);
+                        } else {
+                            console.log("set edit success",data);
                         }
                     });
             }

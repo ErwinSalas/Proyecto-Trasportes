@@ -22,12 +22,12 @@
                     <tr>
                         <td>2</td>
                         <td>Nombre</td>
-                        <td>{{driverInfo.firstName}}</td>
+                        <td><div class="hideInfo">{{driverInfo.firstName}}</div><div class="ShowInfo"><input ng-model="newDriver.firstName" type="text" id="firstName" class="form-control" placeholder="Ingrese el nombre"></div></td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>Apellido</td>
-                        <td>{{driverInfo.lastName}}</td>
+                        <td><div class="hideInfo">{{driverInfo.lastName}}</div><div class="ShowInfo"><input ng-model="newDriver.lastName" type="text" id="lastName" class="form-control" placeholder="Ingrese el apellido"></div></td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -37,10 +37,12 @@
                     </tbody>
                 </table>
             </div>
+            <button type="button" class="btn btn-success waves-effect" id="ShowBtnEditSave" ng-click="postDrier()">Guardar</button>
+            <button type="button" class="btn btn-danger waves-effect" id="ShowBtnEditCancel" ng-click="cancelEditDriverBtn()">Cancelar</button>
         </div>
     </div>
     <a class="waves-effect waves-light btn" href="#/admin/driverAdmin/">Atras</a>
-    <button type="button" class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:12%; right: 2%">
+    <button type="button" class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:12%; right: 2%" ng-click="editDriverBtn()">
         <i class="material-icons">mode_edit</i>
     </button>
     <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="deleteMessageDriver()">

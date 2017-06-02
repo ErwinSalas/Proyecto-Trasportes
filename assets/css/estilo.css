@@ -24,14 +24,16 @@ footer.margenesTabla table{
 }
 div.inpTabla input{
 	text-align: center;
-	width: 80px;
-	height: 20px;
+	width: 78px;
+	height: 25px;
 
 }
 #smallTicket{
 	display: none;
 }
-
+#ticketMain{
+	width: inherit;
+}
 .hideInfo{
 	display: block;
 }

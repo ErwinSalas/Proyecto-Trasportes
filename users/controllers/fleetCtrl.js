@@ -3,9 +3,9 @@
  */
 
 angular.module('userModule')
-    .controller('fleetIndexCtrl', function($scope,FleetCarResources) {
+    .controller('fleetIndexCtrl', function($scope,GetFleetResource) {
         /* config object */
-        $scope.getAllFleet=FleetCarResources.getFleet(function (res) {
+        $scope.getAllFleet=GetFleetResource.respuesta(function (res) {
             console.log("res ", res);
             $scope.fleets=res
         });

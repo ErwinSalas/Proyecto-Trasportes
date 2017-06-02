@@ -2,7 +2,7 @@
  * Created by ADRIAN on 21/4/2017.
  */
 angular.module('adminModule')
-    .controller('driverInfoCtrl', function($scope,$routeParams,DriverResources) {
+    .controller('driverInfoCtrl', function($scope,$timeout,$routeParams,DriverResources) {
         /* config object */
         $scope.valueID = $routeParams.valueID;
         console.log(choferSelectedID);
@@ -36,4 +36,59 @@ angular.module('adminModule')
 
             });
         };
+
+        $scope.editDriverBtn = function() {
+            var x = document.getElementsByClassName("ShowInfo");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "block";
+            }
+            var x2 = document.getElementsByClassName("hideInfo");
+            var i2;
+            for (i2 = 0; i2 < x2.length; i2++) {
+                x2[i2].style.display = "none";
+            }
+
+            var x3 = document.getElementById("ShowBtnEditSave").style.display = 'block';
+            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'block';
+
+        };
+
+        $scope.cancelEditDriverBtn = function() {
+            var x = document.getElementsByClassName("ShowInfo");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            var x2 = document.getElementsByClassName("hideInfo");
+            var i2;
+            for (i2 = 0; i2 < x2.length; i2++) {
+                x2[i2].style.display = "block";
+            }
+
+            var  x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
+            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'none';
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+        };
+
+        $scope.newDriver={
+
+        };
+        $scope.postDrier=function() {
+            console.log("envio",$scope.newDriver);
+            DriverResources.editDriver($routeParams.valueID,$scope.newDriver);
+            swal({
+                title: "Chofer editado",
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.href = '#/admin/driverAdmin';
+            }, 2000 );
+
+        };
+        
     });
