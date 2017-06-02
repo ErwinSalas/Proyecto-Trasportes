@@ -2,7 +2,7 @@
  * Created by Pavilion on 26/5/2017.
  */
 angular.module('adminModule')
-    .controller('fleetCreateCtrl', function($scope,FleetCarResources,MediaFleetResource) {
+    .controller('fleetCreateCtrl', function($scope,$timeout,FleetCarResources,MediaFleetResource) {
         /* config object */
         $scope.newCar={
             headquarter:"SanCarlos"
@@ -15,6 +15,16 @@ angular.module('adminModule')
             responseData=MediaFleetResource.setImg($scope.img,$scope.newCar.vehicleId);
             console.log(responseData);
 
+            swal({
+                title: "Vehiculo agregado",
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 1000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.href = '#/admin/fleetAdmin';
+            }, 1000 );
 
         };
         function readFile(evt) {
