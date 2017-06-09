@@ -2,7 +2,7 @@
  * Created by Pavilion on 26/5/2017.
  */
 angular.module('adminModule')
-    .controller('fleetCreateCtrl', function($scope,$timeout,FleetCarResources,MediaFleetResource) {
+    .controller('fleetCreateCtrl', function($scope,$timeout,FleetCarResources,MediaResource) {
         /* config object */
         $scope.newCar={
             headquarter:"SanCarlos"
@@ -12,7 +12,7 @@ angular.module('adminModule')
             var isPost = FleetCarResources.setNewCar($scope.newCar, function (res) {
                 isPost=res;
             });
-            responseData=MediaFleetResource.setImg($scope.img,$scope.newCar.vehicleId);
+            responseData=MediaResource.setImg($scope.img,$scope.newCar.vehicleId,2);
             console.log(responseData);
 
             swal({
@@ -45,7 +45,6 @@ angular.module('adminModule')
                 reader.readAsDataURL(f);
             }
         }
-
         document.getElementById('file-upload').addEventListener('change', readFile, false);
 
 

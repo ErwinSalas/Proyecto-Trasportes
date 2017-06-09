@@ -24,7 +24,7 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
             //Se conecta la vista de crear Choferes
             .when("/admin/driverAdmin/createDriver",{
                 templateUrl:'DriverAdmin/createDriver.html',
-                controller: 'driverAdminCtrl'
+                controller: 'driverCreateCtrl'
             })
             //Se conecta la vista de información de los choferes
             .when("/admin/driverAdmin/driverAdminInfo/:valueID",{

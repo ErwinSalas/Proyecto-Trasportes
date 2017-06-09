@@ -7,14 +7,7 @@ angular.module('adminModule')
         $scope.newDriver={
             isActive:true
         };
-        $scope.saveDriver=function() {
-            console.log("Envio ", $scope.newDriver);
-            var isPost = DriverResources.setNewDriver($scope.newDriver);
-            if(isPost){
-                MediaDriverResource.setImg($scope.newDriver.identification);
-            }
 
-        }
         $scope.getAllDrivers=DriverResources.getDriver(function (res) {
             console.log("res ", res);
             $scope.driverAdmin=res;

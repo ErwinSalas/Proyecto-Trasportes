@@ -265,17 +265,45 @@ angular.module('adminModule')
         };
         return factory;
     })
-    .factory('MediaFleetResource', function ($http) {
+    .factory('MediaResource', function ($http) {
         /*
+        Servicio para manejo de datos multimedia
          * */
+        const diverEndPoint=1;
+        const fleetEndPoint=2;
+        var endPoint;
+        /*
+         getEndpoint obtiene el url de anclaje al servicio dependiaendo de el
+         recurso solicitado. Este mismo sera representado por el parametro resourceType,
+         el cual sera enviado desde el controlador donde se este llamando el servicio
+          */
+        var getEndPoint= function(id,resource,method){
+            if (resource==diverEndPoint){
+                if(method=='POST'){
+                    endPoint=API_ROOT + '/driver/changePicture?driverId={0}&authToken={1}'.format(id,authToken);
+                }
+                else{
+                    endPoint=API_ROOT+'/driver/getPicture?driverId={0}&authToken={1}'.format(id,authToken);
+                }
+            }
+            else if(resource==fleetEndPoint){
+                if(method=='POST'){
+                    endPoint=API_ROOT + '/fleet/changePicture?vehicleId={0}&authToken={1}'.format(id,authToken);
+                }
+                else{
+                    endPoint=API_ROOT+'/fleet/getPicture?vehicleId={0}&authToken={1}'.format(id,authToken);
+                }
+            }
+
+        };
         var authToken = localStorage.getItem('session.token');
         var factory = {
 
-            setImg: function (img,id){
+            setImg: function (img,id,resourceType){
+                getEndPoint(id,resourceType,'POST');
                 $http({
                     method  : 'POST',
-                    url     : API_ROOT + '/fleet/changePicture?vehicleId={0}&authToken={1}'
-                        .format(id,authToken),
+                    url     : endPoint,
                     data    : img
                 })
                     .success(function(data) {
@@ -287,9 +315,9 @@ angular.module('adminModule')
                         }
                     });
             },
-            getImg: function(id,callback){
-                $http.get(API_ROOT+'/fleet/getPicture?vehicleId={0}&authToken={1}'
-                        .format(id,authToken)
+            getImg: function(id,resourceType,callback){
+                getEndPoint(id,resourceType,'GET');
+                $http.get(endPoint
                     )
                     .success(function successCallback(response) {
                         //
