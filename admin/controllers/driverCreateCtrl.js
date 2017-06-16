@@ -20,12 +20,12 @@ angular.module('adminModule')
             for (var i = 0, f; f = files[i]; i++) {
 
                 var reader = new FileReader();
-
+                console.log(files[0]);
                 reader.onload = (function(e) {
                     var filePreview = document.getElementById('img');
                     //e.target.result contents the base64 data from the image uploaded
                     filePreview.src = e.target.result;
-                    $scope.img=e.target.result;
+
                 });
 
                 reader.readAsDataURL(f);

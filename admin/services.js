@@ -311,7 +311,7 @@ angular.module('adminModule')
                             // Showing errors.
                             console.log("set message error", data.errors)
                         } else {
-                            console.log("set message success")
+                            console.log(data,"set message success")
                         }
                     });
             },
