@@ -5,6 +5,7 @@ div.centraTabla table {
 	text-align: center;
 	
 }
+/*Informacion general*/
 aside.margenesTablas table{
 	width: 970px;
 	height: 100px;
@@ -18,7 +19,10 @@ nav.margenesTabla table{
 	height: 100px;
 }
 div h5{
-	margin-left: 270px;
+	text-align: center;
+}
+div h4{
+	text-align: center;
 }
 footer.margenesTabla table{
 	width: 970px;
@@ -50,7 +54,7 @@ div.inpTabla input{
 	float: right;
 	bottom: 30px;
 }
-#tablita td{
+#tablita th{
 	margin-left: 0px;
 	margin-right: 0px;
 	padding: 10px;
