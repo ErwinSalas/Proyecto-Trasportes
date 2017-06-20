@@ -24,46 +24,50 @@
                                 <label for="brand">Marca</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input ng-model="newCar.brand" type="text" id="brand" class="form-control" placeholder="Ingrese la Marca">
+                                        <input ng-model="newCar.brand" type="text" id="brand" class="form-control" placeholder="Ingrese la Marca" required/>
                                     </div>
                                 </div>
                                 <label for="model">Modelo</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input ng-model="newCar.model" type="text" id="model" class="form-control" placeholder="Ingrese el Modelo">
+                                        <input ng-model="newCar.model" type="text" id="model" class="form-control" placeholder="Ingrese el Modelo" required/>
                                     </div>
                                 </div>
                                 <label for="vehicleId">Placa</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input ng-model="newCar.vehicleId" type="text" id="vehicleId" class="form-control" placeholder="Ingrese la Placa">
+                                        <input ng-model="newCar.vehicleId" type="text" id="vehicleId" class="form-control" placeholder="Ingrese la Placa" required/>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                         <label for="traction">Transmicción</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newCar.traction" type="text" id="traction" class="form-control" placeholder="Ingrese la Transmicción">
-                            </div>
+                        <br>
+                        <div class="col-sm-offset-0">
+                            <select class="form-control show-tick" ng-model="newCar.traction" id="traction">
+                                <option value=""></option>
+                                <option value="1">Automatic</option>
+                                <option value="0">Manual</option>
+                            </select>
                         </div>
+                        <br>
                         <label for="capacity">Capacidad</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input  ng-model="newCar.capacity" type="number" id="capacity" class="form-control" placeholder="Ingrese la cantidad de Pasajeros">
+                                <input  ng-model="newCar.capacity" type="number" id="capacity" class="form-control" placeholder="Ingrese la cantidad de Pasajeros" required/>
                             </div>
                         </div>
                         <label for="mileage">Kilometraje</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input  ng-model="newCar.mileage" type="number" id="mileage" class="form-control" placeholder="Ingrese el Kilometraje">
+                                <input  ng-model="newCar.mileage" type="number" id="mileage" class="form-control" placeholder="Ingrese el Kilometraje" required/>
                             </div>
                         </div>
                         <label for="dependence">Dependencia</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input  ng-model="newCar.dependence" type="text" id="dependence" class="form-control" placeholder="Ingrese la Dependencia">
+                                <input  ng-model="newCar.dependence" type="text" id="dependence" class="form-control" placeholder="Ingrese la Dependencia" required/>
                             </div>
                         </div>
 

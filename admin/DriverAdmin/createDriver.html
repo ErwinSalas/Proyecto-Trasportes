@@ -24,26 +24,26 @@
                                 <label for="identification">Identificación</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input ng-model="newDriver.identification" type="text" id="identification" class="form-control" placeholder="Ingrese la Identificación">
+                                        <input ng-model="newDriver.identification" type="text" id="identification" class="form-control" placeholder="Ingrese la Identificación" required/>
                                     </div>
                                 </div>
                                 <label for="firstName">Primer Nombre</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input ng-model="newDriver.firstName" type="text" id="firstName" class="form-control" placeholder="Ingrese el Primer Nombre">
+                                        <input ng-model="newDriver.firstName" type="text" id="firstName" class="form-control" placeholder="Ingrese el Primer Nombre" required/>
                                     </div>
                                 </div>
                                 <label for="lastName">Apellidos</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input ng-model="newDriver.lastName" type="text" id="lastName" class="form-control" placeholder="Ingrese los Apellidos">
+                                        <input ng-model="newDriver.lastName" type="text" id="lastName" class="form-control" placeholder="Ingrese los Apellidos" required/>
                                     </div>
                                 </div>
                             </div>
                         <label for="Headquarter">Sede</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="newDriver.headquarter" type="text" id="headquarter" class="form-control" placeholder="Ingrese la Sede">
+                                <input ng-model="newDriver.headquarter" type="text" id="headquarter" class="form-control" placeholder="Ingrese la Sede" required/>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postDriver()">Registrar</button>
