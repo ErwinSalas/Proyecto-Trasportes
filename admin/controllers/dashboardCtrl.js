@@ -14,10 +14,11 @@ angular.module('adminModule')
             $scope.messages=res
         });
         $scope.postMessage=function() {
-            console.log("envio",$scope.message)
+            console.log("envio",$scope.message);
             MessageResource.setMessage($scope.message);
         };
         $scope.deleteMessages=function(id){
             MessageResource.delMessage(id);
+            console.log("envio",$scope.message);
         };
     });

@@ -55,3 +55,18 @@ div.inpTabla input{
 	margin-right: 0px;
 	padding: 10px;
 }
+
+.btn-messages-delete{
+	float:right;
+	vertical-align: top;
+
+}
+@media (max-width: 800px) {
+	.btn-messages-delete{
+		float:right;
+		vertical-align: top;
+		width: 10%;
+		height: 30%;
+	}
+
+}
