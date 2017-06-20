@@ -246,6 +246,21 @@ angular.module('adminModule')
                     }
                 });
         },
+        delMessage: function (id){
+            $http({
+                method  : 'POST',
+                url     : API_ROOT + '/message/delete?msgId={0}&authToken={1}'
+                    .format(id,authToken)
+            })
+            .success(function(data) {
+                if (data.errors) {
+                    // Showing errors.
+                    console.log("del message error", data.errors)
+                } else {
+                    console.log("del message success")
+                }
+            });
+        },
         getMessages: function(callback){
             $http.get(API_ROOT+'/message/get?headquarter=SanCarlos&authToken={0}'
                     .format(authToken)
