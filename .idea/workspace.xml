@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="801e7f2d-18da-471d-9ea6-87d9f8635ae9" name="Default" comment="-">
+    <list default="true" id="801e7f2d-18da-471d-9ea6-87d9f8635ae9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/Ticket/ticket.html" afterPath="$PROJECT_DIR$/admin/Ticket/ticket.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/estilo.css" afterPath="$PROJECT_DIR$/assets/css/estilo.css" />
     </list>
     <list id="3e3c8a84-05fb-42b4-96b9-d84d50ca6501" name="Rejected commit: Default" comment="obtener reservas del usuario logueado" />
     <ignored path="Proyecto-Trasportes.iws" />
@@ -38,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/admin/Ticket/ticket.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="440">
-              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+              <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -386,7 +385,7 @@
       <workItem from="1497939753218" duration="1148000" />
       <workItem from="1497943436610" duration="207000" />
       <workItem from="1497943852114" duration="1324000" />
-      <workItem from="1497968552245" duration="7910000" />
+      <workItem from="1497968552245" duration="8558000" />
     </task>
     <task id="LOCAL-00001" summary="obtener reservas del usuario logueado">
       <created>1490383882415</created>
@@ -458,11 +457,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497985634852</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="-">
+      <created>1497987364105</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1497987364105</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72750000" />
+    <option name="totallyTimeSpent" value="73398000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -866,14 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/Ticket/ticket2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -916,10 +914,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin/Ticket/ticket2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2560">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/Ticket/ticket.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
           <folding />
         </state>
       </provider>
