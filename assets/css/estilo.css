@@ -9,7 +9,7 @@ aside.margenesTablas table{
 	width: 970px;
 	height: 100px;
 }
-aside.margenesTabla table{
+article.margenesTabla table{
 	width: 970px;
 	height: 100px;
 }
@@ -18,7 +18,6 @@ nav.margenesTabla table{
 	height: 100px;
 }
 footer.margenesTabla table{
-
 	width: 970px;
 	height: 100px;
 }
@@ -26,7 +25,6 @@ div.inpTabla input{
 	text-align: center;
 	width: 78px;
 	height: 25px;
-
 }
 #smallTicket{
 	display: none;
@@ -48,4 +46,9 @@ div.inpTabla input{
 	display: none;
 	float: right;
 	bottom: 30px;
+}
+#tablita td{
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 10px;
 }
