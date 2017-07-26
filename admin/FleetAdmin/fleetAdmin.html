@@ -1,22 +1,22 @@
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleetAdmin">
-        <a ng-init="idvalue=fleet.vehicleId" ng-click="selectedId(idvalue)">
+        <div ng-init="idvalue=fleet.vehicleId" ng-click="selectedId(idvalue)">
         <div class="info-box  hover-expand-effect">
             <div class="icon ">
                 <i class="material-icons">directions_car</i>
             </div>
             <div class="content">
-                <div class="text">
+                <div class="texto">
                     Marca : {{fleet.brand}}<br>
                     Modelo : {{fleet.model}}
                 </div>
-                <small >
+                <div class="text">
                     Placa :{{fleet.vehicleId}}
                     Capacidad: {{fleet.capacity}}
-                </small>
+                </div>
             </div>
         </div>
-        </a>
+        </div>
     </div>
 </div>
 
