@@ -1,20 +1,20 @@
-<div class="row clearfix" >
+<div >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="driver in driverAdmin">
-        <a ng-init="idvalue=driver.identification" ng-click="driverSelected(idvalue)">
+        <div ng-init="idvalue=driver.identification" ng-click="driverSelected(idvalue)">
         <div class="info-box  hover-expand-effect">
             <div class="icon ">
                 <i class="material-icons">perm_identity</i>
             </div>
             <div class="content">
-                <div class="text">
+                <div class="texto">
                     Nombre  :{{driver.firstName}} {{driver.lastName}}
                 </div>
-                <small >
+                <div class="text">
                     Identificación : {{driver.identification}}
-                </small>
+                </div>
             </div>
         </div>
-        </a>
+        </div>
     </div>
 </div>
 <a class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" href="#/admin/driverAdmin/createDriver">

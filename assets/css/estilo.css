@@ -14,6 +14,10 @@ article.margenesTabla table{
 	width: 970px;
 	height: 100px;
 }
+.btnFormulario{
+	width: 100%;
+	background: #7ED8DE;
+}
 nav.margenesTabla table{
 	width: 970px;
 	height: 100px;
@@ -42,7 +46,11 @@ div.inpTabla input{
 .hideInfo{
 	display: block;
 }
+.texto{
+	margin-top: 5px;
 
+	color: black;
+}
 .ShowInfo{
 	display: none;
 }
@@ -73,5 +81,4 @@ div.inpTabla input{
 		width: 10%;
 		height: 30%;
 	}
-
 }
