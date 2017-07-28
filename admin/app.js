@@ -11,12 +11,16 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
             .when("/admin/user/edit",{
                 templateUrl:'users/edit.html'
             })
+
+            .when("/admin/Ticket/ticket2",{
+                templateUrl:'Ticket/ticket2.html'
+            })
             //Se conecta la vista de crear flotilla
             .when("/admin/fleetAdmin/create",{
                 templateUrl:'FleetAdmin/create.html',
                 controller: 'fleetCreateCtrl'
             })
-            //Se conecta la vista de información de la flotilla 
+            //Se conecta la vista de información de la flotilla
             .when("/admin/fleetAdmin/fleetAdminInfo/:valueID",{
                 templateUrl:'FleetAdmin/fleetAdminInfo.html',
                 controller: 'fleetAdminInfoCtrl'
@@ -46,6 +50,7 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 controller: 'reservesAdminCtrl'
 
             })
+
             .when("/admin/reserves/info/:valueID",{
                 templateUrl:'reservesAdmi/reservesAdminInfo.html',
                 controller: 'reservesAdminInfoCtrl'
