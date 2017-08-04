@@ -3,9 +3,13 @@
     <div class="card">
         <div class=" header">
             <h2>Detalles de la reserva</h2>
+            <div class="header-dropdown m-r--5 ">
+                <a class="btn-floating btn-sm " href="#/admin/reserves/"><i class="material-icons" style="cursor:pointer; color: white">arrow_back</i></a>
+            </div>
         </div>
         <div class="body">
             <div class="table-responsive">
+
                 <table class="table table-hover dashboard-task-infos">
                     <thead>
                     <tr>
@@ -62,7 +66,6 @@
         <a class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction(false)">Denegar</a></div>
     </div>
 
-    <a class="waves-effect waves-light btn" href="#/admin/reserves/">Atras</a>
     <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="createTicket()">
         <i class="material-icons">description</i>
     </button>

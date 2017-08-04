@@ -1,9 +1,7 @@
 
 div.centraTabla table {
-
 	margin: 0 auto;
 	text-align: center;
-	
 }
 /*Informacion general*/
 aside.margenesTablas table{
@@ -48,7 +46,6 @@ div.inpTabla input{
 }
 .texto{
 	margin-top: 5px;
-
 	color: black;
 }
 .ShowInfo{
@@ -71,8 +68,6 @@ div.inpTabla input{
 .btn-messages-delete{
 	float:right;
 	vertical-align: top;
-	top:20px;
-
 }
 @media (max-width: 800px) {
 	.btn-messages-delete{

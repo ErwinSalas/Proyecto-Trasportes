@@ -1,8 +1,3 @@
-<div style="text-align: center; margin-bottom: 2%">
-    <button type="button" class="btn btn-success waves-effect" style="right: 5%" ng-click="changeList('Accepted')">Aceptadas</button>
-    <button type="button" class="btn btn-primary waves-effect" ng-click="changeList('Pending')">Pendientes</button>
-    <button type="button" class="btn btn-danger waves-effect" style="left: 5%" ng-click="changeList('Denied')">Rechazadas</button>
-</div>
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="reservation in reservationsMain">
         <div ng-init="idvalue=reservation.reservationId" ng-click="reserveSelected(idvalue)">
@@ -24,4 +19,13 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn bg-green btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:18%; right: 2%" ng-click="changeList('Accepted')">
+        <i class="material-icons">done</i>
+    </button>
+    <button type="button" class="btn bg-blue btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:10%; right: 2%" ng-click="changeList('Pending')">
+        <i class="material-icons">query_builder</i>
+    </button>
+    <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="changeList('Denied')">
+        <i class="material-icons">error</i>
+    </button>
 </div>

@@ -13,7 +13,7 @@ angular.module('adminModule')
                 isPost=res;
             });
             responseData=MediaResource.setImg($scope.img,$scope.newCar.vehicleId,2);
-            console.log(responseData);
+            console.log($scope.img);
 
             swal({
                 title: "Vehiculo agregado",
