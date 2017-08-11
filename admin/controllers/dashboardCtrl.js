@@ -20,5 +20,16 @@ angular.module('adminModule')
         $scope.deleteMessages=function(id){
             MessageResource.delMessage(id);
             console.log("envio",$scope.message);
+            
+            swal({
+                title: "Mensaje Eliminado",
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.reload();
+            }, 2000 );
         };
     });

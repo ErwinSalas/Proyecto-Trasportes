@@ -69,7 +69,7 @@ angular.module('userModule')
                 start: datetimeToUrlParameter(departureDate,departureHour),
                 end : datetimeToUrlParameter(arrivalDate,arrivalHour)
             };
-           if(new Date(departureDate)> new Date()) {
+           if(new Date(String(departureDate)+" "+String(departureHour))>= new Date() && new Date(String(arrivalDate)+" "+String(arrivalHour)) > new Date(String(departureDate)+" "+String(departureHour))) {
                 if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
                     $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
                         console.log("res ", res);
@@ -87,7 +87,7 @@ angular.module('userModule')
             }
             else{
 
-                sweetAlert("Error...", "No existen autos dispoonibles en la fecha solicitada", "error");
+                sweetAlert("Error...", "No existen autos disponibles en la fecha solicitada", "error");
             }
         }
     );

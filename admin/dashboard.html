@@ -39,19 +39,20 @@
             </div>
         </div>
         <ul class="list-group-custom" ng-repeat="message in messages">
+
             <li class=" info-box">
+
                 <div class="icon ">
                     <i class="material-icons">forum</i>
                 </div>
                 <div class="content" style="width: 100%">
                     <div class="text font-bold">{{message.title}}</div>
-
                     <small >
-                        Mensaje :{{message.body}}
+                        {{message.body}}
                         <br>
                         Publicacíon: {{message.publish}}
                     </small>
-                    <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float btn-messages-delete" ng-click="deleteMessages(message.messageId)">
+                    <button type="button" style="margin-top: -2.5%" class="btn btn-danger btn-circle waves-effect waves-circle waves-float btn-messages-delete" ng-click="deleteMessages(message.messageId)">
                         <i class="material-icons">delete</i>
                     </button>
                 </div>
