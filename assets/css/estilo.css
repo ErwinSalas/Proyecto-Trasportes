@@ -77,3 +77,22 @@ div.inpTabla input{
 		height: 30%;
 	}
 }
+
+#imgAddIcon{
+	font-size: 140px;
+	display:block;
+	margin-bottom: 7%;
+	margin-top: 3%
+}
+.imgPreviewS{
+	display: none;
+}
+.imgInputS{
+	margin-top: 4%;
+}
+.imgInfoDisplay{
+	display: block;
+	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}

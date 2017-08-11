@@ -8,25 +8,32 @@ angular.module('adminModule')
             headquarter:"SanCarlos"
         };
         $scope.postCar=function() {
-            console.log("envio",$scope.newCar);
+            console.log("enviPo",$scope.newCar);
             var isPost = FleetCarResources.setNewCar($scope.newCar, function (res) {
                 isPost=res;
             });
             responseData=MediaResource.setImg($scope.img,$scope.newCar.vehicleId,2);
-            console.log($scope.img);
 
             swal({
                 title: "Vehiculo agregado",
                 type: "success",
                 confirmButtonColor: "#140e39",
-                timer: 1000,
+                timer: 2000,
                 showConfirmButton: false
             });
             $timeout( function(){
                 window.location.href = '#/admin/fleetAdmin';
-            }, 1000 );
+            }, 2000 );
 
         };
+
+        function urltoFile(url, filename, mimeType){
+            return (fetch(url)
+                    .then(function(res){return res.arrayBuffer();})
+                    .then(function(buf){return new File([buf], filename, {type:mimeType});})
+            );
+        }
+
         function readFile(evt) {
             var files = evt.target.files; // FileList object
 
@@ -36,18 +43,23 @@ angular.module('adminModule')
                 var reader = new FileReader();
 
                 reader.onload = (function(e) {
+                    document.getElementById('imgAddIcon').style.display = "none";
+                    document.getElementById('img').style.display = "block";
                     var filePreview = document.getElementById('img');
                     //e.target.result contents the base64 data from the image uploaded
                     filePreview.src = e.target.result;
                     $scope.img=e.target.result;
                 });
-
                 reader.readAsDataURL(f);
             }
+            setTimeout(function(){
+                urltoFile($scope.img, 'image.jpg', 'multipart/form-data')
+                    .then(function(file){
+                        console.log("Soy la imagen",file);
+                        $scope.img = file;
+                    })
+            }, 1000);
         }
         document.getElementById('file-upload').addEventListener('change', readFile, false);
-
-
-
 
     });

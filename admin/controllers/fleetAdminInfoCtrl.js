@@ -1,8 +1,21 @@
 angular.module('adminModule')
-    .controller('fleetAdminInfoCtrl', function($scope,$timeout,$routeParams,FleetCarResources) {
+    .controller('fleetAdminInfoCtrl', function($scope,$timeout,$routeParams,FleetCarResources,MediaResource) {
         /* config object */
         $scope.valueID = $routeParams.valueID;
         console.log(carSelectedID);
+        /*$scope.getCarPicture = MediaResource.getImg(carSelectedID,2,function (res) {
+            $scope.carPicture=res;
+            setTimeout(function(){
+                var PictureCanvas = document.getElementById('img');
+                PictureCanvas.src = $scope.carPicture;
+            }, 7000);
+
+        });*/
+
+        var PictureCanvas = document.getElementById('img');
+        PictureCanvas.src = IMG_ROOT+carSelectedID+".jpg";
+
+
         $scope.getCarInfo = FleetCarResources.getCarInfo(carSelectedID, function (res) {
             $scope.carInfo=res;
             console.log("La resInfo ", $scope.carInfo);

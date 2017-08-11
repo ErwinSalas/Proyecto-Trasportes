@@ -56,6 +56,7 @@ const LS_REMEMBER_SESSION = "rememberSession";
  * @type {string}
  */
 const API_ROOT = "http://transportec-api.azurewebsites.net";
+const IMG_ROOT = "http://transportec.s3.amazonaws.com/resources/fleet/";
 
 /**
  * Formatea una cadena de texto en base a los parámetros proporcionados.

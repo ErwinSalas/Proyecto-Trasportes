@@ -295,18 +295,18 @@ angular.module('adminModule')
         var getEndPoint= function(id,resource,method){
             if (resource==diverEndPoint){
                 if(method=='POST'){
-                    endPoint=API_ROOT + '/driver/changePicture?driverId={0}&authToken={1}'.format(id,authToken);
+                    endPoint=API_ROOT + '/driver/picture/set?driverId={0}&authToken={1}'.format(id,authToken);
                 }
                 else{
-                    endPoint=API_ROOT+'/driver/getPicture?driverId={0}&authToken={1}'.format(id,authToken);
+                    endPoint=API_ROOT+'/driver/picture/get?driverId={0}'.format(id);
                 }
             }
             else if(resource==fleetEndPoint){
                 if(method=='POST'){
-                    endPoint=API_ROOT + '/fleet/changePicture?vehicleId={0}&authToken={1}'.format(id,authToken);
+                    endPoint=API_ROOT + '/fleet/picture/set?vehicleId={0}&authToken={1}'.format(id,authToken);
                 }
                 else{
-                    endPoint=API_ROOT+'/fleet/getPicture?vehicleId={0}&authToken={1}'.format(id,authToken);
+                    endPoint=API_ROOT+'/fleet/picture/get?vehicleId={0}'.format(id);
                 }
             }
 
