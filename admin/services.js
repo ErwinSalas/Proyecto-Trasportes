@@ -15,6 +15,7 @@ angular.module('adminModule')
     //Fleet
     .factory('FleetCarResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         var factory = {
             getCarInfo: function (carID, callback) {
                 $http({
@@ -35,7 +36,7 @@ angular.module('adminModule')
             },
             getFleet: function ( callback) {
                 $http.get(
-                    API_ROOT +'/fleet/getFleet?filter=enabled&headquarter=SanCarlos&authToken={0}'.format(authToken)
+                    API_ROOT +'/fleet/getFleet?filter=enabled&headquarter={0}&authToken={1}'.format(user.headquarter,authToken)
                 ).success(function successCallback(response) {
                     // Esta funcion es la que se ejecuta
                     // cuando la pet    icion es exitosa
@@ -101,10 +102,11 @@ angular.module('adminModule')
     //Driver 
     .factory('DriverResources',function($http){
         var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         var factory = {
             getDriver: function(callback){
                 $http.get(
-                    API_ROOT +'/driver/getDrivers?filter=active&headquarter=SanCarlos&authToken={0}'.format(authToken)
+                    API_ROOT +'/driver/getDrivers?filter=active&headquarter={0}&authToken={1}'.format(user.headquarter,authToken)
                 ).success(function successCallback(response) {
                     // Esta funcion es la que se ejecuta
                     // cuando la peticion es exitosa
@@ -225,10 +227,9 @@ angular.module('adminModule')
         return factory;
     })
     .factory('MessageResource', function ($http) {
-    /*
-     * */
-    var authToken = localStorage.getItem('session.token');
-    var factory = {
+        var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
+        var factory = {
 
         setMessage: function (message){
             $http({
@@ -262,8 +263,8 @@ angular.module('adminModule')
             });
         },
         getMessages: function(callback){
-            $http.get(API_ROOT+'/message/get?headquarter=SanCarlos&authToken={0}'
-                    .format(authToken)
+            $http.get(API_ROOT+'/message/get?headquarter={0}&authToken={1}'
+                    .format(user.headquarter,authToken)
                 )
                 .success(function successCallback(response) {
                     //

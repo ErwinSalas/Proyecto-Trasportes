@@ -9,9 +9,10 @@ angular.module('userModule')
     */
     .factory('GetFleetResource',function($http){
         var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         var respuesta = function(callback){
             $http.get(
-                API_ROOT +'/fleet/getFleet?filter=enabled&headquarter=SanCarlos&authToken={0}'.format(authToken)
+                API_ROOT +'/fleet/getFleet?filter=enabled&headquarter={0}&authToken={1}'.format(user.headquarter,authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
                 // cuando la peticion es exitosa
@@ -31,10 +32,11 @@ angular.module('userModule')
     })
     .factory('GetAvailableFleetResource',function($http){
         var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         var res = function(data,callback){
             $http.get(
-                API_ROOT +'/fleet/checkAvailability?headquarter=SanCarlos&start={0}&end={1}&authToken={2}'
-                    .format(data.start,data.end,authToken)
+                API_ROOT +'/fleet/checkAvailability?headquarter={0}&start={1}&end={2}&authToken={3}'
+                    .format(user.headquarter,data.start,data.end,authToken)
             ).success(function successCallback(response) {
                 // Esta funcion es la que se ejecuta
                 // cuando la peticion es exitosa
@@ -55,10 +57,11 @@ angular.module('userModule')
         /*
         * */
         var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         var factory = {
             getMessages: function(callback){
-                $http.get(API_ROOT+'/message/get?headquarter=SanCarlos&authToken={0}'
-                    .format(authToken)
+                $http.get(API_ROOT+'/message/get?headquarter={0}&authToken={1}'
+                    .format(user.headquarter,authToken)
                     )
                     .success(function successCallback(response) {
                         //

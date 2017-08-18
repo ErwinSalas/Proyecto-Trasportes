@@ -1,8 +1,3 @@
-/**
- * common.js
- * Código común.
- */
-
 
 var closeSideBar=function () {
   var $window = $(window);
@@ -14,7 +9,7 @@ var closeSideBar=function () {
     if ($body.hasClass('overlay-open')) { $overlay.fadeIn(); } else { $overlay.fadeOut(); }
   }
 
-}
+};
 // ===== CONSTANTES ========================================
 
 /**
@@ -56,7 +51,8 @@ const LS_REMEMBER_SESSION = "rememberSession";
  * @type {string}
  */
 const API_ROOT = "http://transportec-api.azurewebsites.net";
-const IMG_ROOT = "http://transportec.s3.amazonaws.com/resources/fleet/";
+const IMG_ROOT_F = "http://transportec.s3.amazonaws.com/resources/fleet/";
+const IMG_ROOT_D = "http://transportec.s3.amazonaws.com/resources/driver/";
 
 /**
  * Formatea una cadena de texto en base a los parámetros proporcionados.

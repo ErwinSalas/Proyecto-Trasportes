@@ -6,21 +6,25 @@ angular.module('userModule')
     .controller('dashboardCtrl', function($scope,MessageResources) {
     /* config object */
     var user = JSON.parse( localStorage.getItem('session.owner') );
-        $scope.message={
-            title : "Hola",
-            body : "No hay servicio",
-            headquarter :user.headquarter,
-            owner : user.username
-        };
-    //$scope.messages.headquarter = "SanCarlos";
-    //$scope.messages.owner = user.username;
     $scope.getMessages=MessageResources.getMessages(function (res) {
         console.log("res ", res);
-        $scope.messages=res
-    });
-        $scope.postMessage=function() {
-            console.log("envio",$scope.message)
-            MessageResource.setMessage($scope.message);
-
+        $scope.messages=res;
+        for (i = 0; i < $scope.messages.length; i++) {
+            $scope.messages[i].publish = $scope.setFormatDateTime($scope.messages[i].publish);
         }
+    });
+
+    $scope.setFormatDateTime = function (date) {
+        reserveDate = new Date(date);
+        reserveYear = reserveDate.getFullYear();
+        reserveMonth = reserveDate.getMonth();
+        reserveDay = reserveDate.getDate();
+        reserveHours = reserveDate.getHours();
+        reserveMinutes = reserveDate.getMinutes();
+        reserve_AM_PM = reserveHours >= 12 ? 'pm' : 'am';
+        reserveHours = reserveHours % 12;
+        reserveHours = reserveHours ? reserveHours : 12;
+        reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
+        return reserveDay + " de " + months[reserveMonth] + " " + reserveYear+" a las "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+    };
 });

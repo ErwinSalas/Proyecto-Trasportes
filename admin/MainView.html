@@ -13,28 +13,19 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
-
     <!-- Bootstrap Core Css -->
     <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
     <!-- Waves Effect Css -->
     <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
-
     <!-- Animation Css -->
     <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
-
     <link href="../bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />
-
     <!-- Preloader Css -->
     <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />
-
     <!-- Custom Css -->
     <link href="../assets/css/style.css" rel="stylesheet">
-
     <!-- Ticket Css -->
     <link href="../assets/css/estilo.css" rel="stylesheet">
-
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../assets/css/themes/theme-blue.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/mediaQueries.css">
@@ -49,7 +40,7 @@
                     <circle cx="37.5" cy="37.5" r="33.5" class="pl-red" stroke-width="4" />
                 </svg>
             </div>
-            <p>Please wait...</p>
+            <p>Cargando...</p>
         </div>
     </div>
     <!-- #END# Page Loader -->
@@ -73,7 +64,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="MainView.html">
+                <a class="navbar-brand">
                     <img src="../assets/images/TEC.130212023_std.png">
                 </a>
             </div>
@@ -281,7 +272,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="../assets/images/user.png" width="48" height="48" alt="User" class="img-circle"/>
+                    <img src="../assets/images/user2.png" width="48" height="48" alt="User" class="img-circle"/>
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user}}</div>
@@ -289,8 +280,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);" onclick="signOut()"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="javascript:void(0);" onclick="signOut()"><i class="material-icons">input</i>Salir</a></li>
                         </ul>
                     </div>
                 </div>
@@ -365,8 +355,6 @@
     <script src="controllers/mainCtrl.js"></script>
     <!-- dashboard controller Js -->
     <script src="controllers/dashboardCtrl.js"></script>
-    <!-- userCreate controller Js -->
-    <script src="controllers/usersCtrl.js"></script>
     <!-- request controller Js -->
     <script src="controllers/reservesAdminCtrl.js"></script>
     <script src="controllers/fleetAdminCtrl.js"></script><!--Importar el js-->
@@ -380,32 +368,23 @@
 
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
-
     <!-- Bootstrap Core Js -->
     <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-
     <!-- Select Plugin Js -->
     <script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
     <!-- Slimscroll Plugin Js -->
     <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
       <!-- JQuery Steps Plugin Js -->
     <script src="../plugins/jquery-steps/jquery.steps.js"></script>
-
     <script src="../assets/js/pages/forms/form-wizard.js"></script>
-
-
     <!-- Waves Effect Plugin Js -->
     <script src="../plugins/node-waves/waves.js"></script>
 
     <!-- Custom Js -->
     <script src="../assets/js/admin.js"></script>
-
     <script src="../shared/common.js"></script>
     <script src="../shared/operationHelper.js"></script>
     <script src="../shared/session.js"></script>
-    <script src="../shared/sharedServices.js"></script>
 
 </body>
 

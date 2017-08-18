@@ -25,6 +25,7 @@
     <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />
     <!-- Custom Css -->
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/estilo.css" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../assets/css/themes/theme-blue.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/mediaQueries.css">
@@ -278,7 +279,7 @@
             <!-- Informacion del usuario -->
             <div class="user-info ">
                 <div class="image ">
-                    <img src="../assets/images/user.png" width="48" height="48" alt="User" />
+                    <img src="../assets/images/user2.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <!-- Menu de cierre de session -->
@@ -287,8 +288,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);" onclick="signOut()"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="javascript:void(0);" onclick="signOut()"><i class="material-icons">input</i>Salir</a></li>
                     </ul>
                 </div>
                 </div>
@@ -351,7 +351,7 @@
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="../bower_components/ui-listView/src/"></script>
+    <script type="text/javascript" src="../bower_components/ui-listView/src/ui-listView.js"></script>
     <script type="text/javascript" src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Bootstrap Core Js -->
@@ -399,11 +399,9 @@
 
     <!-- Custom Js -->
     <script src="../assets/js/admin.js"></script>
-
     <script src="../shared/common.js"></script>
     <script src="../shared/operationHelper.js"></script>
     <script src="../shared/session.js"></script>
-    <script src="../shared/sharedServices.js"></script>
 
 </body>
 

@@ -1,5 +1,5 @@
 <div class="row clearfix" >
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="reservation in reservations">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="reservation in reservationsMain">
         <div ng-init="idvalue=reservation.reservationId" ng-click="reserveSelected(idvalue)">
             <div class="info-box  hover-expand-effect">
                 <div class="icon ">
@@ -14,7 +14,7 @@
 
                         Solicitante :{{reservation.requestingUser}}
                         <div alling="right">
-                            Fecha :{{reservation.requestDateTime}}
+                            Fecha: {{reservation.requestDateTime}}
                         </div>
 
 
@@ -25,13 +25,13 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn bg-green btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:20%; right: 2%" ng-click="editCar()">
+    <button type="button" class="btn bg-green btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:20%; right: 2%" ng-click="changeList('Accepted')">
         <i class="material-icons">done</i>
     </button>
-    <button type="button" class="btn bg-blue btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:11%; right: 2%" ng-click="gfd()">
+    <button type="button" class="btn bg-blue btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:11%; right: 2%" ng-click="changeList('Pending')">
         <i class="material-icons">query_builder</i>
     </button>
-    <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="deleteMessage()">
+    <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="changeList('Denied')">
         <i class="material-icons">error</i>
     </button>
 </div>

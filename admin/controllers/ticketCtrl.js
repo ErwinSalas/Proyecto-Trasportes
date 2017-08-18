@@ -26,8 +26,10 @@ angular.module('adminModule')
             document.body.appendChild(frame1);
             var frameDoc = frame1.contentWindow ? frame1.contentWindow : frame1.contentDocument.document ? frame1.contentDocument.document : frame1.contentDocument;
             frameDoc.document.open();
-            frameDoc.document.write('<html><head><title>DIV Contents</title>');
-            frameDoc.document.write( '<link href="../assets/css/estilo.css" rel="stylesheet">');
+            frameDoc.document.write('<html><head><title>Ticket</title>');
+            frameDoc.document.write('<link href="../assets/css/estilo.css" rel="stylesheet">');
+            frameDoc.document.write('<link href="../assets/css/style.css" rel="stylesheet">');
+            frameDoc.document.write('<link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">');
             frameDoc.document.write('</head><body>');
             frameDoc.document.write(contents);
             frameDoc.document.write('</body></html>');

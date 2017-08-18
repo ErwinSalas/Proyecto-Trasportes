@@ -15,18 +15,26 @@ angular.module('userModule')
             // when the response is available
             console.log("entro", response);
             $scope.reservations = response.content;
-            for (i = 0; i < $scope.reservations.length; i++) {
-                if ($scope.reservations[i].reservationStatus == "Accepted"){
-                    $scope.reservationsAcepted.push($scope.reservations[i])
+            $scope.noReservationsText = "Usted no posee reservas.";
+            if ($scope.reservations.length > 0){
+                for (i = 0; i < $scope.reservations.length; i++) {
+                    if ($scope.reservations[i].reservationStatus == "Accepted"){
+                        $scope.reservationsAcepted.push($scope.reservations[i])
+                    }
+                    if ($scope.reservations[i].reservationStatus == "Pending"){
+                        $scope.reservationsPending.push($scope.reservations[i])
+                    }
+                    if ($scope.reservations[i].reservationStatus == "Denied"){
+                        $scope.reservationsDenied.push($scope.reservations[i])
+                    }
+                    $scope.reservations[i].requestDateTime = $scope.setFormatDateTime($scope.reservations[i].requestDateTime);
                 }
-                if ($scope.reservations[i].reservationStatus == "Pending"){
-                    $scope.reservationsPending.push($scope.reservations[i])
-                }
-                if ($scope.reservations[i].reservationStatus == "Denied"){
-                    $scope.reservationsDenied.push($scope.reservations[i])
-                }
+                $scope.reservationsMain = $scope.reservationsPending;
+            }else{
+                document.getElementById("noReservesAvailable").style.display = "flex";
+                document.getElementById("noReservesAvailableTxt").style.display = "flex";
             }
-            $scope.reservationsMain = $scope.reservationsPending;
+
         }).error(function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -42,6 +50,20 @@ angular.module('userModule')
 
         $scope.reservationstatus = "query_builder";
 
+        $scope.setFormatDateTime = function (date) {
+            reserveDate = new Date(date);
+            reserveYear = reserveDate.getFullYear();
+            reserveMonth = reserveDate.getMonth();
+            reserveDay = reserveDate.getDate();
+            reserveHours = reserveDate.getHours();
+            reserveMinutes = reserveDate.getMinutes();
+            reserve_AM_PM = reserveHours >= 12 ? 'pm' : 'am';
+            reserveHours = reserveHours % 12;
+            reserveHours = reserveHours ? reserveHours : 12;
+            reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
+            return reserveDay + " de " + months[reserveMonth] + " " + reserveYear+" a las "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+        };
+        
         $scope.reserveSelectedID = "";
 
         $scope.reserveSelected = function (reserveID) {

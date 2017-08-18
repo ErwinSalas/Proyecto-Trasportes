@@ -30,10 +30,17 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
 
                     window.location.href = ('{0}/MainView.html'.format(userData.userType == "Admin" ? "admin" : "users"));
                 } else {
-                    alert("Credenciales incorrectas");
+                    swal({
+                        title: "Credenciales incorrectas",
+                        text: "Nombre de usuario o contraseña incorrectas.",
+                        type: "error",
+                        confirmButtonColor: "#140e39",
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                 }
             });
-        }
+        };
 
         /**
          * Guarda la sesión en el almacenamiento local del navegador.

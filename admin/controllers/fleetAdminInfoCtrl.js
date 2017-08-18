@@ -13,7 +13,7 @@ angular.module('adminModule')
         });*/
 
         var PictureCanvas = document.getElementById('img');
-        PictureCanvas.src = IMG_ROOT+carSelectedID+".jpg";
+        PictureCanvas.src = IMG_ROOT_F+carSelectedID+".jpg";
 
 
         $scope.getCarInfo = FleetCarResources.getCarInfo(carSelectedID, function (res) {

@@ -18,10 +18,11 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <center>
-                                    <img id="img" src="http://localhost:63342/Proyecto-Trasportes/assets/images/preview_replacement_by_jacksparr0w.png" align="center" width="200" height="200">
+                                    <img id="img" src="" align="center" width="200" height="250" class="imgPreviewS">
+                                    <div id="imgAddIcon" class="material-icons">add_a_photo</div>
 
                                 </center>
-                                <input id="file-upload"  type="file" formenctype="multipart/form-data"  />
+                                <input id="file-upload"  type="file" formenctype="multipart/form-data"  class="imgInputS"/>
                             </div>
                             <div class="col-md-8">
                                 <label for="identification">Identificación</label>
@@ -43,13 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <label for="Headquarter">Sede</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="newDriver.headquarter" type="text" id="headquarter" class="form-control" placeholder="Ingrese la Sede" required/>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" ng-click="postDriver()">Registrar</button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Registrar</button>
                         </div>
                     </form>
 
@@ -57,8 +52,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" >
-
-    </script>
-    <!-- #END# Vertical Layout -->
 </div>

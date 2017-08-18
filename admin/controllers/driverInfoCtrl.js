@@ -6,6 +6,10 @@ angular.module('adminModule')
         /* config object */
         $scope.valueID = $routeParams.valueID;
         console.log(choferSelectedID);
+
+        var PictureCanvas = document.getElementById('img');
+        PictureCanvas.src = IMG_ROOT_D+choferSelectedID+".jpg";
+        
         $scope.getDriverInfo = DriverResources.getDriverInfo(choferSelectedID, function (res) {
             $scope.driverInfo=res;
             console.log("La resInfo ", $scope.driverInfo);
