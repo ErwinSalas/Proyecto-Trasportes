@@ -42,7 +42,21 @@ angular.module('adminModule')
 
         };
 
-        $scope.reserveAction = function (action) {
+        $scope.reserveAction1 = function (action) {
+            $scope.reservationStatus={
+                assignedDriver :null,
+                responseNotes:"justifique aqui",
+                reservationId:$scope.reserve.reservationId,
+                accepted:action
+            };
+            console.log("envio",$scope.reservationStatus);
+            ReserveResources.setReserveStatus($scope.reservationStatus);
+
+            window.location.href = '#/admin/reserves/';
+
+        };
+
+        $scope.reserveAction2 = function (action) {
             $scope.inputAnswer= "";
             swal({
                 title: "Justificación",
