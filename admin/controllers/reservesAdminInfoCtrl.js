@@ -43,16 +43,35 @@ angular.module('adminModule')
         };
 
         $scope.reserveAction = function (action) {
-            $scope.reservationStatus={
-                assignedDriver :null,
-                responseNotes:"justifique aqui",
-                reservationId:$scope.reserve.reservationId,
-                accepted:action
-            };
-            console.log("envio",$scope.reservationStatus);
-            ReserveResources.setReserveStatus($scope.reservationStatus);
-            
-            window.location.href = '#/admin/reserves/';
+            $scope.inputAnswer= "";
+            swal({
+                title: "Justificación",
+                text: "Escriba la justificación del rechazo de la reserva",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                cancelButtonText: "Cancelar",
+                animation: "slide-from-top",
+                inputPlaceholder: "Escriba la justificación"
+            }, function (inputValue) {
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("Debes de escribir una justificación"); return false
+                }
+                swal("Exito!", "Solicitud procesada.", "success");
+                $scope.inputAnswer = inputValue;
+                $scope.reservationStatus={
+                    assignedDriver :null,
+                    responseNotes:$scope.inputAnswer,
+                    reservationId:$scope.reserve.reservationId,
+                    accepted:action
+                };
+                console.log("envio",$scope.reservationStatus);
+                ReserveResources.setReserveStatus($scope.reservationStatus);
+
+                window.location.href = '#/admin/reserves/';
+
+            });
 
         };
 
