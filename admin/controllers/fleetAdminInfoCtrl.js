@@ -15,12 +15,29 @@ angular.module('adminModule')
         var PictureCanvas = document.getElementById('img');
         PictureCanvas.src = IMG_ROOT_F+carSelectedID+".jpg";
 
-
+        $scope.iconLock = "";
+        $scope.isLockedSTR = "";
+        $scope.isLockedSTRAction = "";
+        $scope.isLockedStatusAction = false;
         $scope.getCarInfo = FleetCarResources.getCarInfo(carSelectedID, function (res) {
             $scope.carInfo=res;
             console.log("La resInfo ", $scope.carInfo);
             if($scope.carInfo.Traction == 1){
                 $scope.carInfo.Traction = "Manual";
+            }
+            if($scope.carInfo.isLocked == true){
+                $scope.isLockedStatusAction = false;
+                $scope.isLockedSTR = "Bloqueado";
+                $scope.isLockedSTRAction = "Disponible";
+                $scope.iconLock = "lock_open";
+                document.getElementById("lockedBtn").className = 'btn bg-green btn-circle-lg waves-effect waves-circle waves-float';
+            }
+            else {
+                $scope.isLockedStatusAction = true;
+                $scope.isLockedSTR = "Disponible";
+                $scope.isLockedSTRAction = "Bloqueado";
+                $scope.iconLock = "lock_outline";
+                document.getElementById("lockedBtn").className = 'btn btn-danger btn-circle-lg waves-effect waves-circle waves-float';
             }
         });
 
@@ -65,6 +82,19 @@ angular.module('adminModule')
             var x3 = document.getElementById("ShowBtnEditSave").style.display = 'block';
             var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'block';
 
+        };
+        $scope.lockCar = function () {
+            FleetCarResources.lockCar($routeParams.valueID,$scope.isLockedStatusAction);
+            swal({
+                title: "Vehiculo " + $scope.isLockedSTRAction,
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.href = '#/admin/fleetAdmin';
+            }, 2000 );
         };
 
         $scope.cancelEditCar =function() {

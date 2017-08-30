@@ -12,13 +12,14 @@ angular.module('userModule')
         $scope.postReservation=function() {
             var user = JSON.parse( localStorage.getItem('session.owner') );
             $scope.reservation.requestingUser= user.username;
+            $scope.reservation.functionalCenter= 0;
             $scope.reservation.members = $scope.members;
             console.log("envio",$scope.reservation);
             ReserveResource.setReserve($scope.reservation);
 
         };
         $scope.members = [];
-        
+
         $scope.agregarPasajero = function(){
             var identificationE= document.getElementById("identificationE").value;
             var firstNameE= document.getElementById("firstNameE").value;
@@ -61,37 +62,37 @@ angular.module('userModule')
         };
 
         document.getElementById("btnCheck").addEventListener("click", function(){
-            var arrivalDate= document.getElementById("arrivalDate").value;
-            var arrivalHour= document.getElementById("arrivalHour").value;
-            var departureDate= document.getElementById("departureDate").value;
-            var departureHour= document.getElementById("departureHour").value;
-            var urlParams = {
-                start: datetimeToUrlParameter(departureDate,departureHour),
-                end : datetimeToUrlParameter(arrivalDate,arrivalHour)
-            };
-           if(new Date(String(departureDate)+" "+String(departureHour))>= new Date() && new Date(String(arrivalDate)+" "+String(arrivalHour)) > new Date(String(departureDate)+" "+String(departureHour))) {
-                if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
-                    $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
-                        console.log("res ", res);
-                        $scope.fleets = res
+                var arrivalDate= document.getElementById("arrivalDate").value;
+                var arrivalHour= document.getElementById("arrivalHour").value;
+                var departureDate= document.getElementById("departureDate").value;
+                var departureHour= document.getElementById("departureHour").value;
+                var urlParams = {
+                    start: datetimeToUrlParameter(departureDate,departureHour),
+                    end : datetimeToUrlParameter(arrivalDate,arrivalHour)
+                };
+                if(new Date(String(departureDate)+" "+String(departureHour))>= new Date() && new Date(String(arrivalDate)+" "+String(arrivalHour)) > new Date(String(departureDate)+" "+String(departureHour))) {
+                    if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
+                        $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
+                            console.log("res ", res);
+                            $scope.fleets = res
+                        });
+                        $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
+                    }
+                    swal({
+                        title: "Comprobación Exitosa",
+                        type: "success",
+                        confirmButtonColor: "#140e39",
+                        timer: 1000,
+                        showConfirmButton: false
                     });
-                    $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
                 }
-                swal({
-                    title: "Comprobación Exitosa",
-                    type: "success",
-                    confirmButtonColor: "#140e39",
-                    timer: 1000,
-                    showConfirmButton: false
-                });
+                else{
+
+                    sweetAlert("Error...", "No existen autos disponibles en la fecha solicitada", "error");
+                }
             }
-            else{
-
-                sweetAlert("Error...", "No existen autos disponibles en la fecha solicitada", "error");
-            }
-        }
-    );
+        );
 
 
 
-});
+    });

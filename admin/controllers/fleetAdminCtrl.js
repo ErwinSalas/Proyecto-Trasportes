@@ -5,15 +5,17 @@
 angular.module('adminModule')
     .controller('fleetAdminCtrl', function($scope,FleetCarResources) {
         /* config object */
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         $scope.newCar={
-            headquarter:"SanCarlos"
+            headquarter:user.headquarter
         };
 
         $scope.getAllFleet=FleetCarResources.getFleet(function (res) {
             console.log("res ", res);
             $scope.fleetAdmin=res
         });
-     
+
+        $scope.iconLock = "lock";
         $scope.carSelectedID = "";
         $scope.selectedId = function (carId) {
             carSelectedID = carId;

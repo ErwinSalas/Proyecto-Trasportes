@@ -82,8 +82,22 @@ angular.module('adminModule')
             editCar: function (carID,fleet) {
                 $http({
                     method: 'POST',
-                    url: API_ROOT + '/fleet/vnext/editVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken),
+                    url: API_ROOT + '/fleet/editVehicle?vehicleId={0}&authToken={1}'.format(carID, authToken),
                     data: fleet
+                })
+                    .success(function (data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error", data.errors);
+                        } else {
+                            console.log("set edit success",data);
+                        }
+                    });
+            },
+            lockCar: function (carID,statusL) {
+                $http({
+                    method: 'POST',
+                    url: API_ROOT + '/fleet/changeLock?vehicleId={0}&locked={1}&authToken={2}'.format(carID, statusL,authToken)
                 })
                     .success(function (data) {
                         if (data.errors) {
@@ -170,7 +184,7 @@ angular.module('adminModule')
             editDriver: function (driverID,fleet) {
                 $http({
                     method: 'POST',
-                    url: API_ROOT + '/driver/vnext/edit?identification={0}&authToken={1}'.format(driverID, authToken),
+                    url: API_ROOT + '/driver/edit?identification={0}&authToken={1}'.format(driverID, authToken),
                     data: fleet
                 })
                     .success(function (data) {
