@@ -18,8 +18,32 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td>Número del Solicitud</td>
+                        <td>{{reserve.reservationNumber}}</td>
+                    </tr>
+                    <tr>
                         <td>Solicitante</td>
                         <td>{{reserve.requestingUser}}</td>
+                    </tr>
+                    <tr>
+                        <td>Responsable</td>
+                        <td>{{reserve.responsable}}</td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono del Responsable</td>
+                        <td>{{reserve.responsableTelephone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Lugar</td>
+                        <td>{{reserve.destinationPlace}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de actividad</td>
+                        <td>{{reserve.activityType}}</td>
+                    </tr>
+                    <tr>
+                        <td>Justificación</td>
+                        <td>{{reserve.justification}}</td>
                     </tr>
                     <tr>
                         <td>Placa</td>
@@ -27,11 +51,15 @@
                     </tr>
                     <tr>
                         <td>Chofer</td>
-                        <td>{{reserve.assignedDriver}}</td>
+                        <td>{{reserve.requestDriver}}</td>
                     </tr>
                     <tr>
-                        <td>Lugar</td>
-                        <td>{{reserve.destinationPlace}}</td>
+                        <td>Centro Funcional</td>
+                        <td>{{reserve.functionalCenter}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pasajeros</td>
+                        <td>{{reserve.passengers}}</td>
                     </tr>
                     <tr>
                         <td>Hora de salida</td>
@@ -48,9 +76,6 @@
                     <tr>
                         <td>Fecha de llegada</td>
                         <td>{{reservedArrivalDate}}</td>
-                    </tr>
-                        <td>Pasajeros</td>
-                        <td>{{reserve.passengers}}</td>
                     </tr>
                     <tr>
                         <td>Estado</td>

@@ -53,10 +53,18 @@ div.inpTabla input{
 }
 #ShowBtnEditSave{
 	display: none;
+	left: 20%;
 }
-#ShowBtnEditCancel{
+#ShowBtnEditCancel {
 	display: none;
 	float: right;
+	right: 25%;
+	bottom: 30px;
+}
+#reservarFleet{
+	display: none;
+	float: left;
+	left: 25%;
 	bottom: 30px;
 }
 #tablita th{
@@ -111,7 +119,6 @@ div.inpTabla input{
 	top: 17px;
 	left: 15px;
 	list-style: none;
-
 }
 .tituloStyle{
 	padding-left: 30px;

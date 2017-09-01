@@ -2,10 +2,10 @@
 <div class="center col-xs-12 col-sm-12 col-md-10 col-md-offset-1  col-lg-10 col-lg-offset-1">
     <div class="card">
         <div class=" header">
-            <h2>Detalles de la reserva</h2>
-            <div class="header-dropdown m-r--5 ">
-                <a class="btn-floating btn-sm " href="#/admin/reserves/"><i class="material-icons" style="cursor:pointer; color: white">arrow_back</i></a>
+            <div class="atrasStyle">
+                <a class="btn-floating btn-sm " href="#/admin/reserves/"><i class="material-icons" style="cursor:pointer; color: white; float:left">arrow_back</i></a>
             </div>
+            <h2 class="tituloStyle">Detalles de la reserva</h2>
         </div>
         <div class="body">
             <div class="table-responsive">
@@ -19,8 +19,32 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td>Número del Solicitud</td>
+                        <td>{{reserve.reservationNumber}}</td>
+                    </tr>
+                    <tr>
                         <td>Solicitante</td>
                         <td>{{reserve.requestingUser}}</td>
+                    </tr>
+                    <tr>
+                        <td>Responsable</td>
+                        <td>{{reserve.responsable}}</td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono del Responsable</td>
+                        <td>{{reserve.responsableTelephone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Lugar</td>
+                        <td>{{reserve.destinationPlace}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de actividad</td>
+                        <td>{{reserve.activityType}}</td>
+                    </tr>
+                    <tr>
+                        <td>Justificación</td>
+                        <td>{{reserve.justification}}</td>
                     </tr>
                     <tr>
                         <td>Placa</td>
@@ -31,8 +55,12 @@
                         <td>{{reserve.requestDriver}}</td>
                     </tr>
                     <tr>
-                        <td>Lugar</td>
-                        <td>{{reserve.destinationPlace}}</td>
+                        <td>Centro Funcional</td>
+                        <td>{{reserve.functionalCenter}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pasajeros</td>
+                        <td>{{reserve.passengers}}</td>
                     </tr>
                     <tr>
                         <td>Hora de salida</td>
@@ -51,10 +79,6 @@
                         <td>{{reservedArrivalDate}}</td>
                     </tr>
                     <tr>
-                        <td>Pasajeros</td>
-                        <td>{{reserve.passengers}}</td>
-                    </tr>
-                    <tr>
                         <td>Estado</td>
                         <td>{{reserve.reservationStatus}}</td>
                     </tr>
@@ -63,8 +87,8 @@
             </div>
         </div>
         <div>
-            <button id="acceptBtn" type="button" data-color="green" class="btn bg-green waves-effect" style="left: 10%; bottom: 18px" ng-click="reserveAction1()">Aceptar</button>
-            <button id="deniedBtn" type="button" data-color="red" class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction2()">Denegar</button>
+            <button id="acceptBtn" type="button" data-color="green" class="btn bg-green waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction1()">Aceptar</button>
+            <button id="deniedBtn" type="button" data-color="red" class="btn bg-red waves-effect" style="float: right; right: 25%; bottom: 18px" ng-click="reserveAction2()">Denegar</button>
         </div>
     </div>
 
