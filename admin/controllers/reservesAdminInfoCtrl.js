@@ -21,6 +21,7 @@ angular.module('adminModule')
             if($scope.reserve.reservationStatus == "Accepted" || $scope.reserve.reservationStatus == "Denied" ){
                 document.getElementById("acceptBtn").style.display = "none";
                 document.getElementById("deniedBtn").style.display = "none";
+                document.getElementById("printBtn").style.display = "none";
                 // NO seguro
             }
             if($scope.reserve.reservationStatus == "Pending" || $scope.reserve.reservationStatus == "Denied" ){
