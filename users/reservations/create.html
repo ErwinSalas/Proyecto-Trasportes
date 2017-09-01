@@ -74,13 +74,13 @@
                             <div class="col-sm-6">
                                 <label for="place">Encargado</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.responsable" type="text" id="responsable" class="form-control" placeholder="Persona a cargo " required/>
+                                    <input ng-model="reservation.responsable" type="text" id="responsable" class="form-control" placeholder="Persona a cargo "/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Telefono del Encargado</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.responsableTelephone" type="number" id="responsableTelephone" class="form-control" placeholder="Telefono de Persona a cargo " required/>
+                                    <input ng-model="reservation.responsableTelephone" type="text" id="responsableTelephone" class="form-control" placeholder="Telefono de Persona a cargo "/>
                                 </div>
                             </div>
                         </div>
@@ -88,13 +88,13 @@
                             <div class="col-sm-6">
                                 <label for="place">Lugar</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar" required/>
+                                    <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Pasajeros</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.passengers" type="number" id="passengers" class="form-control" placeholder="Cantidad de pasajeros" required/>
+                                    <input ng-model="reservation.passengers" type="number" id="passengers" class="form-control" placeholder="Cantidad de pasajeros"/>
                                 </div>
                             </div>
                         </div>
@@ -111,10 +111,16 @@
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <label for="place">Justificación</label>
+                                <label for="place">Centro Funcional</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación">
+                                    <input ng-model="reservation.functionalCenter" type="number" id="functionalCenter" class="form-control" placeholder="Centro Funcional">
                                 </div>
+                            </div>
+                        </div>
+                        <label for="place">Justificación</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación"/>
                             </div>
                         </div>
                         <br>
@@ -122,20 +128,20 @@
                         <label for="place">Identificación</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="identificationE" type="text" id="identificationE" class="form-control" placeholder="Identificación" required/>
+                                <input ng-model="identificationE" type="text" id="identificationE" class="form-control" placeholder="Identificación"/>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label for="place">Primer Nombre</label>
                                 <div class="form-line">
-                                    <input ng-model="firstNameE" type="text" id="firstNameE" class="form-control" placeholder="Escriba el Primer Nombre" required/>
+                                    <input ng-model="firstNameE" type="text" id="firstNameE" class="form-control" placeholder="Escriba el Primer Nombre"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Apellidos</label>
                                 <div class="form-line">
-                                    <input ng-model="lastNameE" type="text" id="lastNameE" class="form-control" placeholder="Escriba los Apellidos" required/>
+                                    <input ng-model="lastNameE" type="text" id="lastNameE" class="form-control" placeholder="Escriba los Apellidos"/>
                                 </div>
                             </div>
                         </div>
@@ -143,24 +149,24 @@
                             <div class="col-sm-6">
                                 <label for="place">Punto de encuentro</label>
                                 <div class="form-line">
-                                    <input ng-model="placeToCollectE" type="text" id="placeToCollectE" class="form-control" placeholder="Escriba el Punto de encuentro" required/>
+                                    <input ng-model="placeToCollectE" type="text" id="placeToCollectE" class="form-control" placeholder="Escriba el Punto de encuentro"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Lugar donde vive</label>
                                 <div class="form-line">
-                                    <input ng-model="placeToLeaveE" type="text" id="placeToLeaveE" class="form-control" placeholder="Escriba el Lugar donde vive" required/>
+                                    <input ng-model="placeToLeaveE" type="text" id="placeToLeaveE" class="form-control" placeholder="Escriba el Lugar donde vive"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Hora de Salida</label>
-                                <input id="departureHourE" ng-model="departureTimeE" type="time"  class="form-control" placeholder="" required/>
+                                <input id="departureHourE" ng-model="departureTimeE" type="time"  class="form-control" placeholder=""/>
                             </div>
                             <div class="col-sm-6">
                                 <label >Hora de Llegada</label>
-                                <input id="arrivalHourE" ng-model="returnTimeE" type="time"  class="form-control" placeholder="" required/>
+                                <input id="arrivalHourE" ng-model="returnTimeE" type="time"  class="form-control" placeholder=""/>
                             </div>
                         </div>
                         <div class="row clearfix">

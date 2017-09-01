@@ -2,7 +2,7 @@
  * Created by Erwin 29/10/2016.
  */
 angular.module('userModule')
-    .controller('reservationsCreateCtrl', function($scope,GetAvailableFleetResource,ReserveResource) {
+    .controller('reservationsCreateCtrl', function($scope,$timeout,GetAvailableFleetResource,ReserveResource) {
         $scope.setDates=function(arrival,departure){
             $scope.reservation={
                 arrival :arrival,
@@ -12,10 +12,20 @@ angular.module('userModule')
         $scope.postReservation=function() {
             var user = JSON.parse( localStorage.getItem('session.owner') );
             $scope.reservation.requestingUser= user.username;
-            $scope.reservation.functionalCenter= 0;
             $scope.reservation.members = $scope.members;
             console.log("envio",$scope.reservation);
             ReserveResource.setReserve($scope.reservation);
+            swal({
+                title: "Exito",
+                text: "La reservacion ha sido enviada.",
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 1000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.href = '#/user';
+            }, 2000 );
 
         };
         $scope.members = [];

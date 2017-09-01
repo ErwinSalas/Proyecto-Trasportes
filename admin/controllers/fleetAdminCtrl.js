@@ -12,10 +12,16 @@ angular.module('adminModule')
 
         $scope.getAllFleet=FleetCarResources.getFleet(function (res) {
             console.log("res ", res);
-            $scope.fleetAdmin=res
+            $scope.fleetAdmin=res;
+            for (i = 0; i < $scope.fleetAdmin.length; i++) {
+                if ($scope.fleetAdmin[i].isLocked == true){
+                    $scope.fleetAdmin[i].isLocked = "lock";
+                }else{
+                    $scope.fleetAdmin[i].isLocked = "lock_open";
+                }
+            }
         });
 
-        $scope.iconLock = "lock";
         $scope.carSelectedID = "";
         $scope.selectedId = function (carId) {
             carSelectedID = carId;

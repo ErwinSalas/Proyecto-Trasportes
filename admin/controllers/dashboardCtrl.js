@@ -38,20 +38,20 @@ angular.module('adminModule')
         $scope.mouseDown = function(obj) {
             messageID = obj;
             console.log(messageID);
-            document.getElementById(obj).style.color = "red";
+            //document.getElementById(obj).style.color = "red";
             d = 0;
             myVar = setInterval(myTimer ,1000);
         };
 
         $scope.mouseUp = function(obj){
-            document.getElementById(obj).style.color = "green";
+            //document.getElementById(obj).style.color = "green";
             clearInterval(myVar);
         };
 
         function myTimer() {
             d = d + 1;
             console.log(d);
-            if (d==3){
+            if (d==1){
                 //alert("Hola "+messageID);
                 $scope.deleteMessages(messageID);
                 clearInterval(myVar);

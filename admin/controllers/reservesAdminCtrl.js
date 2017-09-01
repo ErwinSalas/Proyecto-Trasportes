@@ -13,6 +13,7 @@ angular.module('adminModule')
             // this callback will be called asynchronously
             // when the response is available
             console.log("entro", response);
+            $scope.noReservationsText = "Usted no posee reservas.";
             $scope.reservations = response.content;
             for (i = 0; i < $scope.reservations.length; i++) {
                 if ($scope.reservations[i].reservationStatus == "Accepted"){
@@ -71,14 +72,38 @@ angular.module('adminModule')
             if (status == "Accepted"){
                 $scope.reservationsMain = $scope.reservationsAcepted;
                 $scope.reservationstatus = "done";
+                if ($scope.reservationsAcepted.length == 0){
+                    document.getElementById("noReservesAvailable").style.display = "flex";
+                    document.getElementById("noReservesAvailableTxt").style.display = "flex";
+                    $scope.noReservationsText = "Usted no posee reservas aceptadas.";
+                }else{
+                    document.getElementById("noReservesAvailable").style.display = "none";
+                    document.getElementById("noReservesAvailableTxt").style.display = "none";
+                }
             }
             if (status == "Pending"){
                 $scope.reservationsMain = $scope.reservationsPending;
                 $scope.reservationstatus = "query_builder";
+                if ($scope.reservationsPending.length == 0){
+                    document.getElementById("noReservesAvailable").style.display = "flex";
+                    document.getElementById("noReservesAvailableTxt").style.display = "flex";
+                    $scope.noReservationsText = "Usted no posee reservas pendientes.";
+                }else{
+                    document.getElementById("noReservesAvailable").style.display = "none";
+                    document.getElementById("noReservesAvailableTxt").style.display = "none";
+                }
             }
             if (status == "Denied"){
                 $scope.reservationsMain = $scope.reservationsDenied;
                 $scope.reservationstatus = "error";
+                if ($scope.reservationsDenied.length == 0){
+                    document.getElementById("noReservesAvailable").style.display = "flex";
+                    document.getElementById("noReservesAvailableTxt").style.display = "flex";
+                    $scope.noReservationsText = "Usted no posee reservas denegadas.";
+                }else{
+                    document.getElementById("noReservesAvailable").style.display = "none";
+                    document.getElementById("noReservesAvailableTxt").style.display = "none";
+                }
             }
         };
 

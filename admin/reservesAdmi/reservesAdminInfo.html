@@ -28,7 +28,7 @@
                     </tr>
                     <tr>
                         <td>Chofer</td>
-                        <td>{{reserve.assignedDriver}}</td>
+                        <td>{{reserve.requestDriver}}</td>
                     </tr>
                     <tr>
                         <td>Lugar</td>
@@ -62,11 +62,13 @@
                 </table>
             </div>
         </div>
-        <div><a class="btn btn-success waves-effect" style="left: 10%; bottom: 18px" ng-click="reserveAction1(true)">Aceptar</a>
-        <a class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction2(false)">Denegar</a></div>
+        <div>
+            <button id="acceptBtn" type="button" data-color="green" class="btn bg-green waves-effect" style="left: 10%; bottom: 18px" ng-click="reserveAction1()">Aceptar</button>
+            <button id="deniedBtn" type="button" data-color="red" class="btn bg-red waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction2()">Denegar</button>
+        </div>
     </div>
 
-    <button type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="createTicket()">
+    <button id="printBtn" type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="createTicket()">
         <i class="material-icons">description</i>
     </button>
 </div>
