@@ -10,4 +10,12 @@ angular.module('adminModule')
     $scope.user = "Administrador";
     $scope.email = user.firstName + " " + user.lastName;
     window.location.href = ('#/admin');
+
+    $scope.showAbout=function() {
+        swal({
+            title: "Transportec",
+            text: "Luis Alejandro Rodríguez\nAdrian Hernandez\nMiguel Rivas\nErwin Salas\n \nVersion: 2.1.0",
+            imageUrl: "../assets/images/comunidad.png"
+        });
+    };
 });
