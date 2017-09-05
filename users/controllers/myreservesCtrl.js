@@ -1,20 +1,9 @@
 angular.module('userModule')
-    .controller('myreservesCtrl', function($scope,$http) {
-        /* config object */
+    .controller('myreservesCtrl', function($scope,$compile,ReserveResource) {
 
-        var authToken = localStorage.getItem('session.token');
-        var user = JSON.parse( localStorage.getItem('session.owner') );
-        console.log("session use", user);
-        $http({
-                method: "GET",
-                url: API_ROOT+'/reservation/get?user={0}&authToken={1}'
-                    .format(user.username,authToken)
-            }
-        ).success(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log("entro", response);
-            $scope.reservations = response.content;
+        $scope.getReservations = ReserveResource.getReservations(function (res) {
+            $scope.reservations=res;
+
             $scope.noReservationsText = "Usted no posee reservas.";
             if ($scope.reservations.length > 0){
                 for (i = 0; i < $scope.reservations.length; i++) {
@@ -30,19 +19,25 @@ angular.module('userModule')
                     $scope.reservations[i].requestDateTime = $scope.setFormatDateTime($scope.reservations[i].requestDateTime);
                 }
                 $scope.reservationsMain = $scope.reservationsPending;
+                if ($scope.reservationsMain == 0){
+                    document.getElementById("noReservesAvailable").style.display = "flex";
+                    document.getElementById("noReservesAvailableTxt").style.display = "flex";
+                    $scope.noReservationsText = "Usted no posee reservas pendientes.";
+                }
             }else{
                 document.getElementById("noReservesAvailable").style.display = "flex";
                 document.getElementById("noReservesAvailableTxt").style.display = "flex";
             }
-
-        }).error(function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log("fallo", response);
-            $scope.reservations= response;
+            document.getElementById("actBtns").innerHTML = "<button type='button' class='btn bg-green btn-circle-lg waves-effect waves-circle waves-float' " +
+                "style='position: fixed; bottom:20%; right: 2%' ng-click='changeList(1)'><i class='material-icons'>done</i></button><button type='button' " +
+                "class='btn bg-blue btn-circle-lg waves-effect waves-circle waves-float' style='position: fixed; bottom:11%; right: 2%' ng-click='changeList(0)'>" +
+                "<i class='material-icons'>query_builder</i></button><button type='button' class='btn bg-red btn-circle-lg waves-effect waves-circle waves-float' " +
+                "style='position: fixed; bottom:2%; right: 2%' ng-click='changeList(2)'><i class='material-icons'>error</i></button>"
+            $compile(document.getElementById("actBtns") )($scope);
         });
-        console.log( $scope.reservations);
 
+        console.log( $scope.reservations);
+        
         $scope.reservationsMain = [];
         $scope.reservationsAcepted = [];
         $scope.reservationsPending = [];
@@ -61,7 +56,7 @@ angular.module('userModule')
             reserveHours = reserveHours % 12;
             reserveHours = reserveHours ? reserveHours : 12;
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
-            return reserveDay + " de " + months[reserveMonth] + " " + reserveYear+" a las "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+            return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear+" - "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
         };
         
         $scope.reserveSelectedID = "";
@@ -76,7 +71,7 @@ angular.module('userModule')
         };
 
         $scope.changeList = function (status) {
-            if (status == "Accepted"){
+            if (status == 1){
                 $scope.reservationsMain = $scope.reservationsAcepted;
                 $scope.reservationstatus = "done";
                 if ($scope.reservationsAcepted.length == 0){
@@ -88,7 +83,7 @@ angular.module('userModule')
                     document.getElementById("noReservesAvailableTxt").style.display = "none";
                 }
             }
-            if (status == "Pending"){
+            if (status == 0){
                 $scope.reservationsMain = $scope.reservationsPending;
                 $scope.reservationstatus = "query_builder";
                 if ($scope.reservationsPending.length == 0){
@@ -100,7 +95,7 @@ angular.module('userModule')
                     document.getElementById("noReservesAvailableTxt").style.display = "none";
                 }
             }
-            if (status == "Denied"){
+            if (status == 2){
                 $scope.reservationsMain = $scope.reservationsDenied;
                 $scope.reservationstatus = "error";
                 if ($scope.reservationsDenied.length == 0){

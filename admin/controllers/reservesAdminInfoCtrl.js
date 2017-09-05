@@ -1,5 +1,5 @@
 angular.module('adminModule')
-    .controller('reservesAdminInfoCtrl', function($scope,$route,$templateCache,$routeParams,ReserveResources) {
+    .controller('reservesAdminInfoCtrl', function($scope,$route,$compile,$templateCache,$routeParams,ReserveResources,DriverResources) {
         /* config object */
 
         $scope.valueID = $routeParams.valueID;
@@ -8,25 +8,31 @@ angular.module('adminModule')
         $scope.reservedDepartureTime = "";
         $scope.reservedArrivalDate = "";
         $scope.reservedArrivalTime = "";
-
-        console.log(reserveSelectedID);
+        $scope.reservationStatusAPD = "";
+        
         $scope.getReserve = ReserveResources.getReserve(reserveSelectedID, function (res) {
-            $scope.reserve=res;
-            console.log("La resInfo ", $scope.reserve);
+                $scope.reserve=res;
+                console.log("La resInfo ", $scope.reserve);
             if($scope.reserve.requestDriver == false){
                 $scope.reserve.requestDriver = "No";
             }else {
                 $scope.reserve.requestDriver = "Si";
             }
-            if($scope.reserve.reservationStatus == "Accepted" || $scope.reserve.reservationStatus == "Denied" ){
-                document.getElementById("acceptBtn").style.display = "none";
-                document.getElementById("deniedBtn").style.display = "none";
-                document.getElementById("printBtn").style.display = "none";
-                // NO seguro
+            if($scope.reserve.reservationStatus == "Accepted"){
+                $scope.reservationStatusAPD = "Aceptada";
+                document.getElementById("pBtnD").innerHTML = "<button id='printBtn' type='button' class='btn btn-primary btn-circle-lg waves-effect waves-circle waves-float' " +
+                    "style='position: fixed; bottom:2%; right: 2%' ng-click='createTicket()'><i class='material-icons'>description</i></button>";
+                $compile(document.getElementById("pBtnD") )($scope);
             }
-            if($scope.reserve.reservationStatus == "Pending" || $scope.reserve.reservationStatus == "Denied" ){
-                document.getElementById("printBtn").style.display = "none";
-                // NO seguro
+            if($scope.reserve.reservationStatus == "Pending" ){
+                $scope.reservationStatusAPD = "Pendiente";
+                document.getElementById("aBtnD").innerHTML = "<button id='acceptBtn' type='button' data-color='green' class='btn bg-green waves-effect' " +
+                    "style='left: 20%; bottom: 18px' ng-click='reserveAction1()'>Aceptar</button> <button id='deniedBtn' type='button' data-color='red' " +
+                    "class='btn bg-red waves-effect' style='float: right; right: 25%; bottom: 18px' ng-click='reserveAction2()'>Denegar</button>";
+                $compile(document.getElementById("aBtnD") )($scope);
+            }
+            if($scope.reserve.reservationStatus == "Denied" ){
+                $scope.reservationStatusAPD = "Denegada";
             }
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
@@ -39,7 +45,7 @@ angular.module('adminModule')
             reserveYear = reserveDate.getFullYear();
             reserveMonth = reserveDate.getMonth();
             reserveDay = reserveDate.getDate();
-            return reserveDay + " " + months[reserveMonth] + " " + reserveYear;
+            return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear;
         };
 
         $scope.setFormatTime = function (date) {
@@ -55,32 +61,85 @@ angular.module('adminModule')
         };
 
         $scope.reserveAction1 = function () {
-            if($scope.reserve.requestDriver == true){
-                $scope.reserve.requestDriver = "No";
-            }//inner
+            $scope.assignedDriverSelected = "";
+            $scope.inputAnswerA= "";
+            if($scope.reserve.requestDriver == "Si"){
+                DriverResources.getDriver(function (res) {
+                    $scope.drivers=res;
+                });
+                swal({
+                    title: "Asigne un chofer",
+                    text: "<div id='sCBtnD'></div>",
+                    html: true,
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonText: "Aceptar",
+                    cancelButtonText: "Cancelar",
+                    inputPlaceholder: "Agregue una nota (opcional)"
+                },function (inputValue) {
+                    if (inputValue === false) return false;
+                    if ($scope.assignedDriverSelected != ""){
+                        $scope.inputAnswerA = inputValue;
+                        if (inputValue === "") {
+                            $scope.inputAnswerA = null;
+                        }
+                        $scope.setReservationStatus($scope.assignedDriverSelected,$scope.inputAnswerA,$scope.reserve.reservationId,true);
+                        window.location.href = '#/admin/reserves/';
+                        var currentPageTemplate = $route.current.templateUrl;
+                        $templateCache.remove(currentPageTemplate);
+                        $route.reload();
+                    }else {
+                        swal.showInputError("Debes de seleccionar un chofer para la reserva.");
+                        document.getElementsByClassName("sa-input-error")[0].classList.remove('show');return false
+                    }
+                    });
+                document.getElementById("sCBtnD").innerHTML = "<select id='DriverSelectC' name='inputS' class='form-control show-tick' ng-model='assignedDriverSelected'>" +
+                    "<option ng-repeat='driver in drivers' value='{{driver.identification}}'>{{driver.firstName}}</option></select>";
+                $compile(document.getElementById("sCBtnD") )($scope);
+            }else {
+                swal({
+                        title: "¿Desea agregar una nota?",
+                        text: "Agregue una nota o comentario para el usuario",
+                        type: "input",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        confirmButtonText: "Aceptar",
+                        cancelButtonText: "Cancelar",
+                        inputPlaceholder: "Agregue una nota (opcional)"
+                    },function (inputValue) {
+                        $scope.inputAnswerA = inputValue;
+                        if (inputValue === false) return false;
+                        if (inputValue === "") {
+                            $scope.inputAnswerA = null;
+                        }
+                        $scope.setReservationStatus(null,$scope.inputAnswerA,$scope.reserve.reservationId,true);
+                        console.log("dentro 1else",$scope.assignedDriverSelected,$scope.inputAnswerA);
+                        window.location.href = '#/admin/reserves/';
+                        var currentPageTemplate = $route.current.templateUrl;
+                        $templateCache.remove(currentPageTemplate);
+                        $route.reload();
+                    });
+            }
+        };
+
+        $scope.setReservationStatus = function (aDriver,rNotes,rID,rAction) {
             $scope.reservationStatus={
-                assignedDriver :null,
-                responseNotes:"Sin justificacion",
-                reservationId:$scope.reserve.reservationId,
-                accepted:true
-            };//no se esta justificando la reservas aceptadas
+                assignedDriver :aDriver,
+                responseNotes:rNotes,
+                reservationId:rID,
+                accepted:rAction
+            };
             console.log("envio",$scope.reservationStatus);
             ReserveResources.setReserveStatus($scope.reservationStatus);
-
             swal({
                 title: "Exito",
-                text: "La reservacion ha sido Procesada.",
+                text: "La reservación ha sido procesada.",
                 type: "success",
                 confirmButtonColor: "#140e39",
                 timer: 1000,
                 showConfirmButton: false
             });
-
-            window.location.href = '#/admin/reserves/';
-            var currentPageTemplate = $route.current.templateUrl;
-            $templateCache.remove(currentPageTemplate);
-            $route.reload();
-
         };
 
         $scope.reserveAction2 = function () {
@@ -91,32 +150,17 @@ angular.module('adminModule')
                 type: "input",
                 showCancelButton: true,
                 closeOnConfirm: false,
+                confirmButtonText: "Aceptar",
                 cancelButtonText: "Cancelar",
                 animation: "slide-from-top",
-                inputPlaceholder: "Escriba la justificación"
+                inputPlaceholder: "Escriba una justificación"
             }, function (inputValue) {
                 if (inputValue === false) return false;
                 if (inputValue === "") {
                     swal.showInputError("Debes de escribir una justificación"); return false
                 }
-                swal({
-                    title: "Exito",
-                    text: "La reservacion ha sido procesada.",
-                    type: "success",
-                    confirmButtonColor: "#140e39",
-                    timer: 1000,
-                    showConfirmButton: false
-                });
                 $scope.inputAnswer = inputValue;
-                $scope.reservationStatus={
-                    assignedDriver :null,
-                    responseNotes:$scope.inputAnswer,
-                    reservationId:$scope.reserve.reservationId,
-                    accepted:false
-                };
-                console.log("envio",$scope.reservationStatus);
-                ReserveResources.setReserveStatus($scope.reservationStatus);
-
+                $scope.setReservationStatus(null,$scope.inputAnswer,$scope.reserve.reservationId,false);
                 window.location.href = '#/admin/reserves/';
                 var currentPageTemplate = $route.current.templateUrl;
                 $templateCache.remove(currentPageTemplate);

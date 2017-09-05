@@ -202,7 +202,25 @@ angular.module('adminModule')
     
     .factory('ReserveResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
+        var user = JSON.parse( localStorage.getItem('session.owner') );
         var factory = {
+            getReservations: function (callback) {
+                $http({
+                        method: "GET",
+                        url: API_ROOT+'/reservation/get?headquarter={0}&authToken={1}'.format(user.headquarter,authToken)
+                    }
+                ).success(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log("entro", response);
+                    callback(response.content);
+                }).error(function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("fallo", response);
+                    callback(response.content);
+                });
+            },
             getReserve: function (reserveID, callback) {
                 $http({
                         method: "GET",

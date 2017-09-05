@@ -25,6 +25,6 @@ angular.module('userModule')
         reserveHours = reserveHours % 12;
         reserveHours = reserveHours ? reserveHours : 12;
         reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
-        return reserveDay + " de " + months[reserveMonth] + " " + reserveYear+" a las "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+        return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear+" - "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
     };
 });

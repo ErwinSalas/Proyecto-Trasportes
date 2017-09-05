@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Número del Solicitud</td>
+                        <td>Número de Solicitud</td>
                         <td>{{reserve.reservationNumber}}</td>
                     </tr>
                     <tr>
@@ -31,7 +31,7 @@
                         <td>{{reserve.responsable}}</td>
                     </tr>
                     <tr>
-                        <td>Teléfono del Responsable</td>
+                        <td>Número Teléfono</td>
                         <td>{{reserve.responsableTelephone}}</td>
                     </tr>
                     <tr>
@@ -80,19 +80,14 @@
                     </tr>
                     <tr>
                         <td>Estado</td>
-                        <td>{{reserve.reservationStatus}}</td>
+                        <td>{{reservationStatusAPD}}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div>
-            <button id="acceptBtn" type="button" data-color="green" class="btn bg-green waves-effect" style="left: 20%; bottom: 18px" ng-click="reserveAction1()">Aceptar</button>
-            <button id="deniedBtn" type="button" data-color="red" class="btn bg-red waves-effect" style="float: right; right: 25%; bottom: 18px" ng-click="reserveAction2()">Denegar</button>
-        </div>
+        <div id="aBtnD"></div>
     </div>
 
-    <button id="printBtn" type="button" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="createTicket()">
-        <i class="material-icons">description</i>
-    </button>
+    <div id="pBtnD"> </div>
 </div>

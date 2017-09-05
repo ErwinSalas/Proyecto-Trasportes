@@ -28,7 +28,7 @@ angular.module('adminModule')
             reserveHours = reserveHours % 12;
             reserveHours = reserveHours ? reserveHours : 12;
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
-            return reserveDay + " de " + months[reserveMonth] + " " + reserveYear+" a las "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+            return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear+" - "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
         };
 
         var myVar = "";
@@ -38,13 +38,11 @@ angular.module('adminModule')
         $scope.mouseDown = function(obj) {
             messageID = obj;
             console.log(messageID);
-            //document.getElementById(obj).style.color = "red";
             d = 0;
             myVar = setInterval(myTimer ,1000);
         };
 
         $scope.mouseUp = function(obj){
-            //document.getElementById(obj).style.color = "green";
             clearInterval(myVar);
         };
 
@@ -52,7 +50,6 @@ angular.module('adminModule')
             d = d + 1;
             console.log(d);
             if (d==1){
-                //alert("Hola "+messageID);
                 $scope.deleteMessages(messageID);
                 clearInterval(myVar);
             }
@@ -77,7 +74,7 @@ angular.module('adminModule')
         $scope.deleteMessages=function(id){
             swal({
                 title: "¿Esta seguro que desea eliminar este mensaje?",
-                text: "Esta acción no podrá revertirse",
+                text: "Esta acción no podrá revertirse.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -85,15 +82,15 @@ angular.module('adminModule')
                 cancelButtonText: "Cancelar",
                 closeOnConfirm: false
             }, function () {
+                MessageResource.delMessage(id);
                 swal({
                     title: "Eliminado",
-                    text: "El mensaje ha sido eliminado exitosamente",
+                    text: "El mensaje ha sido eliminado exitosamente.",
                     type: "success",
                     confirmButtonColor: "#140e39",
                     timer: 1000,
                     showConfirmButton: false
                 });
-                MessageResource.delMessage(id);
                 window.location.href = '#/admin';
                 var currentPageTemplate = $route.current.templateUrl;
                 $templateCache.remove(currentPageTemplate);

@@ -1,6 +1,6 @@
 angular.module('userModule')
     .controller('myreservesInfoCtrl', function($scope,$routeParams,ReserveResource) {
-        /* config object */
+        
         $scope.valueID = $routeParams.valueID;
 
         $scope.reservedDepartureDate = "";
@@ -12,8 +12,10 @@ angular.module('userModule')
         $scope.getReserve = ReserveResource.getReserve(reserveSelectedID, function (res) {
             $scope.reserve=res;
             console.log("La resInfo ", $scope.reserve);
-            if($scope.reserve.assignedDriver == null){
-                $scope.reserve.assignedDriver = "No";
+            if($scope.reserve.requestDriver == false){
+                $scope.reserve.requestDriver = "No";
+            }else {
+                $scope.reserve.requestDriver = "Si";
             }
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
@@ -26,7 +28,7 @@ angular.module('userModule')
             reserveYear = reserveDate.getFullYear();
             reserveMonth = reserveDate.getMonth();
             reserveDay = reserveDate.getDate();
-            return reserveDay + " " + months[reserveMonth] + " " + reserveYear;
+            return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear;
         };
 
         $scope.setFormatTime = function (date) {

@@ -7,9 +7,15 @@ angular.module('userModule')
         /* config object */
         $scope.getAllFleet=GetFleetResource.respuesta(function (res) {
             console.log("res ", res);
-            $scope.fleets=res
+            $scope.fleets=res;
+            for (i = 0; i < $scope.fleets.length; i++) {
+                if ($scope.fleets[i].isLocked == false){
+                    $scope.fleetMain.push($scope.fleets[i])
+                }
+            }
         });
 
+        $scope.fleetMain = [];
         $scope.carSelectedID = "";
 
         $scope.fleetSelected = function (carID) {
