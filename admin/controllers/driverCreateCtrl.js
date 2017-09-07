@@ -2,8 +2,9 @@
  * Created by Pavilion on 8/6/2017.
  */
 angular.module('adminModule')
-    .controller('driverCreateCtrl', function($scope,$timeout,DriverResources,MediaResource) {
+    .controller('driverCreateCtrl', function($scope,$location,$timeout,DriverResources,MediaResource) {
         /* config object */
+        checkUserType($location.absUrl().split("/")[4]);
         var user = JSON.parse( localStorage.getItem('session.owner') );
         $scope.newDriver={
             isActive:true,

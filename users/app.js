@@ -4,10 +4,13 @@
 angular.module('userModule',["ngRoute","ngResource"])
 .config(['$routeProvider',function($routeProvider)
     {
-        $routeProvider.when("/user",{
-            templateUrl:'dashboard.html',
-            controller: 'dashboardCtrl'
-        })
+        $routeProvider.when("/",{
+                templateUrl:'index.html'
+            })
+            .when("/user",{
+                templateUrl:'dashboard.html',
+                controller: 'dashboardCtrl'
+            })
             .when("/user/reserve",{
                 templateUrl:'reservations/create.html',
                 controller: 'reservationsCreateCtrl'

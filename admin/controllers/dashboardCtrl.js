@@ -2,8 +2,9 @@
  * Created by Adrian on 28/04/2017.
  */
 angular.module('adminModule')
-    .controller('dashboardCtrl', function($scope,$route,$templateCache,MessageResource) {
+    .controller('dashboardCtrl', function($scope,$route,$location,$templateCache,MessageResource) {
         /* config object */
+        checkUserType($location.absUrl().split("/")[4]);
         var user = JSON.parse( localStorage.getItem('session.owner') );
         $scope.message={
             headquarter :user.headquarter,

@@ -105,11 +105,22 @@ div.inpTabla input{
 .imgPreviewS{
 	display: none;
 }
+#imgShowIcon{
+	font-size: 140px;
+	display:block;
+	text-align: center;
+}
 .imgInputS{
 	margin-top: 4%;
 }
 .imgInfoDisplay{
 	display: block;
+	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+.imgInfoDisplayDriver{
+	display: none;
 	margin: auto;
 	margin-top: 2%;
 	margin-bottom: 2%;

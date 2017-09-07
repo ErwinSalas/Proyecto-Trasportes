@@ -28,7 +28,7 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                     console.log(userData);
                     saveSession(content);
 
-                    window.location.href = ('{0}/MainView.html'.format(userData.userType == "Admin" ? "admin" : "users"));
+                    window.location.href = ('{0}'.format(userData.userType == "Admin" ? "admin" : "users"));
                 } else {
                     swal({
                         title: "Credenciales incorrectas",

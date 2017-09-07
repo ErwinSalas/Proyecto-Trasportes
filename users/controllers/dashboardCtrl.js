@@ -3,8 +3,9 @@
  */
 
 angular.module('userModule')
-    .controller('dashboardCtrl', function($scope,MessageResources) {
+    .controller('dashboardCtrl', function($scope,$location,MessageResources) {
     /* config object */
+    checkUserType($location.absUrl().split("/")[4]);
     var user = JSON.parse( localStorage.getItem('session.owner') );
     $scope.getMessages=MessageResources.getMessages(function (res) {
         console.log("res ", res);

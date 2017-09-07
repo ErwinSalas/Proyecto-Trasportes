@@ -3,9 +3,9 @@
  */
 
 angular.module('adminModule')
-    .controller('mainCtrl', function($scope) {
+    .controller('mainCtrl', function($scope,$location) {
     /* config object */
-
+    checkUserType($location.absUrl().split("/")[4]);
     var user = JSON.parse( localStorage.getItem('session.owner') );
     $scope.user = "Administrador";
     $scope.email = user.firstName + " " + user.lastName;

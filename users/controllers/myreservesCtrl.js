@@ -1,6 +1,8 @@
 angular.module('userModule')
-    .controller('myreservesCtrl', function($scope,$compile,ReserveResource) {
+    .controller('myreservesCtrl', function($scope,$location,$compile,ReserveResource) {
 
+        checkUserType($location.absUrl().split("/")[4]);
+        
         $scope.getReservations = ReserveResource.getReservations(function (res) {
             $scope.reservations=res;
 

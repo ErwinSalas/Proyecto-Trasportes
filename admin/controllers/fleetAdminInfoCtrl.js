@@ -1,6 +1,7 @@
 angular.module('adminModule')
-    .controller('fleetAdminInfoCtrl', function($scope,$timeout,$routeParams,FleetCarResources,MediaResource) {
+    .controller('fleetAdminInfoCtrl', function($scope,$location,$timeout,$routeParams,FleetCarResources) {
         /* config object */
+        checkUserType($location.absUrl().split("/")[4]);
         $scope.valueID = $routeParams.valueID;
         console.log(carSelectedID);
         /*$scope.getCarPicture = MediaResource.getImg(carSelectedID,2,function (res) {

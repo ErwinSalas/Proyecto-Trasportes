@@ -1,4 +1,17 @@
 
+function checkUserType(path) {
+  var user = JSON.parse( localStorage.getItem('session.owner') );
+
+  if (user != null){
+    if((user.userType == "Customer" && path != "users") || (user.userType == "Admin" && path != "admin")){
+      signOut();
+    }
+  }else {
+    signOut();
+  }
+
+}
+
 var closeSideBar=function () {
   var $window = $(window);
   console.log($window.width());
@@ -21,28 +34,28 @@ const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
  * URL raíz de la base de datos.
  * @type {string}
  */
-const FIREBASE_PATH = "https://sideappprueba.firebaseio.com";
+//const FIREBASE_PATH = "https://sideappprueba.firebaseio.com";
 /**
  * Clave de encriptación.
  * @type {string}
  */
-const ENCRYPTION_KEY = "AB82A2D2-B032-41A7-A87F-0AFBD55E4339";
+//const ENCRYPTION_KEY = "AB82A2D2-B032-41A7-A87F-0AFBD55E4339";
 /**
  * Última actualización local de mensajes.
  * @type {string} Identificador de elemento de almacenamiento local.
  */
-const LS_LOCAL_LAST_UPDATE = "messages.localLastUpdate";
+//const LS_LOCAL_LAST_UPDATE = "messages.localLastUpdate";
 /**
  * Mensajes almacenados localmente.
  * @type {string} Identificador de elemento de almacenamiento local.
  */
-const LS_LOCAL_MESSAGES = "messages.all";
+//const LS_LOCAL_MESSAGES = "messages.all";
 
 /**
  * Recordar sesión.
  * @type {string} Determina si se debe recordar la sesión.
  */
-const LS_REMEMBER_SESSION = "rememberSession";
+//const LS_REMEMBER_SESSION = "rememberSession";
 
 // =========================================================
 
@@ -109,8 +122,7 @@ function datetimeToISO8601(date, time) {
   return "{0}T{1}".format(date, time);
 }
 function signOut(){
-  localStorage.removeItem("session.user");
-  localStorage.removeItem("session.token");
+  localStorage.clear();
   window.location.href = ('../index.html');
 
 }

@@ -15,7 +15,7 @@
 								<th rowspan="4">DEPARTAMENTO DE SERVICIOS GENERALES UNIDAD DE TRANSPORTE<br>SOLICITUD DE SERVICIO DE TRANSPORTE (SST)</th>
 								<th>(x) Original</th>
 								<th>Chofer</th>
-								<th rowspan="4">Número de Solicitud<br> </th>
+								<th rowspan="4">Número de Solicitud <br> {{reserve.reservationNumber}}</th>
 							</tr>
 							<tr>
 								<th>(x) Copia N°1</th>
@@ -28,7 +28,7 @@
 
 							</tr>
 							<tr>
-								<th colspan="2">Fecha</th>
+								<th colspan="2">Fecha  {{reserveDate}}</th>
 
 							</tr>
 						</table>
@@ -42,7 +42,7 @@
 							<tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
 								<th rowspan="2" scope="col">Dependecia solicitante<BR>DIRECCIÓN ADMINISTRATIVA</th><!-- Representa cada celda (th) -->
 								<th colspan="2" >Placa del Vehiculo<br>{{reserve.vehicleId}}</th>
-								<th colspan="2" >Tipo de Vehiculo<br> </th>
+								<th colspan="2" >Tipo de Vehiculo<br>{{carInfo.brand}} {{carInfo.model}}</th>
 							</tr>
 							</thead>
 							<!-- Cuerpo de la tabla -->
@@ -50,18 +50,18 @@
 							<tr>
 								<th rowspan= "2" scope="col">Justificáción del viaje<br>TRASLADO FUNCIONARIOS Y MANDADOS</th>
 								<th colspan= "2" scope="col">Con Chofer</th>
-								<th colspan= "2" rowspan ="2">Numero de Licencia<br> </th>
+								<th colspan= "2" rowspan ="2">Numero de Licencia<br> {{driverLicense}}</th>
 							</tr>
 							<tr>
-								<th>() SI</th>  <!-- Define cada una de las columnas de las filas (td) -->
-								<th>() NO</th>
+								<th>({{assignedDriverT}}) SI</th>  <!-- Define cada una de las columnas de las filas (td) -->
+								<th>({{assignedDriverF}}) NO</th>
 							</tr>
 							<tr>
 								<th scope="col">Encargado(a) de la gira: (numero de teléfono)<br>UNIDAD DE TRANSPORTES</th>
-								<td colspan="4">Nombre del conductor<br> </td>
+								<td colspan="4">Nombre del conductor<br> {{driverName}}</td>
 							</tr>
 							<tr>
-								<th scope="col">Tipo de atividad: ADMINISTRATIVA</th>
+								<th scope="col">Tipo de atividad: {{reserve.activityType}}</th>
 								<td colspan="4">Centro Funcional {{reserve.functionalCenter}}</td>
 							</tr>
 							</tbody>
@@ -79,10 +79,10 @@
 								<th>Hora</th>
 							</tr>
 							<tr>
-								<th> </th>
-								<th> </th>
-								<th> </th>
-								<th> </th>
+								<th> {{reservedDepartureDate}}</th>
+								<th> {{reservedDepartureTime}}</th>
+								<th> {{reservedArrivalDate}}</th>
+								<th> {{reservedArrivalTime}}</th>
 							</tr>
 							</tfoot>
 						</table> <!-- Final de tabla -->
@@ -100,7 +100,7 @@
 									<th>Hora Salida<br></th>
 								</tr>
 								<tr>
-									<th>{{membersListTicket[0].firstName}}{{membersListTicket[0].lastName}}</th>
+									<th>{{membersListTicket[0].firstName}} {{membersListTicket[0].lastName}}</th>
 									<th><br></th>
 									<th><br></th>
 								</tr>
@@ -138,10 +138,6 @@
 									<th><br></th>
 									<th><br></th>
 									<th><br></th>
-								</tr>
-								<tr>
-									<th colspan="2">Si necesita más campos para llenar el formulario haga clic aquí</th>
-									<th><a class="btnFormulario" href="#/admin/Ticket/ticket2">Formulario</a></th>
 								</tr>
 								</thead>
 							</table>

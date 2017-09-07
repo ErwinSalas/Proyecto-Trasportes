@@ -1,6 +1,8 @@
 angular.module('adminModule')
-    .controller('reservesAdminCtrl', function($scope,$compile,ReserveResources) {
-
+    .controller('reservesAdminCtrl', function($scope,$location,$compile,ReserveResources) {
+        
+        checkUserType($location.absUrl().split("/")[4]);
+        
         $scope.getAllReservations = ReserveResources.getReservations(function (res) {
             $scope.reservations=res;
 

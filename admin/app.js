@@ -1,17 +1,13 @@
-/**
- * Created by Erwin on 25/10/2016.
- */
 angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
 .config(['$routeProvider',function($routeProvider)
     {
-        $routeProvider.when("/admin",{
+        $routeProvider.when("/",{
+                templateUrl:'index.html'
+            })
+            .when("/admin",{
                 templateUrl:'dashboard.html',
                 controller: 'dashboardCtrl'
             })
-            .when("/admin/user/edit",{
-                templateUrl:'users/edit.html'
-            })
-
             .when("/admin/Ticket/ticket2",{
                 templateUrl:'Ticket/ticket2.html'
             })
@@ -35,20 +31,9 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 templateUrl:'DriverAdmin/driverAdminInfo.html',
                 controller: 'driverInfoCtrl'
             })
-
-            .when("/admin/user/home",{
-                templateUrl:'users/index.html',
-                controller: 'usersHomeCtrl'
-            })
-            .when("/admin/user/edit/:id",{
-                templateUrl:'users/edit.html',
-                controller: 'usersEditCtrl'
-
-            })
             .when("/admin/reserves",{
                 templateUrl:'reservesAdmi/reservesAdmin.html',
                 controller: 'reservesAdminCtrl'
-
             })
 
             .when("/admin/reserves/info/:valueID",{
@@ -64,12 +49,10 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
             .when("/admin/driverAdmin",{
                 templateUrl:'DriverAdmin/driverAdmin.html',
                 controller: 'driverAdminCtrl'
-
             })
             .when("/admin/reserves/ticket/:valueID",{
                 templateUrl:'Ticket/ticket.html',
                 controller: 'ticketCtrl'
-
             })
     }
 ]);

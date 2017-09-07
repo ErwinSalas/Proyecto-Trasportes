@@ -1,21 +1,71 @@
 angular.module('adminModule')
-    .controller('ticketCtrl', function($scope,$routeParams,ReserveResources) {
+    .controller('ticketCtrl', function($scope,$location,$routeParams,ReserveResources,FleetCarResources,DriverResources) {
+        checkUserType($location.absUrl().split("/")[4]);
         /* config object */
 
         $scope.valueID = $routeParams.valueID;
         $scope.membersListTicket = [];
+        $scope.reserveDate = "";
+        $scope.assignedDriverT = " ";
+        $scope.assignedDriverF = " ";
+        $scope.driverLicense = " ";
+        $scope.driverName = " ";
+        $scope.reservedDepartureDate = "";
+        $scope.reservedDepartureTime = "";
+        $scope.reservedArrivalDate = "";
+        $scope.reservedArrivalTime = "";
 
         console.log(reserveSelectedID);
         $scope.getReserve = ReserveResources.getReserve(reserveSelectedID, function (res) {
             $scope.reserve=res;
             console.log("EL TICKET resInfo ", $scope.reserve);
-            if($scope.reserve.assignedDriver == null){
-                $scope.reserve.assignedDriver = "X";
+
+            $scope.getCarInfo = FleetCarResources.getCarInfo($scope.reserve.vehicleId, function (res) {
+                $scope.carInfo=res;
+                console.log("Fleet resInfo ", $scope.carInfo);
+            });
+
+            if($scope.reserve.requestDriver == true){
+                $scope.getDriverInfo = DriverResources.getDriverInfo($scope.reserve.assignedDriver, function (res) {
+                    $scope.driverInfo=res;
+                    console.log("Driver resInfo ", $scope.driverInfo);
+                    $scope.assignedDriverT = "X";
+                    $scope.driverLicense = $scope.driverInfo.identification;
+                    $scope.driverName = $scope.driverInfo.firstName + " " + $scope.driverInfo.lastName;
+                });
+            }else {
+                $scope.assignedDriverF = "X";
             }
-            for (i = 0; i < $scope.reserve.length; i++) {
-                $scope.membersListTicket.push($scope.reserve[i])
+            for (i = 0; i < $scope.reserve.members.length; i++) {
+                $scope.membersListTicket.push($scope.reserve.members[i])
             }
+            $scope.reserveDate =  $scope.setFormatDate($scope.reserve.requestDateTime);
+            $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
+            $scope.reservedDepartureTime = $scope.setFormatTime($scope.reserve.departure);
+            $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
+            $scope.reservedArrivalTime = $scope.setFormatTime($scope.reserve.arrival);
+            console.log($scope.membersListTicket)
         });
+
+        $scope.setFormatDate = function (date) {
+            reserveDate = new Date(date);
+            reserveYear = reserveDate.getFullYear();
+            reserveMonth = reserveDate.getMonth();
+            reserveDay = reserveDate.getDate();
+            return reserveDay + "/" + reserveMonth + "/" + reserveYear;
+        };
+
+        $scope.setFormatTime = function (date) {
+            reserveDate = new Date(date);
+            reserveHours = reserveDate.getHours();
+            reserveMinutes = reserveDate.getMinutes();
+            reserve_AM_PM = reserveHours >= 12 ? 'pm' : 'am';
+            reserveHours = reserveHours % 12;
+            reserveHours = reserveHours ? reserveHours : 12;
+            reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
+            return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+
+        };
 
         $scope.goBackTicket = function() {
             window.location.href = '#/admin/reserves/info/'+reserveSelectedID;
@@ -23,7 +73,7 @@ angular.module('adminModule')
 
         $scope.printElem = function(divName) {
 
-            var contents = document.getElementById(divName).innerHTML;
+            /*var contents = document.getElementById(divName).innerHTML;
             var frame1 = document.createElement('iframe');
             frame1.name = "frame1";
             frame1.style.display = "none";
@@ -43,15 +93,17 @@ angular.module('adminModule')
                 window.frames["frame1"].print();
                 document.body.removeChild(frame1);
             }, 500);
-            return false;
-            /*var headstr = "<html><head><title></title></head><body>";
+            return false;*/
+            var headstr = "<html><head><title></title></head><body>";
             var footstr = "</body>";
             var newstr = document.all.item(divName).innerHTML;
             var oldstr = document.body.innerHTML;
             document.body.innerHTML = headstr+newstr+footstr;
             window.print();
             document.body.innerHTML = oldstr;
-            return false;*/
+
+            location.reload();
+            //window.location.href = '#/admin/reserves/ticket/'+reserveSelectedID;
 
         }
 

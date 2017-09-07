@@ -2,7 +2,10 @@
  * Created by Erwin 29/10/2016.
  */
 angular.module('userModule')
-    .controller('reservationsCreateCtrl', function($scope,$timeout,GetAvailableFleetResource,ReserveResource) {
+    .controller('reservationsCreateCtrl', function($scope,$location,$timeout,GetAvailableFleetResource,ReserveResource) {
+
+        checkUserType($location.absUrl().split("/")[4]);
+
         $scope.setDates=function(arrival,departure){
             $scope.reservation={
                 arrival :arrival,
@@ -25,7 +28,7 @@ angular.module('userModule')
             });
             $timeout( function(){
                 window.location.href = '#/user';
-            }, 2000 );
+            }, 1000 );
 
         };
         $scope.members = [];
@@ -84,7 +87,15 @@ angular.module('userModule')
                     if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
                         $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
                             console.log("res ", res);
-                            $scope.fleets = res
+                            $scope.fleets = res;
+                            /*console.log($scope.fleets.length);
+                            for (i = 0; i < $scope.fleets.length; i++) {
+                                console.log($scope.fleets[i].model);
+                                if ($scope.fleets[i].isLocked == true){
+                                    $scope.fleets.splice(i, 1);
+                                    console.log($scope.fleets[i].model)
+                                }
+                            }*/
                         });
                         $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
                     }

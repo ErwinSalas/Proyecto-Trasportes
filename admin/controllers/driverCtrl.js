@@ -2,8 +2,9 @@
  * Created by ADRIAN on 24/3/2017.
 */
 angular.module('adminModule')
-    .controller('driverAdminCtrl', function($scope,DriverResources) {
+    .controller('driverAdminCtrl', function($scope,$location,DriverResources) {
     /* config object */
+        checkUserType($location.absUrl().split("/")[4]);
         $scope.newDriver={
             isActive:true
         };

@@ -2,8 +2,9 @@
  * Created by ADRIAN on 21/4/2017.
  */
 angular.module('adminModule')
-    .controller('driverInfoCtrl', function($scope,$timeout,$routeParams,DriverResources) {
+    .controller('driverInfoCtrl', function($scope,$location,$timeout,$routeParams,DriverResources) {
         /* config object */
+        checkUserType($location.absUrl().split("/")[4]);
         $scope.valueID = $routeParams.valueID;
         console.log(choferSelectedID);
 

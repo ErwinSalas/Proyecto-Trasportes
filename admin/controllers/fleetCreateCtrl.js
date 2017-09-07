@@ -2,8 +2,9 @@
  * Created by Pavilion on 26/5/2017.
  */
 angular.module('adminModule')
-    .controller('fleetCreateCtrl', function($scope,$timeout,FleetCarResources,MediaResource) {
+    .controller('fleetCreateCtrl', function($scope,$location,$timeout,FleetCarResources,MediaResource) {
         /* config object */
+        checkUserType($location.absUrl().split("/")[4]);
         $scope.newCar={
             headquarter:"SanCarlos"
         };

@@ -1,5 +1,7 @@
 angular.module('adminModule')
-    .controller('reservesAdminInfoCtrl', function($scope,$route,$compile,$templateCache,$routeParams,ReserveResources,DriverResources) {
+    .controller('reservesAdminInfoCtrl', function($scope,$route,$location,$compile,$templateCache,$routeParams,ReserveResources,DriverResources) {
+        
+        checkUserType($location.absUrl().split("/")[4]);
         /* config object */
 
         $scope.valueID = $routeParams.valueID;
@@ -18,11 +20,32 @@ angular.module('adminModule')
             }else {
                 $scope.reserve.requestDriver = "Si";
             }
+            if($scope.reserve.activityType == "Administrative"){
+                $scope.reserve.activityType = "Administrativa";
+            }
+            if($scope.reserve.activityType == "Academic"){
+                $scope.reserve.activityType = "Academica";
+            }
+            if($scope.reserve.activityType == "Generic"){
+                $scope.reserve.activityType = "Generica";
+            }
             if($scope.reserve.reservationStatus == "Accepted"){
                 $scope.reservationStatusAPD = "Aceptada";
                 document.getElementById("pBtnD").innerHTML = "<button id='printBtn' type='button' class='btn btn-primary btn-circle-lg waves-effect waves-circle waves-float' " +
                     "style='position: fixed; bottom:2%; right: 2%' ng-click='createTicket()'><i class='material-icons'>description</i></button>";
                 $compile(document.getElementById("pBtnD") )($scope);
+                if($scope.reserve.responseNotes != null){
+                    $scope.addTableInfo(17,"Anotaciones",$scope.reserve.responseNotes);
+                }else{
+                    $scope.addTableInfo(17,"Anotaciones","Sin anotaciones");
+                }
+                if($scope.reserve.requestDriver == "Si"){
+                    $scope.getDriverInfo = DriverResources.getDriverInfo($scope.reserve.assignedDriver, function (res) {
+                        $scope.driverInfo=res;
+                        console.log("La resInfo ", $scope.driverInfo);
+                        $scope.addTableInfo(10,"Chofer asignado",$scope.driverInfo.firstName+" "+$scope.driverInfo.lastName);
+                    });
+                }
             }
             if($scope.reserve.reservationStatus == "Pending" ){
                 $scope.reservationStatusAPD = "Pendiente";
@@ -33,6 +56,7 @@ angular.module('adminModule')
             }
             if($scope.reserve.reservationStatus == "Denied" ){
                 $scope.reservationStatusAPD = "Denegada";
+                $scope.addTableInfo(17,"Respuesta",$scope.reserve.responseNotes);
             }
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
@@ -60,6 +84,15 @@ angular.module('adminModule')
 
         };
 
+        $scope.addTableInfo = function (num,c1,c2) {
+            var table = document.getElementById("tableInfo");
+            var row = table.insertRow(num);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = c1;
+            cell2.innerHTML = c2;
+        };
+        
         $scope.reserveAction1 = function () {
             $scope.assignedDriverSelected = "";
             $scope.inputAnswerA= "";
