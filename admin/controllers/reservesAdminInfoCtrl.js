@@ -2,7 +2,6 @@ angular.module('adminModule')
     .controller('reservesAdminInfoCtrl', function($scope,$route,$location,$compile,$templateCache,$routeParams,ReserveResources,DriverResources) {
         
         checkUserType($location.absUrl().split("/")[4]);
-        /* config object */
 
         $scope.valueID = $routeParams.valueID;
 
@@ -11,6 +10,7 @@ angular.module('adminModule')
         $scope.reservedArrivalDate = "";
         $scope.reservedArrivalTime = "";
         $scope.reservationStatusAPD = "";
+        $scope.reservationPassengers = "";
         
         $scope.getReserve = ReserveResources.getReserve(reserveSelectedID, function (res) {
                 $scope.reserve=res;
@@ -58,6 +58,7 @@ angular.module('adminModule')
                 $scope.reservationStatusAPD = "Denegada";
                 $scope.addTableInfo(17,"Respuesta",$scope.reserve.responseNotes);
             }
+            $scope.reservationPassengers = $scope.reserve.members.length;
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
             $scope.reservedDepartureTime = $scope.setFormatTime($scope.reserve.departure);

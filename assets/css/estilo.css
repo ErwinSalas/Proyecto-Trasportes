@@ -135,3 +135,9 @@ div.inpTabla input{
 	padding-left: 30px;
 
 }
+.placeReserve{
+	white-space: nowrap;
+	width: 220px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

@@ -48,7 +48,7 @@
 							<!-- Cuerpo de la tabla -->
 							<tbody>
 							<tr>
-								<th rowspan= "2" scope="col">Justificáción del viaje<br>TRASLADO FUNCIONARIOS Y MANDADOS</th>
+								<th rowspan= "2" scope="col">Justificáción del viaje<br> {{reserve.justification}} </th>
 								<th colspan= "2" scope="col">Con Chofer</th>
 								<th colspan= "2" rowspan ="2">Numero de Licencia<br> {{driverLicense}}</th>
 							</tr>
@@ -57,7 +57,7 @@
 								<th>({{assignedDriverF}}) NO</th>
 							</tr>
 							<tr>
-								<th scope="col">Encargado(a) de la gira: (numero de teléfono)<br>UNIDAD DE TRANSPORTES</th>
+								<th scope="col">Encargado(a) de la gira: {{reserve.responsable}}<br>Número de teléfono: {{reserve.responsableTelephone}}</th>
 								<td colspan="4">Nombre del conductor<br> {{driverName}}</td>
 							</tr>
 							<tr>

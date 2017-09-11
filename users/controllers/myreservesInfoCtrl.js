@@ -10,6 +10,7 @@ angular.module('userModule')
         $scope.reservedArrivalDate = "";
         $scope.reservedArrivalTime = "";
         $scope.reservationStatusAPD = "";
+        $scope.reservationPassengers = "";
 
         console.log(reserveSelectedID);
         $scope.getReserve = ReserveResource.getReserve(reserveSelectedID, function (res) {
@@ -51,6 +52,7 @@ angular.module('userModule')
                 $scope.reservationStatusAPD = "Denegada";
                 $scope.addTableInfo(17,"Respuesta",$scope.reserve.responseNotes);
             }
+            $scope.reservationPassengers = $scope.reserve.members.length;
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
             $scope.reservedDepartureTime = $scope.setFormatTime($scope.reserve.departure);

@@ -74,20 +74,6 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
-                                <label for="place">Lugar</label>
-                                <div class="form-line">
-                                    <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar"/>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="place">Pasajeros</label>
-                                <div class="form-line">
-                                    <input ng-model="reservation.passengers" type="number" id="passengers" class="form-control" placeholder="Cantidad de pasajeros"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-sm-6">
                                 <label for="place">Tipo Actividad</label>
                                 <select class="form-control show-tick" ng-model="reservation.activityType" >
                                     <option value="Academic">
@@ -104,14 +90,22 @@
                             <div class="col-sm-6">
                                 <label for="place">Centro Funcional</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.functionalCenter" type="number" id="functionalCenter" class="form-control" placeholder="Centro Funcional">
+                                    <input ng-model="reservation.functionalCenter" type="text" id="functionalCenter" class="form-control" placeholder="Centro Funcional">
                                 </div>
                             </div>
                         </div>
-                        <label for="place">Justificación</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación"/>
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Lugar</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Justificación</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación"/>
+                                </div>
                             </div>
                         </div>
                         <br>
