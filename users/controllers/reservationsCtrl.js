@@ -1,10 +1,52 @@
-/**
- * Created by Erwin 29/10/2016.
- */
+
 angular.module('userModule')
     .controller('reservationsCreateCtrl', function($scope,$location,$timeout,GetAvailableFleetResource,ReserveResource) {
 
         checkUserType($location.absUrl().split("/")[4]);
+        $scope.provincesCR = provinciasCR;
+        $scope.citiesCR = cantonesCR;
+        $scope.districtsCR = distritosCR;
+        $scope.provinceSelected = "";
+        $scope.citySelected = "";
+        $scope.districtSelected = "";
+        $scope.additionalInfo = "";
+
+        $scope.proName = "";
+        $scope.cityName = "";
+        $scope.distName = "";
+
+        document.getElementById("citiesSetect").disabled = true;
+        document.getElementById("disctrictSetect").disabled = true;
+
+        $scope.changeP = function () {
+            document.getElementById("citiesSetect").disabled = false;
+            if ($scope.provinceSelected != ""){
+                document.getElementById("disctrictSetect").disabled = true;
+                document.getElementById("disctrictSetect").selectedIndex = -1;
+            }
+        };
+        $scope.changeC = function () {
+            document.getElementById("disctrictSetect").disabled = false;
+        };
+
+        $scope.setPlaceNames = function (valueP,valueC,valueD) {
+            for (i = 0; i < $scope.provincesCR.length; i++) {
+                if ($scope.provincesCR[i].ID == valueP.PID){
+                    $scope.proName = $scope.provincesCR[i].Name;
+                }
+            }
+            for (i = 0; i < $scope.citiesCR.length; i++) {
+                if ($scope.citiesCR[i].ID == valueC.CID){
+                    $scope.cityName = $scope.citiesCR[i].Name;
+                }
+            }
+            for (i = 0; i < $scope.districtsCR.length; i++) {
+                if ($scope.districtsCR[i].ID == valueD){
+                    $scope.distName = $scope.districtsCR[i].Name;
+                }
+            }
+        };
+
 
         $scope.setDates=function(arrival,departure){
             $scope.reservation={
@@ -16,6 +58,9 @@ angular.module('userModule')
             var user = JSON.parse( localStorage.getItem('session.owner') );
             $scope.reservation.requestingUser= user.username;
             $scope.reservation.members = $scope.members;
+            $scope.setPlaceNames($scope.provinceSelected,$scope.citySelected,$scope.districtSelected);
+            $scope.reservation.destinationPlace = $scope.additionalInfo + ", " + $scope.distName + ", " + $scope.cityName + ", " + $scope.proName;
+            console.log($scope.reservation.destinationPlace);
             console.log("envio",$scope.reservation);
             ReserveResource.setReserve($scope.reservation);
             swal({

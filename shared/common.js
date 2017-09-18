@@ -2,14 +2,12 @@
 function checkUserType(path) {
   var user = JSON.parse( localStorage.getItem('session.owner') );
 
-  if (user != null){
-    if((user.userType == "Customer" && path != "users") || (user.userType == "Admin" && path != "admin")){
-      signOut();
-    }
-  }else {
+  if(user == null){
+    signOut()
+  }
+  if((user.userType == "Customer" && path != "users") || (user.userType == "Admin" && path != "admin")){
     signOut();
   }
-
 }
 
 var closeSideBar=function () {
@@ -63,6 +61,7 @@ const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
  * Dirección raíz del API.
  * @type {string}
  */
+//const API_ROOT = "http://172.19.32.10:1901"
 const API_ROOT = "http://transportec-api.azurewebsites.net";
 const IMG_ROOT_F = "http://transportec.s3.amazonaws.com/resources/fleet/";
 const IMG_ROOT_D = "http://transportec.s3.amazonaws.com/resources/driver/";

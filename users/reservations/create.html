@@ -94,20 +94,49 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row clearfix">
                             <div class="col-sm-6">
-                                <label for="place">Lugar</label>
-                                <div class="form-line">
-                                    <input ng-model="reservation.destinationPlace" type="text" id="place" class="form-control" placeholder="Lugar"/>
-                                </div>
+                                <label for="place">Provincia</label>
+                                <select id="provinceSetect" ng-change="changeP()" class="form-control show-tick" ng-model="provinceSelected.PID" >
+                                    <option ng-repeat="province in provincesCR" value="{{province.ID}}">
+                                        {{province.Name}}
+                                    </option>
+                                </select>
                             </div>
                             <div class="col-sm-6">
-                                <label for="place">Justificación</label>
+                                <label for="place">Cantón</label>
+                                <select id="citiesSetect" ng-change="changeC()" class="form-control show-tick" ng-model="citySelected.CID" >
+                                    <option ng-repeat="city in citiesCR | filter:provinceSelected" value="{{city.ID}}">
+                                        {{city.Name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <label for="place">Distrito</label>
+                                <select id="disctrictSetect" class="form-control show-tick" ng-model="districtSelected" >
+                                    <option ng-repeat="district in districtsCR | filter:citySelected" value="{{district.ID}}">
+                                        {{district.Name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Otras señas</label>
                                 <div class="form-line">
-                                    <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación"/>
+                                    <input ng-model="additionalInfo" type="text" id="place" class="form-control" placeholder="Otras señas"/>
                                 </div>
                             </div>
                         </div>
+                        <label for="place">Justificación</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input ng-model="reservation.justification" type="text" id="justification" class="form-control" placeholder="Justificación"/>
+                            </div>
+                        </div>
+
                         <br>
                         <label for="place" style="display: block; text-align: center">Información de Pasajeros</label>
                         <label for="place">Identificación</label>
