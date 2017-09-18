@@ -2,7 +2,7 @@
 angular.module('userModule')
     .controller('reservationsCreateCtrl', function($scope,$location,$timeout,GetAvailableFleetResource,ReserveResource) {
 
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         $scope.provincesCR = provinciasCR;
         $scope.citiesCR = cantonesCR;
         $scope.districtsCR = distritosCR;

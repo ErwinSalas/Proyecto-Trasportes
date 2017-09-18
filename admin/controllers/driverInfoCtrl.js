@@ -4,7 +4,7 @@
 angular.module('adminModule')
     .controller('driverInfoCtrl', function($scope,$location,$timeout,$routeParams,DriverResources) {
         /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         $scope.valueID = $routeParams.valueID;
         console.log(choferSelectedID);
 

@@ -1,7 +1,7 @@
 angular.module('userModule')
     .controller('fleetInfoCtrl', function($scope,$location,$routeParams,FleetCarResource) {
         /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         $scope.valueID = $routeParams.valueID;
         var PictureCanvas = document.getElementById('img');
         PictureCanvas.src = IMG_ROOT_F+carSelectedID+".jpg";

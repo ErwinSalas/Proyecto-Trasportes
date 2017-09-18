@@ -1,6 +1,6 @@
 angular.module('adminModule')
     .controller('ticketCtrl', function($scope,$location,$routeParams,ReserveResources,FleetCarResources,DriverResources) {
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         /* config object */
 
         $scope.valueID = $routeParams.valueID;

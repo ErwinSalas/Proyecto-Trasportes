@@ -4,7 +4,7 @@
 angular.module('adminModule')
     .controller('dashboardCtrl', function($scope,$route,$location,$templateCache,MessageResource) {
         /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         var user = JSON.parse( localStorage.getItem('session.owner') );
         $scope.message={
             headquarter :user.headquarter,

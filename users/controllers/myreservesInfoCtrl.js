@@ -1,7 +1,7 @@
 angular.module('userModule')
     .controller('myreservesInfoCtrl', function($scope,$location,$routeParams,ReserveResource,DriverResources) {
 
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         
         $scope.valueID = $routeParams.valueID;
 

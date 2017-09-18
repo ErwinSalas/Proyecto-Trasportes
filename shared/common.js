@@ -5,7 +5,7 @@ function checkUserType(path) {
   if(user == null){
     signOut()
   }
-  if((user.userType == "Customer" && path != "users") || (user.userType == "Admin" && path != "admin")){
+  if((user.userType == "Customer" && path.split("/")[4] != "users") || (user.userType == "Admin" && path.split("/")[4] != "admin")){
     signOut();
   }
 }

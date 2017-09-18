@@ -5,7 +5,7 @@
 angular.module('adminModule')
     .controller('fleetAdminCtrl', function($scope,$location,FleetCarResources) {
         /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         var user = JSON.parse( localStorage.getItem('session.owner') );
         $scope.newCar={
             headquarter:user.headquarter

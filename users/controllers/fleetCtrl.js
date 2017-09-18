@@ -4,7 +4,7 @@
 
 angular.module('userModule')
     .controller('fleetIndexCtrl', function($scope,$location,GetFleetResource) {
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         /* config object */
         $scope.getAllFleet=GetFleetResource.respuesta(function (res) {
             console.log("res ", res);

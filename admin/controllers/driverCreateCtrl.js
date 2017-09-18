@@ -4,7 +4,7 @@
 angular.module('adminModule')
     .controller('driverCreateCtrl', function($scope,$location,$timeout,DriverResources,MediaResource) {
         /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         var user = JSON.parse( localStorage.getItem('session.owner') );
         $scope.newDriver={
             isActive:true,

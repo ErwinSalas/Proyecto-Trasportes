@@ -4,7 +4,7 @@
 angular.module('adminModule')
     .controller('driverAdminCtrl', function($scope,$location,DriverResources) {
     /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         $scope.newDriver={
             isActive:true
         };

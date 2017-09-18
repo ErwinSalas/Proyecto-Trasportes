@@ -1,7 +1,7 @@
 angular.module('adminModule')
     .controller('reservesAdminInfoCtrl', function($scope,$route,$location,$compile,$templateCache,$routeParams,ReserveResources,DriverResources) {
         
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
 
         $scope.valueID = $routeParams.valueID;
 

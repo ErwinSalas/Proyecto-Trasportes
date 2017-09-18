@@ -4,7 +4,7 @@
 angular.module('adminModule')
     .controller('fleetCreateCtrl', function($scope,$location,$timeout,FleetCarResources,MediaResource) {
         /* config object */
-        checkUserType($location.absUrl().split("/")[4]);
+        checkUserType($location.absUrl());
         $scope.newCar={
             headquarter:"SanCarlos"
         };
