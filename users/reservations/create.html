@@ -41,8 +41,8 @@
                         <hr>
                         <div class="row clearfix">
                             <div class="col-sm-6">
-                                <label >Auto</label>
-                                <select class="form-control show-tick" ng-model="reservation.vehicleId" >
+                                <label >Auto</label><i id="carInfoBtn" class="material-icons reservationCarInfo" data-toggle="modal" data-target="#defaultModalCarInfo" ng-click="carInfoDetails()">info_outline</i>
+                                <select class="form-control show-tick" ng-model="reservation.vehicleId" ng-change="enableCarInfoBtn()">
                                     <option ng-repeat="fleet in fleets" value="{{fleet}}">
                                         {{fleet}}
                                     </option>
@@ -221,6 +221,65 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal fade" id="defaultModalCarInfo" tabindex="-1" role="dialog" style="display: none;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="defaultModalLabelCarInfo">Detalles del vehiculo</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover dashboard-task-infos">
+                                                    <thead>
+                                                    <img id="img" src="" align="center" width="250" height="200" class="imgInfoDisplay">
+                                                    <tr>
+                                                        <th>Dato</th>
+                                                        <th>Información</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>Marca</td>
+                                                        <td>{{carInfo.brand}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Modelo</td>
+                                                        <td>{{carInfo.model}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Placa</td>
+                                                        <td>{{carInfo.vehicleId}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Transmision</td>
+                                                        <td>{{carInfo.traction}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Capacidad</td>
+                                                        <td>{{carInfo.capacity}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Kilometraje</td>
+                                                        <td>{{carInfo.mileage}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dependencia</td>
+                                                        <td>{{carInfo.dependence}}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atras</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <button type="submit" style="display: block; margin: auto" class="btn bg-deep-orange m-t-18 waves-effect" ng-click="postReservation()">Reservar</button>
                     </form>
                 </div>

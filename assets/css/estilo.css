@@ -135,6 +135,13 @@ div.inpTabla input{
 	padding-left: 30px;
 
 }
+.reservationCarInfo{
+	float: right;
+	font-size: 20px;
+	cursor: pointer;
+	color: #110ba7;
+	display: none;
+}
 .placeReserve{
 	white-space: nowrap;
 	width: 220px;

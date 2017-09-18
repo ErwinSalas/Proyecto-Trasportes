@@ -1,6 +1,6 @@
 
 angular.module('userModule')
-    .controller('reservationsCreateCtrl', function($scope,$location,$timeout,GetAvailableFleetResource,ReserveResource) {
+    .controller('reservationsCreateCtrl', function($scope,$location,$timeout,GetAvailableFleetResource,ReserveResource,FleetCarResource) {
 
         checkUserType($location.absUrl());
         $scope.provincesCR = provinciasCR;
@@ -47,6 +47,21 @@ angular.module('userModule')
             }
         };
 
+        $scope.carInfoDetails = function () {
+            if($scope.reservation.vehicleId != null){
+                var PictureCanvas = document.getElementById('img');
+                PictureCanvas.src = IMG_ROOT_F+$scope.reservation.vehicleId+".jpg";
+                console.log($scope.reservation.vehicleId);
+                $scope.getCarInfo = FleetCarResource.getCarInfo($scope.reservation.vehicleId, function (res) {
+                    $scope.carInfo=res;
+                    console.log("La resInfo ", $scope.carInfo);
+                });
+            }
+        };
+
+        $scope.enableCarInfoBtn = function () {
+            document.getElementById("carInfoBtn").style.display = 'block';
+        };
 
         $scope.setDates=function(arrival,departure){
             $scope.reservation={
