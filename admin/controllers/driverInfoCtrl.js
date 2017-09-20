@@ -2,7 +2,7 @@
  * Created by ADRIAN on 21/4/2017.
  */
 angular.module('adminModule')
-    .controller('driverInfoCtrl', function($scope,$location,$timeout,$routeParams,DriverResources) {
+    .controller('driverInfoCtrl', function($scope,$location,$timeout,$routeParams,DriverResources,MediaResource) {
         /* config object */
         checkUserType($location.absUrl());
         $scope.valueID = $routeParams.valueID;
@@ -37,6 +37,7 @@ angular.module('adminModule')
                 });
 
                 $scope.deleteDriver = DriverResources.deleteDriver(choferSelectedID);
+                //$scope.deleteDriverImg = MediaResource.deleteImgD(choferSelectedID);
                 window.location.href = '#/admin/driverAdmin/';
 
             });

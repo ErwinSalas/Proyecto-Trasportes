@@ -113,8 +113,19 @@ div.inpTabla input{
 .imgInputS{
 	margin-top: 4%;
 }
+.imgInputSEdit{
+	margin: auto;
+	margin-top: 4%;
+	margin-bottom: 2%;
+}
 .imgInfoDisplay{
 	display: block;
+	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+.imgInfoDisplayEdit{
+	display: none;
 	margin: auto;
 	margin-top: 2%;
 	margin-bottom: 2%;

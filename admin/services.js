@@ -378,6 +378,36 @@ angular.module('adminModule')
                     console.log("fallo", response);
                     callback(response.content);
                 });
+            },
+            deleteImgV: function (id){
+                $http({
+                    method  : 'POST',
+                    url     : API_ROOT + '/picture/delete?vehicleId={0}&authToken={1}'
+                        .format(id,authToken)
+                })
+                    .success(function(data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error IMG", data.errors)
+                        } else {
+                            console.log(data,"set message success IMG")
+                        }
+                    });
+            },
+            deleteImgD: function (id){
+                $http({
+                    method  : 'POST',
+                    url     : API_ROOT + '/picture/delete?driverId={0}&authToken={1}'
+                        .format(id,authToken)
+                })
+                    .success(function(data) {
+                        if (data.errors) {
+                            // Showing errors.
+                            console.log("set message error IMG", data.errors)
+                        } else {
+                            console.log(data,"set message success IMG")
+                        }
+                    });
             }
         };
         return factory;

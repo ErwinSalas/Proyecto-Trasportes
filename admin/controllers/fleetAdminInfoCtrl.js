@@ -1,5 +1,5 @@
 angular.module('adminModule')
-    .controller('fleetAdminInfoCtrl', function($scope,$location,$timeout,$routeParams,FleetCarResources) {
+    .controller('fleetAdminInfoCtrl', function($scope,$location,$timeout,$routeParams,FleetCarResources,MediaResource) {
         /* config object */
         checkUserType($location.absUrl());
         $scope.valueID = $routeParams.valueID;
@@ -63,6 +63,7 @@ angular.module('adminModule')
                 });
 
                 $scope.deleteCar = FleetCarResources.deleteCar(carSelectedID);
+                //$scope.deleteCarImg = MediaResource.deleteImgV(carSelectedID);
                 window.location.href = '#/admin/fleetAdmin/';
 
             });
@@ -112,6 +113,9 @@ angular.module('adminModule')
 
             var  x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
             var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'none';
+            document.getElementById('img').style.display = "block";
+            document.getElementById('imgE').style.display = "none";
+            document.getElementById("file-upload").value = "";
             document.getElementById("brand").value = "";
             document.getElementById("model").value = "";
             document.getElementById("traction").value = "";
@@ -120,12 +124,50 @@ angular.module('adminModule')
             document.getElementById("dependence").value = "";
         };
 
+        function urltoFile(url, filename, mimeType){
+            return (fetch(url)
+                    .then(function(res){return res.arrayBuffer();})
+                    .then(function(buf){return new File([buf], filename, {type:mimeType});})
+            );
+        }
+
+        function readFile(evt) {
+            var files = evt.target.files; // FileList object
+
+            // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+
+                var reader = new FileReader();
+
+                reader.onload = (function(e) {
+                    document.getElementById('img').style.display = "none";
+                    document.getElementById('imgE').style.display = "block";
+                    var filePreview = document.getElementById('imgE');
+                    //e.target.result contents the base64 data from the image uploaded
+                    filePreview.src = e.target.result;
+                    $scope.img=e.target.result;
+                });
+                reader.readAsDataURL(f);
+            }
+            setTimeout(function(){
+                urltoFile($scope.img, 'image.jpg', 'multipart/form-data')
+                    .then(function(file){
+                        console.log("Soy la imagen",file);
+                        $scope.img = file;
+                    })
+            }, 1000);
+        }
+        document.getElementById('file-upload').addEventListener('change', readFile, false);
+
         $scope.newFleet={
 
         };
         $scope.postFleet=function() {
             console.log("envio",$scope.newFleet);
             FleetCarResources.editCar($routeParams.valueID,$scope.newFleet);
+            if($scope.img != null){
+                MediaResource.setImg($scope.img,carSelectedID,2);
+            }
             swal({
                 title: "Vehiculo editado",
                 type: "success",

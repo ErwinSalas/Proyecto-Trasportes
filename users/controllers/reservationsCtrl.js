@@ -14,6 +14,7 @@ angular.module('userModule')
         $scope.proName = "";
         $scope.cityName = "";
         $scope.distName = "";
+        $scope.carInfoCheck = false;
 
         document.getElementById("citiesSetect").disabled = true;
         document.getElementById("disctrictSetect").disabled = true;
@@ -60,7 +61,10 @@ angular.module('userModule')
         };
 
         $scope.enableCarInfoBtn = function () {
-            document.getElementById("carInfoBtn").style.display = 'block';
+            if ($scope.carInfoCheck == false){
+                document.getElementById("carInfoBtn").style.display = 'block';
+                $scope.carInfoCheck = true;
+            }
         };
 
         $scope.setDates=function(arrival,departure){
