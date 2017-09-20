@@ -18,14 +18,12 @@
     <!-- Animation Css -->
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />
-    <!-- Bootstrap Core Css -->
-    <link href=plugins/bootstrap/css/bootstrap.cssZ" rel="stylesheet">
-
     <!-- Waves Effect Css -->
     <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    <!-- Preloader Css -->
+    <link href="plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />
     <!-- Custom Css -->
     <link href="assets/css/style.css" rel="stylesheet">
-
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="assets/css/themes/theme-blue.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/mediaQueries.css">
@@ -43,27 +41,27 @@
             </a>
 
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Call Search -->
-
-                <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
-            </ul>
-        </div>
     </div>
 </nav>
     <div id="LoginDiv" class="center">
-        <img src="assets/images/transportec_logo.png" alt="logo" width="200" height="200" id="logo">
+        <img src="assets/images/transportec_logo.png" alt="logo" width="200" height="200" id="logo" style="margin-top: 3%">
         <form>
             <input type="text" ng-model="username" placeholder="Nombre de usuario" id="inputUsuario">
             <input type="password" ng-model="password" placeholder="Contraseña" id="inputContraseña">
             <button class="btn bagTecBlue center btn-login" type="submit" name="action" id="botonSubmit" ng-click="doLogin()">Entrar
                 <i class="material-icons right"></i>
             </button>
+            <div id="loginLoader" class="loader">
+                <div class="md-preloader pl-size-xl">
+                    <svg viewbox="0 0 75 75">
+                        <circle cx="37.5" cy="37.5" r="33.5" class="pl-indigo" stroke-width="4" />
+                    </svg>
+                </div>
+            </div>
         </form>
         <div ng-view=""></div>
     </div>
-    <script src="users/controllers/base64.min.js"></script>
+    <script src="shared/base64.min.js"></script>
     <script src="shared/common.js"></script>
     <script type="text/javascript" src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

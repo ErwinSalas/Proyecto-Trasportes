@@ -13,6 +13,11 @@ form{
     border-style: double;
     margin-top: 8em;
 }
+#loginLoader{
+    display: none;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
 .btn-login{
     margin-bottom: 10%;
 }
@@ -26,7 +31,7 @@ form{
         margin: 0 auto;
     }
     .btn-login{
-        margin-bottom: 30%;
+        margin-bottom: 20%;
     }
 
 }

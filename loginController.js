@@ -10,6 +10,10 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
          */
 
         $scope.doLogin = function () {
+            document.getElementById("inputUsuario").style.display = "none";
+            document.getElementById("inputContraseña").style.display = "none";
+            document.getElementById("botonSubmit").style.display = "none";
+            document.getElementById("loginLoader").style.display = "block";
             $http({
                 method: "GET",
                 url: API_ROOT+'/user/login/web?username={0}&password={1}'
@@ -30,6 +34,10 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
 
                     window.location.href = ('{0}'.format(userData.userType == "Admin" ? "admin" : "users"));
                 } else {
+                    document.getElementById("inputUsuario").style.display = "block";
+                    document.getElementById("inputContraseña").style.display = "block";
+                    document.getElementById("botonSubmit").style.display = "inline-block";
+                    document.getElementById("loginLoader").style.display = "none";
                     swal({
                         title: "Credenciales incorrectas",
                         text: "Nombre de usuario o contraseña incorrectas.",
