@@ -67,11 +67,15 @@ div.inpTabla input{
 	left: 25%;
 	bottom: 30px;
 }
-#tablita th{
+.tablita th{
 	margin-left: 0px;
 	margin-right: 0px;
 	padding: 10px;
 }
+.tab th{
+	padding-left: 10px;
+}
+
 
 .btn-messages-delete{
 	float:right;
@@ -158,4 +162,11 @@ div.inpTabla input{
 	width: 220px;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.agua{
+	background: url("../images/agua.png") 0 0 no-repeat;
+	background-color: white;
+	/*transform: rotate(7deg);*/
+	background-position: center;
+	background-size: 1000px 800px;
 }

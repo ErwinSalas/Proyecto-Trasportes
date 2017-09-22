@@ -1,6 +1,6 @@
 <div style="width:auto;position: relative;">
 	<div id="ticketMain">
-		<div class="card">
+		<div class="card agua">
 			<div class=" header">
 				<div class="atrasStyle">
 					<a class="btn-floating btn-sm " ng-click="goBackTicket()"><i class="material-icons" style="cursor:pointer; color: white; float:left">arrow_back</i></a>
@@ -8,11 +8,11 @@
 				<h2 class="tituloStyle">Boleta de reserva</h2>
 			</div>
 			<div class="body">
-				<div id="ticketBody" class='centraTabla'>
+				<div id="ticketBody" class='centraTabla tab'>
 					<aside class='margenesTablas'>
 						<table border="2px">
 							<tr>
-								<th rowspan="4">DEPARTAMENTO DE SERVICIOS GENERALES UNIDAD DE TRANSPORTE<br>SOLICITUD DE SERVICIO DE TRANSPORTE (SST)</th>
+								<th rowspan="4"style="text-align: right"><div style="float: left; padding-left: 1px"><img src="../assets/images/TEC-logo-blanco.png"></div>DEPARTAMENTO DE <br> SERVICIOS GENERALES <br> UNIDAD DE TRANSPORTE <br>SOLICITUD DE SERVICIO DE TRANSPORTE (SST)</th>
 								<th>(x) Original</th>
 								<th>Chofer</th>
 								<th rowspan="4">Número de Solicitud <br> {{reserve.reservationNumber}}</th>
@@ -35,7 +35,7 @@
 					</aside>
 					<!-- Primera tabla, contine la información general -->
 					<aside class='margenesTablas'>
-						<table border="2px">
+						<table border="2px" class='tab'>
 							<!-- Encabezado de la tabla-->
 							<thead>
 							<caption><b>INFORMACIÓN GENERAL</b></caption><!-- Representa el titulo de la tabla -->
@@ -90,7 +90,8 @@
 					<!-- Inicia la siguiente tabla -->
 					<article >
 						<nav class='margenesTabla'>
-							<table border="2px">
+
+							<table border="2px" class='tab'>
 								<thead>
 								<br>
 								<caption><b>INFORMACIÓN DE LOS USUARIOS(AS) DEL SERVICIO DE TRANSPORTE</b></caption><!-- Representa el titulo de la tabla -->
@@ -144,7 +145,7 @@
 						</nav>
 						<nav class='margenesTabla'>
 							<div class='inpTabla'>
-								<table id='tablita' border="2px">
+								<table class='tablita' border="2px">
 									<br>
 									<caption><b>REPORTE OPERATIVO CONDUCTOR-USUARIO(A)</b></caption><!-- Representa el titulo de la tabla -->
 									<tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
@@ -249,19 +250,18 @@
 						</nav>
 					</article>
 					<footer class='margenesTabla'>
-						<table border="2px">
+						<table border="2px" class='tablita'>
 							<br>
 							<caption><b>FIRMAS DE AUTORIZACIÓN</b></caption><!-- Representa el titulo de la tabla -->
 							<tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
-								<th>Usuario(a)</th><!-- Representa cada celda (th) -->
-								<th><br>Autorizado Jefe Dependecia</th>
-								<th><br>V°B° Vicerrectoría</th>
-								<th><br>V°B° Rectoría</th>
-								<th><br>Encargado(a) de gira</th>
-								<th><br>Revisado Unidad de Transporte</th>
+								<th><br><br><br>Autorizado Jefe Dependecia</th>
+								<th><br><br><br>V°B° Vicerrectoría</th>
+								<th><br><br><br>V°B° Rectoría</th>
+								<th><br><br><br>Encargado(a) de gira</th>
+								<th><br><br><br>Revisado Unidad de Transporte</th>
 							</tr>
 							<tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
-								<th colspan="6">El conductor de este vehículo, siempre y cuando no sea conductor oficial del ITCR, acepta las responsabilidad
+								<th colspan="5">El conductor de este vehículo, siempre y cuando no sea conductor oficial del ITCR, acepta las responsabilidad
 									civiles,<br>penales y administrativas derivadas de accidentes causados por su culpa o dolo en la conducción de vehículos
 									propiedad del ITCR</th><!-- Representa cada celda (th) -->
 							</tr>
