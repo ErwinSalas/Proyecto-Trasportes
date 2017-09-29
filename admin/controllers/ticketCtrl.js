@@ -35,6 +35,8 @@ angular.module('adminModule')
                 });
             }else {
                 $scope.assignedDriverF = "X";
+                $scope.driverLicense = $scope.reserve.members[0].identification;
+                $scope.driverName = $scope.reserve.members[0].firstName + " " + $scope.reserve.members[0].lastName;
             }
             for (i = 0; i < $scope.reserve.members.length; i++) {
                 $scope.membersListTicket.push($scope.reserve.members[i])
@@ -80,19 +82,28 @@ angular.module('adminModule')
             window.location.href = '#/admin/reserves/info/'+reserveSelectedID;
         };
 
-        $scope.printElem = function(divName) {
+        $scope.printElem = function() {
 
-            /*var contents = document.getElementById(divName).innerHTML;
+            var contents = document.getElementById('ticketBody').innerHTML;
             var frame1 = document.createElement('iframe');
             frame1.name = "frame1";
-            frame1.style.display = "none";
+            frame1.style.position = "absolute";
+            frame1.style.top = "-1000000px";
             document.body.appendChild(frame1);
             var frameDoc = frame1.contentWindow ? frame1.contentWindow : (frame1.contentDocument.document ? frame1.contentDocument.document : frame1.contentDocument);
             frameDoc.document.open();
             frameDoc.document.write('<html><head><title>Ticket</title>');
-            frameDoc.document.write('<link href="../assets/css/estilo.css" rel="stylesheet" media="print">');
-            frameDoc.document.write('<link href="../assets/css/style.css" rel="stylesheet" media="print">');
-            frameDoc.document.write('<link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet" media="print">');
+            frameDoc.document.write('<link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css"/>' +
+                ' <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">' +
+                ' <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">' +
+                ' <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">' +
+                ' <link href="../plugins/node-waves/waves.css" rel="stylesheet" />' +
+                ' <link href="../plugins/animate-css/animate.css" rel="stylesheet" />' +
+                ' <link href="../bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />' +
+                ' <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />' +
+                ' <link href="../assets/css/style.css" rel="stylesheet">' +
+                ' <link href="../assets/css/estilo.css" rel="stylesheet">' +
+                ' <link rel="stylesheet" href="../assets/css/mediaQueries.css"');
             frameDoc.document.write('</head><body>');
             frameDoc.document.write(contents);
             frameDoc.document.write('</body></html>');
@@ -102,7 +113,7 @@ angular.module('adminModule')
                 window.frames["frame1"].print();
                 document.body.removeChild(frame1);
             }, 500);
-            return false;*/
+            return false;/*
             var headstr = "<html><head><title></title></head><body>";
             var footstr = "</body>";
             var newstr = document.all.item(divName).innerHTML;
@@ -111,12 +122,13 @@ angular.module('adminModule')
             window.print();
             document.body.innerHTML = oldstr;
 
-            location.reload();
+            location.reload();*/
             //window.location.href = '#/admin/reserves/ticket/'+reserveSelectedID;
 
         }
 
     })
+
 .directive('printDiv', function () {
     return {
         restrict: 'A',
@@ -132,12 +144,33 @@ angular.module('adminModule')
             }
 
             function PrintWithIframe(data)
-            {   
+            {
                 if ($('iframe#printf').size() == 0) {
                     $('html').append('<iframe id="printf" name="printf"></iframe>');  // an iFrame is added to the html content, then your div's contents are added to it and the iFrame's content is printed
 
                     var mywindow = window.frames["printf"];
-                    mywindow.document.write('<html><head><title></title><style>@page {margin: 25mm 0mm 25mm 5mm}</style>'  // Your styles here, I needed the margins set up like this
+                    mywindow.document.write('<html><head><title></title><link rel="icon" href="../favicon.ico" type="image/x-icon">\n' +
+                        '    <!-- Angular-ui-calendar -->\n' +
+                        '    <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css"/>\n' +
+                        '    <!-- Google Fonts -->\n' +
+                        '    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">\n' +
+                        '    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">\n' +
+                        '    <!-- Bootstrap Core Css -->\n' +
+                        '    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">\n' +
+                        '    <!-- Waves Effect Css -->\n' +
+                        '    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />\n' +
+                        '    <!-- Animation Css -->\n' +
+                        '    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />\n' +
+                        '    <link href="../bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />\n' +
+                        '    <!-- Preloader Css -->\n' +
+                        '    <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />\n' +
+                        '    <!-- Custom Css -->\n' +
+                        '    <link href="../assets/css/style.css" rel="stylesheet">\n' +
+                        '    <!-- Ticket Css -->\n' +
+                        '    <link href="../assets/css/estilo.css" rel="stylesheet">\n' +
+                        '    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->\n' +
+                        '    <link href="../assets/css/themes/theme-blue.css" rel="stylesheet" />\n' +
+                        '    <link rel="stylesheet" href="../assets/css/mediaQueries.css">'  // Your styles here, I needed the margins set up like this
                         + '</head><body><div>'
                         + data
                         + '</div></body></html>');

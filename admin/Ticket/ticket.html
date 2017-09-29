@@ -1,6 +1,6 @@
 <div style="width:auto;position: relative;">
 	<div id="ticketMain">
-		<div class="card agua">
+		<div class="card">
 			<div class=" header">
 				<div class="atrasStyle">
 					<a class="btn-floating btn-sm " ng-click="goBackTicket()"><i class="material-icons" style="cursor:pointer; color: white; float:left">arrow_back</i></a>
@@ -8,9 +8,9 @@
 				<h2 class="tituloStyle">Boleta de reserva</h2>
 			</div>
 			<div class="body">
-				<div id="ticketBody" class='centraTabla tab'>
+				<div id="ticketBody" class='centraTabla tab agua'>
 					<aside class='margenesTablas'>
-						<table border="2px">
+						<table border="2px" class="tab">
 							<tr>
 								<th rowspan="4"style="text-align: right"><div style="float: left; padding-left: 1px"><img src="../assets/images/TEC-logo-blanco.png"></div>DEPARTAMENTO DE <br> SERVICIOS GENERALES <br> UNIDAD DE TRANSPORTE <br>SOLICITUD DE SERVICIO DE TRANSPORTE (SST)</th>
 								<th>(x) Original</th>
@@ -58,11 +58,11 @@
 							</tr>
 							<tr>
 								<th scope="col">Encargado(a) de la gira: {{reserve.responsable}}<br>Número de teléfono: {{reserve.responsableTelephone}}</th>
-								<td colspan="4">Nombre del conductor<br> {{driverName}}</td>
+								<th colspan="4">Nombre del conductor<br> {{driverName}}</th>
 							</tr>
 							<tr>
 								<th scope="col">Tipo de atividad: {{reserve.activityType}}</th>
-								<td colspan="4">Centro Funcional {{reserve.functionalCenter}}</td>
+								<th colspan="4">Centro Funcional {{reserve.functionalCenter}}</th>
 							</tr>
 							</tbody>
 							<!-- Representa la parte final de la tabla -->
@@ -102,28 +102,33 @@
 								</tr>
 								<tr>
 									<th>{{membersListTicket[0].firstName}} {{membersListTicket[0].lastName}}</th>
-									<th><br></th>
-									<th><br></th>
-								</tr>
-								<tr>
-									<th><br></th>
-									<th><br></th>
+									<th>{{membersListTicket[0].placeToCollect}}</th>
 									<th><br></th>
 								</tr>
 								<tr>
-									<th><br></th>
-									<th><br></th>
+									<th>{{membersListTicket[1].firstName}} {{membersListTicket[1].lastName}}</th>
+									<th>{{membersListTicket[1].placeToCollect}}</th>
 									<th><br></th>
 								</tr>
 								<tr>
+									<th>{{membersListTicket[2].firstName}} {{membersListTicket[2].lastName}}</th>
+									<th>{{membersListTicket[2].placeToCollect}}</th>
 									<th><br></th>
-									<th><br></th>
+								</tr>
+								<tr>
+									<th>{{membersListTicket[3].firstName}} {{membersListTicket[3].lastName}}</th>
+									<th>{{membersListTicket[3].placeToCollect}}</th>
 									<th><br></th>
 								</tr>
 								<tr>
 									<th></th>
 									<th>Dirección donde serán dejados(as)<br></th>
 									<th>Regreso<br></th>
+								</tr>
+								<tr>
+									<th><br></th>
+									<th><br></th>
+									<th><br></th>
 								</tr>
 								<tr>
 									<th><br></th>
@@ -273,7 +278,7 @@
 			</div>
 		</div>
 	</div>
-	<button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="printElem('ticketBody')">
+	<button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="printElem()">
 		<i class="material-icons">print</i>
 	</button>
 </div>

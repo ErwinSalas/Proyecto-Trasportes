@@ -1,7 +1,7 @@
 
 div.centraTabla table {
 	margin: 0 auto;
-	text-align: center;
+	text-align: right;
 }
 /*Informacion general*/
 aside.margenesTablas table{
@@ -11,10 +11,6 @@ aside.margenesTablas table{
 article.margenesTabla table{
 	width: 970px;
 	height: 100px;
-}
-.btnFormulario{
-	width: 100%;
-	background: #7ED8DE;
 }
 nav.margenesTabla table{
 	width: 970px;
@@ -74,6 +70,7 @@ div.inpTabla input{
 }
 .tab th{
 	padding-left: 10px;
+	padding-right: 10px;
 }
 
 
@@ -166,7 +163,6 @@ div.inpTabla input{
 .agua{
 	background: url("../images/agua.png") 0 0 no-repeat;
 	background-color: white;
-	/*transform: rotate(7deg);*/
 	background-position: center;
-	background-size: 1000px 800px;
+	background-size: 1000px 900px;
 }
