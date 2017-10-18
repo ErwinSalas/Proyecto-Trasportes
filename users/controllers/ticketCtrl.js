@@ -1,5 +1,5 @@
-angular.module('adminModule')
-    .controller('ticketCtrl', function($scope,$location,$routeParams,$compile,ReserveResources,FleetCarResources,DriverResources) {
+angular.module('userModule')
+    .controller('ticketCtrl', function($scope,$location,$routeParams,$compile,ReserveResource,FleetCarResource,DriverResources) {
         checkUserType($location.absUrl());
         /* config object */
 
@@ -16,11 +16,11 @@ angular.module('adminModule')
         $scope.reservedArrivalTime = "";
 
         console.log(reserveSelectedID);
-        $scope.getReserve = ReserveResources.getReserve(reserveSelectedID, function (res) {
+        $scope.getReserve = ReserveResource.getReserve(reserveSelectedID, function (res) {
             $scope.reserve=res;
             console.log("EL TICKET resInfo ", $scope.reserve);
 
-            $scope.getCarInfo = FleetCarResources.getCarInfo($scope.reserve.vehicleId, function (res) {
+            $scope.getCarInfo = FleetCarResource.getCarInfo($scope.reserve.vehicleId, function (res) {
                 $scope.carInfo=res;
                 console.log("Fleet resInfo ", $scope.carInfo);
             });
@@ -81,7 +81,7 @@ angular.module('adminModule')
         };
 
         $scope.goBackTicket = function() {
-            window.location.href = '#/admin/reserves/info/'+reserveSelectedID;
+            window.location.href = '#/user/reserves/info/'+reserveSelectedID;
         };
 
         $scope.printElem = function() {
@@ -130,64 +130,3 @@ angular.module('adminModule')
         }
 
     })
-
-.directive('printDiv', function () {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            element.bind('click', function(evt){
-                evt.preventDefault();
-                PrintElem(attrs.printDiv);
-            });
-
-            function PrintElem(elem)
-            {
-                PrintWithIframe($(elem).html());
-            }
-
-            function PrintWithIframe(data)
-            {
-                if ($('iframe#printf').size() == 0) {
-                    $('html').append('<iframe id="printf" name="printf"></iframe>');  // an iFrame is added to the html content, then your div's contents are added to it and the iFrame's content is printed
-
-                    var mywindow = window.frames["printf"];
-                    mywindow.document.write('<html><head><title></title><link rel="icon" href="../favicon.ico" type="image/x-icon">\n' +
-                        '    <!-- Angular-ui-calendar -->\n' +
-                        '    <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css"/>\n' +
-                        '    <!-- Google Fonts -->\n' +
-                        '    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">\n' +
-                        '    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">\n' +
-                        '    <!-- Bootstrap Core Css -->\n' +
-                        '    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">\n' +
-                        '    <!-- Waves Effect Css -->\n' +
-                        '    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />\n' +
-                        '    <!-- Animation Css -->\n' +
-                        '    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />\n' +
-                        '    <link href="../bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />\n' +
-                        '    <!-- Preloader Css -->\n' +
-                        '    <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />\n' +
-                        '    <!-- Custom Css -->\n' +
-                        '    <link href="../assets/css/style.css" rel="stylesheet">\n' +
-                        '    <!-- Ticket Css -->\n' +
-                        '    <link href="../assets/css/estilo.css" rel="stylesheet">\n' +
-                        '    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->\n' +
-                        '    <link href="../assets/css/themes/theme-blue.css" rel="stylesheet" />\n' +
-                        '    <link rel="stylesheet" href="../assets/css/mediaQueries.css">'  // Your styles here, I needed the margins set up like this
-                        + '</head><body><div>'
-                        + data
-                        + '</div></body></html>');
-
-                    $(mywindow.document).ready(function(){
-                        mywindow.print();
-                        setTimeout(function(){
-                                $('iframe#printf').remove();
-                            },
-                            2000);  // The iFrame is removed 2 seconds after print() is executed, which is enough for me, but you can play around with the value
-                    });
-                }
-
-                return true;
-            }
-        }
-    };
-});

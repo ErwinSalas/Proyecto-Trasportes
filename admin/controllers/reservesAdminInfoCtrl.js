@@ -11,7 +11,8 @@ angular.module('adminModule')
         $scope.reservedArrivalTime = "";
         $scope.reservationStatusAPD = "";
         $scope.reservationPassengers = "";
-        
+
+        console.log(reserveSelectedID);
         $scope.getReserve = ReserveResources.getReserve(reserveSelectedID, function (res) {
                 $scope.reserve=res;
                 console.log("La resInfo ", $scope.reserve);

@@ -164,5 +164,23 @@ div.inpTabla input{
 	background: url("../images/agua.png") 0 0 no-repeat;
 	background-color: white;
 	background-position: center;
-	background-size: 1000px 900px;
+	background-size: 1050px 910px;
+}
+.aguaP{
+    width: 1050px;
+    height: 910px;
+    position: absolute;
+	top:19%;
+	right: 2%;
+	opacity: 0.3;
+}
+@media print {
+	.aguaP{
+		width: 1050px;
+		height: 910px;
+		position: absolute;
+		top:11%;
+		right: 2%;
+		opacity: 0.3;
+	}
 }

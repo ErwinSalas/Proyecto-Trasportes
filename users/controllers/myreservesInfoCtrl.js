@@ -1,5 +1,5 @@
 angular.module('userModule')
-    .controller('myreservesInfoCtrl', function($scope,$location,$routeParams,ReserveResource,DriverResources) {
+    .controller('myreservesInfoCtrl', function($scope,$location,$compile,$routeParams,ReserveResource,DriverResources) {
 
         checkUserType($location.absUrl());
         
@@ -32,6 +32,9 @@ angular.module('userModule')
             }
             if($scope.reserve.reservationStatus == "Accepted"){
                 $scope.reservationStatusAPD = "Aceptada";
+                document.getElementById("pBtnD").innerHTML = "<button id='printBtn' type='button' class='btn btn-primary btn-circle-lg waves-effect waves-circle waves-float' " +
+                    "style='position: fixed; bottom:2%; right: 2%' ng-click='createTicket()'><i class='material-icons'>description</i></button>";
+                $compile(document.getElementById("pBtnD") )($scope);
                 if($scope.reserve.responseNotes != null){
                     $scope.addTableInfo(17,"Anotaciones",$scope.reserve.responseNotes);
                 }else{
@@ -86,6 +89,10 @@ angular.module('userModule')
             var cell2 = row.insertCell(1);
             cell1.innerHTML = c1;
             cell2.innerHTML = c2;
+        };
+
+        $scope.createTicket= function () {
+            window.location.href = '#/user/reserves/ticket/'+reserveSelectedID;
         };
 
     }); 

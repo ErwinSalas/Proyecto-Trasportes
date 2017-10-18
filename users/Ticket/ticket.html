@@ -1,0 +1,282 @@
+<div style="width:auto;position: relative;">
+    <div id="ticketMain">
+        <div class="card">
+            <div class=" header">
+                <div class="atrasStyle">
+                    <a class="btn-floating btn-sm " ng-click="goBackTicket()"><i class="material-icons" style="cursor:pointer; color: white; float:left">arrow_back</i></a>
+                </div>
+                <h2 class="tituloStyle">Boleta de reserva</h2>
+            </div>
+            <div class="body">
+                <div id="ticketBody" class='centraTabla tab'>
+                    <aside class='margenesTablas'>
+                        <table border="2px" class="tab">
+                            <tr>
+                                <th rowspan="4"style="text-align: right"><div style="float: left; padding-left: 1px"><img src="../assets/images/TEC-logo-blanco.png"></div>DEPARTAMENTO DE <br> SERVICIOS GENERALES <br> UNIDAD DE TRANSPORTE <br>SOLICITUD DE SERVICIO DE TRANSPORTE (SST)</th>
+                                <th>(x) Original</th>
+                                <th>Chofer</th>
+                                <th rowspan="4">Número de Solicitud <br> {{reserve.reservationNumber}}</th>
+                            </tr>
+                            <tr>
+                                <th>(x) Copia N°1</th>
+                                <th>Unidad de Transportes</th>
+
+                            </tr>
+                            <tr>
+                                <th>( ) Copia N°2</th>
+                                <th>Dependencia solicitante</th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="2">Fecha  {{reserveDate}}</th>
+
+                            </tr>
+                        </table>
+                    </aside>
+                    <!-- Primera tabla, contine la información general -->
+                    <aside class='margenesTablas'>
+                        <table border="2px" class='tab'>
+                            <!-- Encabezado de la tabla-->
+                            <thead>
+                            <caption><b>INFORMACIÓN GENERAL</b></caption><!-- Representa el titulo de la tabla -->
+                            <tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
+                                <th rowspan="2" scope="col">Dependecia solicitante<BR>DIRECCIÓN ADMINISTRATIVA</th><!-- Representa cada celda (th) -->
+                                <th colspan="2" >Placa del Vehiculo<br>{{reserve.vehicleId}}</th>
+                                <th colspan="2" >Tipo de Vehiculo<br>{{carInfo.brand}} {{carInfo.model}}</th>
+                            </tr>
+                            </thead>
+                            <!-- Cuerpo de la tabla -->
+                            <tbody>
+                            <tr>
+                                <th rowspan= "2" scope="col">Justificáción del viaje<br> {{reserve.justification}} </th>
+                                <th colspan= "2" scope="col">Con Chofer</th>
+                                <th colspan= "2" rowspan ="2">Numero de Licencia<br> {{driverLicense}}</th>
+                            </tr>
+                            <tr>
+                                <th>({{assignedDriverT}}) SI</th>  <!-- Define cada una de las columnas de las filas (td) -->
+                                <th>({{assignedDriverF}}) NO</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Encargado(a) de la gira: {{reserve.responsable}}<br>Número de teléfono: {{reserve.responsableTelephone}}</th>
+                                <th colspan="4">Nombre del conductor<br> {{driverName}}</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Tipo de atividad: {{reserve.activityType}}</th>
+                                <th colspan="4">Centro Funcional {{reserve.functionalCenter}}</th>
+                            </tr>
+                            </tbody>
+                            <!-- Representa la parte final de la tabla -->
+                            <tfoot>
+                            <tr>
+                                <th rowspan="3" scope="col">Lugares a visitar y ruta: (especifique)<br>{{reserve.destinationPlace}}</th>
+                                <th colspan="2" scope="col">Salida de garaje</th>  <!-- Se utiliza para especificar diferentes atributos a las columnas de una tabla -->
+                                <th colspan="2" scope="col">Entrada de garaje</th>
+                            </tr>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                            </tr>
+                            <tr>
+                                <th> {{reservedDepartureDate}}</th>
+                                <th> {{reservedDepartureTime}}</th>
+                                <th> {{reservedArrivalDate}}</th>
+                                <th> {{reservedArrivalTime}}</th>
+                            </tr>
+                            </tfoot>
+                        </table> <!-- Final de tabla -->
+                    </aside>
+                    <!-- Inicia la siguiente tabla -->
+                    <article >
+                        <nav class='margenesTabla'>
+
+                            <table border="2px" class='tab'>
+                                <thead>
+                                <br>
+                                <caption><b>INFORMACIÓN DE LOS USUARIOS(AS) DEL SERVICIO DE TRANSPORTE</b></caption><!-- Representa el titulo de la tabla -->
+                                <tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
+                                    <th scope="col">Nombre de usuario(s) o usuaria(s)</th><!-- Representa cada celda (th) -->
+                                    <th>Dirección donde serán recogidos(as)<br></th>
+                                    <th>Hora Salida<br></th>
+                                </tr>
+                                <tr>
+                                    <th>{{membersListTicket[0].firstName}} {{membersListTicket[0].lastName}}</th>
+                                    <th>{{membersListTicket[0].placeToCollect}}</th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th>{{membersListTicket[1].firstName}} {{membersListTicket[1].lastName}}</th>
+                                    <th>{{membersListTicket[1].placeToCollect}}</th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th>{{membersListTicket[2].firstName}} {{membersListTicket[2].lastName}}</th>
+                                    <th>{{membersListTicket[2].placeToCollect}}</th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th>{{membersListTicket[3].firstName}} {{membersListTicket[3].lastName}}</th>
+                                    <th>{{membersListTicket[3].placeToCollect}}</th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Dirección donde serán dejados(as)<br></th>
+                                    <th>Regreso<br></th>
+                                </tr>
+                                <tr>
+                                    <th><br></th>
+                                    <th><br></th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th><br></th>
+                                    <th><br></th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th><br></th>
+                                    <th><br></th>
+                                    <th><br></th>
+                                </tr>
+                                <tr>
+                                    <th><br></th>
+                                    <th><br></th>
+                                    <th><br></th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </nav>
+                        <nav class='margenesTabla'>
+                            <div class='inpTabla'>
+                                <table class='tab' border="2px">
+                                    <br>
+                                    <caption><b>REPORTE OPERATIVO CONDUCTOR-USUARIO(A)</b></caption><!-- Representa el titulo de la tabla -->
+                                    <tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
+                                        <th colspan="3">Usuario(a)</th><!-- Representa cada celda (th) -->
+                                        <th colspan="3">Firma<br></th>
+                                        <th>Hora<br></th>
+                                        <th>Conductor<br></th>
+                                        <th>Hora<br></th>
+                                        <th colspan="2">Oficina de Seguridad<br></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3"></th>
+                                        <th colspan="3"></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th>Clave</th>
+                                        <th>Hora</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3"></th>
+                                        <th colspan="3"></th>
+                                        <td><br></td>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Kilometraje</th>
+                                        <th colspan="3">Horas de servicio</th>
+                                        <th colspan="5">OBSERVACIONES</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Inicial</th>
+                                        <th>Final</th>
+                                        <th>Diferencia</th>
+                                        <th>Inicial</th>
+                                        <th>Final</th>
+                                        <th>H.Extra</th>
+                                        <th rowspan="8" colspan="5" >
+                                            <h4>PERMISO DE CIRCULACIÓN</h4><h5>QUEDA EXPRESA LA AUTORIZACIÓN DE CIRCULACIÓN DEL
+                                            <br>VEHICULO A QUE SE
+                                            REFIERE ESTA SOLICITUD SEGÚN NORMATIVA<br>INSTITUCIONAL Y DE ACUERDO AL ART________________________________ <br>LEY DE TRANSITO #9078</h5>
+                                            <br><br><h5>ERICK PALACIOS RODRIGUEZ, ENCARGADO<br>AREA DE TRANSPORTES</h5>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                    </tr>
+                                    <tr>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                    </tr>
+                                    <tr>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                    </tr>
+                                    <tr>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                        <th><br></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Total de Kilometros</th>
+                                        <th></th>
+                                        <th colspan="2" rowspan="2">Total de horas extra</th>
+                                        <th rowspan="2"></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Costo</th>
+                                        <th></th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </nav>
+                    </article>
+                    <footer class='margenesTabla'>
+                        <table border="2px" class='tablita'>
+                            <br>
+                            <caption><b>FIRMAS DE AUTORIZACIÓN</b></caption><!-- Representa el titulo de la tabla -->
+                            <tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
+                                <th><br><br><br>Autorizado Jefe Dependecia</th>
+                                <th><br><br><br>V°B° Vicerrectoría</th>
+                                <th><br><br><br>V°B° Rectoría</th>
+                                <th><br><br><br>Encargado(a) de gira</th>
+                                <th><br><br><br>Revisado Unidad de Transporte</th>
+                            </tr>
+                            <tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
+                                <th colspan="5">El conductor de este vehículo, siempre y cuando no sea conductor oficial del ITCR, acepta las responsabilidad
+                                    civiles,<br>penales y administrativas derivadas de accidentes causados por su culpa o dolo en la conducción de vehículos
+                                    propiedad del ITCR</th><!-- Representa cada celda (th) -->
+                            </tr>
+                        </table>
+                    </footer>
+                    <img class="aguaP" src="../assets/images/agua.png">
+                </div>
+                <div id="smallTicket" class="material-icons">description</div>
+            </div>
+        </div>
+    </div>
+    <div id="printBtnB"></div>
+</div>

@@ -1,6 +1,3 @@
-/**
- * Created by Erwin on 25/10/2016.
- */
 angular.module('userModule',["ngRoute","ngResource"])
 .config(['$routeProvider',function($routeProvider)
     {
@@ -30,6 +27,10 @@ angular.module('userModule',["ngRoute","ngResource"])
             .when("/user/fleet/info/:valueID",{
                 templateUrl:'fleet/fleetInfo.html',
                 controller: 'fleetInfoCtrl'
+            })
+            .when("/user/reserves/ticket/:valueID",{
+                templateUrl:'Ticket/ticket.html',
+                controller: 'ticketCtrl'
             })
         
     }
