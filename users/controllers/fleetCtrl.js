@@ -1,7 +1,3 @@
-/**
- * Created by Pavilion on 17/2/2017.
- */
-
 angular.module('userModule')
     .controller('fleetIndexCtrl', function($scope,$location,GetFleetResource) {
         checkUserType($location.absUrl());
@@ -14,6 +10,7 @@ angular.module('userModule')
                     $scope.fleetMain.push($scope.fleets[i])
                 }
             }
+            document.getElementById('infoLoader').style.display = "none";
         });
 
         $scope.fleetMain = [];

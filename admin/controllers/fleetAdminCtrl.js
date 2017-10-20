@@ -1,6 +1,3 @@
-/**
- * Created by ADRIAN on 24/3/2017.
- */
 
 angular.module('adminModule')
     .controller('fleetAdminCtrl', function($scope,$location,FleetCarResources) {
@@ -21,6 +18,7 @@ angular.module('adminModule')
                     $scope.fleetAdmin[i].isLocked = "lock_open";
                 }
             }
+            document.getElementById('infoLoader').style.display = "none";
         });
 
         $scope.carSelectedID = "";

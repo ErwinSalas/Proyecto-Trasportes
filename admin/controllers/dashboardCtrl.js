@@ -1,6 +1,4 @@
-/**
- * Created by Adrian on 28/04/2017.
- */
+
 angular.module('adminModule')
     .controller('dashboardCtrl', function($scope,$route,$location,$templateCache,MessageResource) {
         /* config object */

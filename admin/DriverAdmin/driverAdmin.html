@@ -1,4 +1,4 @@
-<div >
+<div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="driver in driverAdmin">
         <div ng-init="idvalue=driver.identification" ng-click="driverSelected(idvalue)">
         <div class="info-box  hover-expand-effect">
@@ -20,3 +20,11 @@
 <a class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" href="#/admin/driverAdmin/createDriver">
     <i class="material-icons">add</i>
 </a>
+
+<div id="infoLoader" class="loader">
+    <div class="md-preloader pl-size-xl">
+        <svg viewbox="0 0 75 75">
+            <circle cx="37.5" cy="37.5" r="33.5" class="pl-indigo" stroke-width="4" />
+        </svg>
+    </div>
+</div>

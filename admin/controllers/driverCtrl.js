@@ -12,6 +12,7 @@ angular.module('adminModule')
         $scope.getAllDrivers=DriverResources.getDriver(function (res) {
             console.log("res ", res);
             $scope.driverAdmin=res;
+            document.getElementById('infoLoader').style.display = "none";
     });
         $scope.choferSelectedID = "";
         $scope.driverSelected = function (choferId) {

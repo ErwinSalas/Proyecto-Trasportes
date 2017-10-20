@@ -1,6 +1,3 @@
-
-<!-- Basic Card -->
-
 <div class="row clearfix" >
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="fleet in fleetMain">
         <div ng-init="idvalue=fleet.vehicleId" ng-click="fleetSelected(idvalue)">
@@ -22,6 +19,13 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div id="infoLoader" class="loader">
+    <div class="md-preloader pl-size-xl">
+        <svg viewbox="0 0 75 75">
+            <circle cx="37.5" cy="37.5" r="33.5" class="pl-indigo" stroke-width="4" />
+        </svg>
     </div>
 </div>
 

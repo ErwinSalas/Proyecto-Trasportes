@@ -184,3 +184,7 @@ div.inpTabla input{
 		opacity: 0.3;
 	}
 }
+#infoLoader{
+	text-align: center;
+	margin-top: 18%;
+}

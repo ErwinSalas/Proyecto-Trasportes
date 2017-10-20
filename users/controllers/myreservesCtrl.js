@@ -36,6 +36,7 @@ angular.module('userModule')
                 "<i class='material-icons'>query_builder</i></button><button type='button' class='btn bg-red btn-circle-lg waves-effect waves-circle waves-float' " +
                 "style='position: fixed; bottom:2%; right: 2%' ng-click='changeList(2)'><i class='material-icons'>error</i></button>"
             $compile(document.getElementById("actBtns") )($scope);
+            document.getElementById('infoLoader').style.display = "none";
         });
 
         console.log( $scope.reservations);
