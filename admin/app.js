@@ -54,5 +54,6 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 templateUrl:'Ticket/ticket.html',
                 controller: 'ticketCtrl'
             })
+            .otherwise({ redirectTo: '/admin' });
     }
 ]);

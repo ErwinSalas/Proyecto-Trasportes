@@ -32,6 +32,7 @@ angular.module('userModule',["ngRoute","ngResource"])
                 templateUrl:'Ticket/ticket.html',
                 controller: 'ticketCtrl'
             })
+            .otherwise({ redirectTo: '/user' });
         
     }
 ]);

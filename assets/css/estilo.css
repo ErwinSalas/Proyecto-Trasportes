@@ -30,7 +30,17 @@ div.inpTabla input{
 	width: 78px;
 	height: 25px;
 }
+aside.ticket2Size table{
+	width: 800px;
+	height: 100px;
+}
+.ticketAlignText{
+	text-align: center;
+}
 #smallTicket{
+	display: none;
+}
+#smallTicket2{
 	display: none;
 }
 #ticketMain{
@@ -163,6 +173,9 @@ div.inpTabla input{
 	background-size: 1050px 910px;
 }
 .aguaP{
+	-webkit-user-drag: none;
+	-moz-user-select: none;
+	user-select: none;
     width: 1050px;
     height: 910px;
     position: absolute;
@@ -178,6 +191,13 @@ div.inpTabla input{
 		top:11%;
 		right: 2%;
 		opacity: 0.3;
+	}
+	aside.ticket2Size table{
+		width: 970px;
+		height: 100px;
+	}
+	.ticket2Size{
+		margin-top: 280px;
 	}
 }
 #infoLoader{

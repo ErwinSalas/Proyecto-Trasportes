@@ -4,7 +4,10 @@ angular.module('userModule')
         /* config object */
 
         $scope.valueID = $routeParams.valueID;
+        $scope.todayDate = new Date();
+        $scope.todayDate = $scope.todayDate.getDate() + "/" + ($scope.todayDate.getMonth()+1) + "/" + $scope.todayDate.getFullYear();
         $scope.membersListTicket = [];
+        $scope.membersListTicket2 = [];
         $scope.reserveDate = "";
         $scope.assignedDriverT = " ";
         $scope.assignedDriverF = " ";
@@ -50,6 +53,15 @@ angular.module('userModule')
             if($scope.reserve.activityType == "Generic"){
                 $scope.reserve.activityType = "Generica";
             }
+            if($scope.reserve.members.length > 4){
+                for (i = 4; i < $scope.membersListTicket.length; i++) {
+                    $scope.membersListTicket[i].departureTime = $scope.setFormatTimeMembers($scope.membersListTicket[i].departureTime)
+                    $scope.membersListTicket[i].returnTime = $scope.setFormatTimeMembers($scope.membersListTicket[i].returnTime)
+                    $scope.membersListTicket2.push($scope.membersListTicket[i])
+                }
+                document.getElementById("ticketBtnTwo").innerHTML = "<button type='button\' class='btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float' data-toggle='modal' data-target='#defaultModal' style='position: fixed; bottom:11%; right: 2%'><i class='material-icons'>library_books</i></button>";
+                $compile(document.getElementById("ticketBtnTwo") )($scope);
+            }
             $scope.reserveDate =  $scope.setFormatDate($scope.reserve.requestDateTime);
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedDepartureTime = $scope.setFormatTime($scope.reserve.departure);
@@ -79,6 +91,13 @@ angular.module('userModule')
             return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
 
         };
+        $scope.setFormatTimeMembers = function (date) {
+            var timeString = date;
+            var H = +timeString.substr(0, 2);
+            var h = H % 12 || 12;
+            var ampm = (H < 12 || H === 24) ? " am" : " pm";
+            return timeString = h + timeString.substr(2, 3) + ampm;
+        };
 
         $scope.goBackTicket = function() {
             window.location.href = '#/user/reserves/info/'+reserveSelectedID;
@@ -87,6 +106,10 @@ angular.module('userModule')
         $scope.printElem = function() {
 
             var contents = document.getElementById('ticketBody').innerHTML;
+            var contents2;
+            if ($scope.membersListTicket2.length > 0){
+                contents2 = document.getElementById('ticketBody2').innerHTML;
+            }
             var frame1 = document.createElement('iframe');
             frame1.name = "frame1";
             frame1.style.position = "absolute";
@@ -108,6 +131,9 @@ angular.module('userModule')
                 ' <link rel="stylesheet" href="../assets/css/mediaQueries.css"');
             frameDoc.document.write('</head><body>');
             frameDoc.document.write(contents);
+            if ($scope.membersListTicket2.length > 0){
+                frameDoc.document.write(contents2);
+            }
             frameDoc.document.write('</body></html>');
             frameDoc.document.close();
             setTimeout(function () {

@@ -15,7 +15,7 @@
 								<th rowspan="4"style="text-align: right"><div style="float: left; padding-left: 1px"><img src="../assets/images/TEC-logo-blanco.png"></div>DEPARTAMENTO DE <br> SERVICIOS GENERALES <br> UNIDAD DE TRANSPORTE <br>SOLICITUD DE SERVICIO DE TRANSPORTE (SST)</th>
 								<th>(x) Original</th>
 								<th>Chofer</th>
-								<th rowspan="4">Número de Solicitud <br> {{reserve.reservationNumber}}</th>
+								<th rowspan="4" class="ticketAlignText">Número de Solicitud <br> {{reserve.reservationNumber}}</th>
 							</tr>
 							<tr>
 								<th>(x) Copia N°1</th>
@@ -278,94 +278,81 @@
 			</div>
 		</div>
 	</div>
+	<div id="ticketBtnTwo"></div>
 	<div id="printBtnB"></div>
 </div>
 
-<div class="card">
-	<div class=" header">
-		<h2 class="tituloStyle">Boleta 2</h2>
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<form class="modal-content"  >
+			<div class="modal-header bagTecBlue">
+				<h4 class=" whiteText" id="defaultModalLabel">Boleta adicional</h4>
+			</div>
+			<div class="modal-body" >
+				<div id="ticketBody2" class="centraTabla">
+					<aside class='ticket2Size tab'>
+						<TABLE id= 'tablita' border="2px">
+							<tr>
+								<th colspan="5" rowspan="4" style="text-align: right"><div style="float: left; padding-left: 1px; margin-top: 10px"><img src="../assets/images/TEC-logo-blanco.png"></div>DEPARTAMENTO DE <br> SERVICIOS GENERALES <br> UNIDAD DE TRANSPORTE <br><BR>MODIFICACION SOLICITUD DE<BR> SERVICIO DE TRANSPORTE (MSST)</th>
+								<th>( ) Original</th>
+								<th rowspan="4" class="ticketAlignText">Número de Solicitud<br>{{reserve.reservationNumber}} </th>
+							</tr>
+							<tr>
+								<th>( ) Copia N°1</th>
+							</tr>
+							<tr>
+								<th>( ) Copia N°2</th>
+							</tr>
+							<tr>
+								<th>Fecha confección<br>{{todayDate}} </th>
+							</tr>
+							<tr>
+								<th colspan="5">Dependencia solicitante:________________________________________________</th>
+								<th>Fecha salida<br>{{reservedDepartureDate}}</th><br>
+								<th>Fecha regreso<br>{{reservedArrivalDate}}</th>
+							</tr>
+							<tr>
+								<th colspan="3" rowspan="2" class="ticketAlignText">Nombre</th>
+								<th colspan="2" class="ticketAlignText">Dirección</th>
+								<th colspan="2" class="ticketAlignText">Hora</th>
+							</tr>
+							<tr>
+								<th>Donde serán recogidos</th>
+								<th>Donde serán dejados</th>
+								<th>Salida</th>
+								<th>Regreso</th>
+							</tr>
+							<tr ng-repeat="member in membersListTicket2">
+								<th colspan="3">{{member.firstName}} {{member.lastName}}</th>
+								<th>{{member.placeToCollect}}</th>
+								<th>{{member.placeToLeave}}</th>
+								<th>{{member.departureTime}}</th>
+								<th>{{member.returnTime}}</th>
+							</tr>
+							<tr>
+								<th colspan="4"></th>
+								<th colspan="3">Revisado Unidad de Transporte</th>
+							</tr>
+							<tr>
+								<th></th>
+							</tr>
+							<tr >
+								<th style="border: hidden" ALIGN=left colspan="8">Original: Chofer</th>
+							</tr>
+							<tr >
+								<th style="border: hidden" ALIGN=left colspan="8">Copia N° 1: Unidad de Transporte</th>
+							</tr >
+							<tr>
+								<th style="border: hidden" ALIGN=left colspan="8">Copia N° 2: Dependecia solicitante</th>
+							</tr>
+						</table>
+					</aside>
+				</div>
+				<div id="smallTicket2" class="material-icons">library_books</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atras</button>
+			</div>
+		</form>
 	</div>
-	<div class="body">
-
-		<div class="centraTabla">
-			<aside class='margenesTablas tab'>
-				<TABLE id= 'tablita' border="2px">
-					<tr>
-						<th colspan="5" rowspan="4"style="text-align: right"><div style="float: left; padding-left: 1px"><img src="../assets/images/TEC-logo-blanco.png"></div>DEPARTAMENTO DE <br> SERVICIOS GENERALES <br> UNIDAD DE TRANSPORTE <br><BR>MODIFICACION SOLICITUD DE<BR> SERVICIO DE TRANSPORTE (MSST)</th>
-						<th>( ) Original</th>
-
-						<th rowspan="4">Número de Solicitud<br> </th>
-					</tr>
-					<tr>
-						<th>( ) Copia N°1</th>
-
-
-					</tr>
-					<tr>
-						<th>( ) Copia N°2</th>
-
-
-					</tr>
-					<tr>
-						<th>Fecha confección<br> </th>
-
-					</tr>
-					<tr>
-						<th colspan="5">Dependencia solicitante:________________________________________________</th>
-						<th>Fecha salida<br>__________________</th><br>
-						<th>Fecha regreso<br>__________________</th>
-					</tr>
-					<tr>
-						<th colspan="3" rowspan="2">           Nombre          </th>
-						<th colspan="2">Dirección</th>
-						<th colspan="2">Hora</th>
-					</tr>
-					<tr>
-						<th>Donde serán recogidos</th>
-						<th>Donde serán dejados</th>
-						<th>Salida</th>
-						<th>Regreso</th>
-					</tr>
-					<tr>
-						<th colspan="3"><br></th>
-						<th><br></th>
-						<th><br></th>
-						<th><br></th>
-						<th><br></th>
-					</tr>
-					<tr>
-						<th colspan="3"><br></th>
-						<th><br></th>
-						<th><br></th>
-						<th><br></th>
-						<th><br></th>
-					</tr>
-
-					<tr>
-						<th colspan="4"></th>
-						<th colspan="3">Revisado Unidad de Transporte</th>
-					</tr>
-					<tr>
-						<th></th>
-					</tr>
-					<tr >
-						<th style="border: hidden" ALIGN=left colspan="8">Original: Chofer</th>
-					</tr>
-					<tr >
-						<th style="border: hidden" ALIGN=left colspan="8">Copia N° 1: Unidad de Transporte</th>
-					</tr >
-					<tr>
-						<th style="border: hidden" ALIGN=left colspan="8">Copia N° 2: Dependecia solicitante</th>
-					</tr>
-
-				</table>
-
-
-
-			</aside>
-
-		</div>
-
-	</div>
-
 </div>
