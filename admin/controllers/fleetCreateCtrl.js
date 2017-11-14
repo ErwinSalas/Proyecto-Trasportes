@@ -13,8 +13,9 @@ angular.module('adminModule')
             var isPost = FleetCarResources.setNewCar($scope.newCar, function (res) {
                 isPost=res;
             });
-            responseData=MediaResource.setImg($scope.img,$scope.newCar.vehicleId,2);
 
+            responseData=MediaResource.setImg($scope.img,$scope.newCar.vehicleId,2);
+            
             swal({
                 title: "Vehiculo agregado",
                 type: "success",

@@ -20,7 +20,7 @@ angular.module('adminModule')
             }
             document.getElementById('infoLoader').style.display = "none";
         });
-
+        
         $scope.carSelectedID = "";
         $scope.selectedId = function (carId) {
             carSelectedID = carId;

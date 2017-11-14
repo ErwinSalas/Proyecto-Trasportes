@@ -56,6 +56,15 @@ angular.module('adminModule')
 
         $scope.postMessage=function() {
             console.log("envio",$scope.message);
+            /*-------------------VALIDACIONES---------------------*/
+            //Validacion de titulo
+            if($scope.message.title == null){
+                alert("Error, campo titulo");
+            }
+            //Validacion de mensaje
+            if($scope.message.body == null){
+                alert("Error, campo mensaje");
+            }
             MessageResource.setMessage($scope.message);
             swal({
                 title: "Enviado",

@@ -76,7 +76,58 @@ angular.module('userModule')
         $scope.postReservation=function() {
             var user = JSON.parse( localStorage.getItem('session.owner') );
             $scope.reservation.requestingUser= user.username;
-            $scope.reservation.members = $scope.members;
+            /*No finciona hasta abajo */
+            $scope.reservation.members = $scope.members;//REVISAR
+            /*-------------------VALIDACIONES---------------------*/
+            //Validacion de selección de auto
+            if($scope.reservation.vehicleId == null){
+                alert("Error, debe seleccionar auto");
+            }
+            //Validacion de cantidad de pasajeros
+            if($scope.reservation.members == null){
+                alert("Error, debe de haber minimo 1 pasajero");
+            }
+            //Validacion de la selección de choferes
+            if($scope.reservation.requestDriver == null){
+                alert("Error, campo seleccion de chofer o no");
+            }
+            //Validacion de del nombre del encargado
+            if($scope.reservation.responsable == null){
+                alert("Error, campo en encargado");
+            }
+            //Validacion del telefono
+            if($scope.reservation.responsableTelephone == null){
+                alert("Error, campo en encargado telefono");
+            }
+            //Validacion de la selección de la actividad
+            if($scope.reservation.activityType = null){
+                alert("Error, campo seleccion de actividad");
+            }
+            //Validacion de centro funcional
+            if($scope.reservation.functionalCenter == null){
+                alert("Error, campo centro funcional");
+            }
+            //Validacion de otras señas
+            if($scope.additionalInfo == null){
+                alert("Error, campo centro otras señas");
+            }
+            //Validacion de la justificación
+            if($scope.reservation.justification == null){
+                alert("Error, campo centro justificación");
+            }
+            //Validacion de provincia
+            if($scope.provinceSelected.PID == null){
+                alert("Error, campo provincia");
+            }
+            //Validacion de canton
+            if($scope.citySelected.CID == null){
+                alert("Error, campo canton");
+            }
+            //Validacion de distrito
+            if($scope.districtSelected == null){
+                alert("Error, campo distrito");
+            }
+            /*hasta aqui*/
             $scope.setPlaceNames($scope.provinceSelected,$scope.citySelected,$scope.districtSelected);
             $scope.reservation.destinationPlace = $scope.additionalInfo + ", " + $scope.distName + ", " + $scope.cityName + ", " + $scope.proName;
             console.log($scope.reservation.destinationPlace);
@@ -96,7 +147,6 @@ angular.module('userModule')
 
         };
         $scope.members = [];
-
         $scope.agregarPasajero = function(){
             var identificationE= document.getElementById("identificationE").value;
             var firstNameE= document.getElementById("firstNameE").value;
@@ -116,7 +166,49 @@ angular.module('userModule')
             $scope.members.push($scope.usuariosD);
             console.log($scope.usuariosD);
             console.log($scope.members);
-
+            /*-------------------VALIDACIONES---------------------*/
+            //Validacion de identificación
+            if($scope.usuariosD.identification == null){
+                alert("Error, campo identificacion");
+            }
+            //Validacion de nombre completo
+            if($scope.usuariosD.firstName == null){
+                alert("Error, campo nombre completo");
+            }
+            //Validacion de apellidos
+            if($scope.usuariosD.lastName == null){
+                alert("Error, campo apellidos");
+            }
+            //Validacion de hora salida reserva
+            if($scope.usuariosD.placeToCollect == null){
+                alert("Error, campo salida reserva");
+            }
+            //Validacion de hora llegada reserva
+            if($scope.usuariosD.placeToLeave == null){
+                alert("Error, campo llegada reserva");
+            }
+            //Validacion de hora salida
+            if($scope.usuariosD.departureTime == null){
+                alert("Error, campo hora salida");
+            }
+            //Validacion de hora llegada
+            if($scope.usuariosD.returnTime == null){
+                alert("Error, campo hora llegada");
+            }
+            // validaciones de la hora del botón
+            if($scope.usuariosD.departureTime >= $scope.usuariosD.returnTime){
+                alert("Error, campo hora salida no puede ser mayor al de llegada");
+            }
+            // validaciones de la hora salida-llegada y de la hora salida-llegada de reserva
+            //Validacion de hora de salida con hora de salida reserva
+            if($scope.usuariosD.departureTime > $scope.usuariosD.placeToCollect){
+                alert("Error, campo hora salida no puede ser menor al de salida reserva");
+            }
+            //Validacion de hora llegada con hora llegada reserva
+            if($scope.usuariosD.returnTime > $scope.usuariosD.placeToLeave){
+                alert("Error, campo hora de llegada no puede ser menor a la hora de llegada reserva");
+            }
+            
             document.getElementById("identificationE").value = "";
             document.getElementById("firstNameE").value = "";
             document.getElementById("lastNameE").value = "";
