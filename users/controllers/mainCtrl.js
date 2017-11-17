@@ -1,6 +1,3 @@
-/**
- * Created by Erwin on 26/10/2016.
- */
 
 angular.module('userModule')
     .controller('mainCtrl', function($scope,$location) {
@@ -14,7 +11,7 @@ angular.module('userModule')
         $scope.showAbout=function() {
             swal({
                 title: "Transportec",
-                text: "Luis Alejandro Rodríguez\nAdrian Hernandez\nMiguel Rivas\nErwin Salas\n \nVersion: 2.1.0",
+                text: "DESARROLLADORES\n \nLuis Alejandro Rodríguez\nAdrian Hernandez\nMiguel Rivas\nErwin Salas\n \nComunidad de Aplicaciones Móviles",
                 imageUrl: "../assets/images/comunidad.png"
             });
         };

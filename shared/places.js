@@ -891,7 +891,7 @@ const distritosCR = [
     {
         "ID": "11503",
         "CID": "115",
-        "Nombre": "Mercedes"
+        "Name": "Mercedes"
     },
     {
         "ID": "11504",

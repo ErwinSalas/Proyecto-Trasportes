@@ -50,9 +50,8 @@
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <label >Asignarme</label>
+                                <label >Chofer</label>
                                 <select class="form-control show-tick" ng-model="reservation.requestDriver">
-                                    <option value="">Chofer</option>
                                     <option value="true">SI</option>
                                     <option value="false">NO</option>
                                 </select>
@@ -142,20 +141,20 @@
                         <label for="place">Identificación</label>
                         <div class="form-group">
                             <div class="form-line">
-                                <input ng-model="identificationE" type="text" id="identificationE" class="form-control" placeholder="Identificación"/>
+                                <input ng-model="usuariosD.identification" type="text" id="identificationE" class="form-control" placeholder="Identificación"/>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label for="place">Nombre Completo</label>
                                 <div class="form-line">
-                                    <input ng-model="firstNameE" type="text" id="firstNameE" class="form-control" placeholder="Escriba el Primer Nombre"/>
+                                    <input ng-model="usuariosD.firstName" type="text" id="firstNameE" class="form-control" placeholder="Escriba el Primer Nombre"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Apellidos</label>
                                 <div class="form-line">
-                                    <input ng-model="lastNameE" type="text" id="lastNameE" class="form-control" placeholder="Escriba los Apellidos"/>
+                                    <input ng-model="usuariosD.lastName" type="text" id="lastNameE" class="form-control" placeholder="Escriba los Apellidos"/>
                                 </div>
                             </div>
                         </div>
@@ -163,24 +162,24 @@
                             <div class="col-sm-6">
                                 <label for="place">Punto de encuentro</label>
                                 <div class="form-line">
-                                    <input ng-model="placeToCollectE" type="text" id="placeToCollectE" class="form-control" placeholder="Escriba el Punto de encuentro"/>
+                                    <input ng-model="usuariosD.placeToCollect" type="text" id="placeToCollectE" class="form-control" placeholder="Escriba el Punto de encuentro"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="place">Lugar donde sera dejado</label>
                                 <div class="form-line">
-                                    <input ng-model="placeToLeaveE" type="text" id="placeToLeaveE" class="form-control" placeholder="Escriba el Lugar donde vive"/>
+                                    <input ng-model="usuariosD.placeToLeave" type="text" id="placeToLeaveE" class="form-control" placeholder="Escriba el Lugar donde vive"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Hora de Salida</label>
-                                <input id="departureHourE" ng-model="departureTimeE" type="time"  class="form-control" placeholder=""/>
+                                <input id="departureHourE" ng-model="departureTimePassager" type="time"  class="form-control" placeholder=""/>
                             </div>
                             <div class="col-sm-6">
                                 <label >Hora de Llegada</label>
-                                <input id="arrivalHourE" ng-model="returnTimeE" type="time"  class="form-control" placeholder=""/>
+                                <input id="arrivalHourE" ng-model="returnTimePassager" type="time"  class="form-control" placeholder=""/>
                             </div>
                         </div>
                         <div class="row clearfix">
