@@ -1,6 +1,6 @@
 
 angular.module('adminModule')
-    .controller('dashboardCtrl', function($scope,$route,$location,$templateCache,MessageResource) {
+    .controller('dashboardCtrl', function($scope,$location,MessageResource) {
         /* config object */
         checkUserType($location.absUrl());
         var user = JSON.parse( localStorage.getItem('session.owner') );
@@ -8,13 +8,16 @@ angular.module('adminModule')
             headquarter :user.headquarter,
             owner : user.username
         };
-        $scope.getMessages=MessageResource.getMessages(function (res) {
-            console.log("res ", res);
-            $scope.messages=res;
-            for (i = 0; i < $scope.messages.length; i++) {
-                $scope.messages[i].publish = $scope.setFormatDateTime($scope.messages[i].publish);
-            }
-        });
+        $scope.getMessages=function () {
+            MessageResource.getMessages(function (res) {
+                console.log("res ", res);
+                $scope.messages=res;
+                for (i = 0; i < $scope.messages.length; i++) {
+                    $scope.messages[i].publish = $scope.setFormatDateTime($scope.messages[i].publish);
+                }
+            });
+        };
+        $scope.getMessages();
 
         $scope.setFormatDateTime = function (date) {
             reserveDate = new Date(date);
@@ -54,22 +57,52 @@ angular.module('adminModule')
             }
         }
 
-        $scope.postMessage=function() {
-            console.log("envio",$scope.message);
-            MessageResource.setMessage($scope.message);
-            swal({
-                title: "Enviado",
-                text: "El mensaje ha sido enviado exitosamente",
-                type: "success",
-                confirmButtonColor: "#140e39",
-                timer: 1000,
-                showConfirmButton: false
-            });
-            window.location.href = '#/admin';
-            var currentPageTemplate = $route.current.templateUrl;
-            $templateCache.remove(currentPageTemplate);
-            $route.reload();
+        $scope.validateMessage=function () {
+            if($scope.message.title == null || $scope.message.title == ""){
+                //alert("Error, campo titulo");
+                return false;
+            }
+            if($scope.message.body == null || $scope.message.body == ""){
+                //alert("Error, campo mensaje");
+                return false;
+            }
+            return true;
         };
+
+        $scope.resetFields=function () {
+            $scope.message.title = "";
+            $scope.message.body = "";
+            document.getElementById("titleMessage").value = "";
+            document.getElementById("bodyMessage").value = "";
+        };
+
+        $scope.postMessage=function() {
+            if($scope.validateMessage()){
+                console.log("envio",$scope.message);
+                MessageResource.setMessage($scope.message);
+                swal({
+                    title: "Enviado",
+                    text: "El mensaje ha sido enviado exitosamente",
+                    type: "success",
+                    confirmButtonColor: "#140e39",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                $scope.resetFields();
+                setTimeout(function(){ $scope.getMessages(); }, 1000);
+            }else{
+                $scope.resetFields();
+                swal({
+                    title: "Campos vacios!",
+                    text: "El menseja no puede ir en blanco",
+                    timer:2000,
+                    type: "error",
+                    showConfirmButton: false
+                });
+            }
+
+        };
+
         $scope.deleteMessages=function(id){
             swal({
                 title: "¿Esta seguro que desea eliminar este mensaje?",
@@ -90,10 +123,7 @@ angular.module('adminModule')
                     timer: 1000,
                     showConfirmButton: false
                 });
-                window.location.href = '#/admin';
-                var currentPageTemplate = $route.current.templateUrl;
-                $templateCache.remove(currentPageTemplate);
-                $route.reload();
+                setTimeout(function(){ $scope.getMessages(); }, 1000);
             });
         };
     });
