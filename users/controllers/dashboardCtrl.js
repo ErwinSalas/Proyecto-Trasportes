@@ -1,6 +1,3 @@
-/**
- * Created by Erwin on 25/10/2016.
- */
 
 angular.module('userModule')
     .controller('dashboardCtrl', function($scope,$location,MessageResources) {

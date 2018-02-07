@@ -20,7 +20,6 @@
     <!-- Animation Css -->
     <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="../bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />
-
     <!-- Preloader Css -->
     <link href="../plugins/material-design-preloader/md-preloader.css" rel="stylesheet" />
     <!-- Custom Css -->
@@ -93,25 +92,25 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header ">MENU PRINCIPAL </li>
-                    <li class="tecTitles">
+                    <li id="homeTab" class="active">
                         <a href="#/user" onclick="closeSideBar()">
                             <i class="material-icons">home</i>
                             <span>Inicio</span>
                         </a>
                     </li>
-                    <li class="tecTitles">
+                    <li id="reservationTab">
                         <a href="#/user/reserve" onclick="closeSideBar()">
                             <i class="material-icons">assignment</i>
                             <span>Reservar</span>
                         </a>
                     </li>
-                    <li class="tecTitles">
+                    <li id="fleetTab">
                         <a href="#/user/fleet" onclick="closeSideBar()">
                             <i class="material-icons">directions_car</i>
                             <span>Flotilla</span>
                         </a>
                     </li>
-                    <li class="tecTitles">
+                    <li id="reservesTab">
                         <a href="#/user/reserves" onclick="closeSideBar()">
                             <i class="material-icons">description</i>
                             <span>Mis reservas</span>
@@ -148,8 +147,6 @@
 
     <!-- Bootstrap Core Js -->
     <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- Funciones y variables compartidas entre madulos  -->
-    <script src="../shared/common.js"></script>
     <!-- app Js -->
     <script src="app.js"></script>
     <!-- services -->

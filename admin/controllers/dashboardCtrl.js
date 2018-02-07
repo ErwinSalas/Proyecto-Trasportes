@@ -88,10 +88,8 @@ angular.module('adminModule')
                     timer: 1000,
                     showConfirmButton: false
                 });
-                $scope.resetFields();
                 setTimeout(function(){ $scope.getMessages(); }, 1000);
             }else{
-                $scope.resetFields();
                 swal({
                     title: "Campos vacios!",
                     text: "El menseja no puede ir en blanco",
