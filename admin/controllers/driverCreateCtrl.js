@@ -10,23 +10,48 @@ angular.module('adminModule')
             isActive:true,
             headquarter:user.headquarter
         };
+        $scope.validateCreateDriver=function () {
+            /*-------------------VALIDACIONES---------------------*/
+            //Validacion de identificación de chofer
+            if($scope.newDriver.identification == null || $scope.newDriver.identification == ""){
+                //alert("Error, debe seleccionar digitar identificación");
+                return false;
+            }
+            //Validacion de nombre de chofer
+            if($scope.newDriver.firstName == null || $scope.newDriver.firstName == ""){
+                //alert("Error, debe seleccionar digitar nombre");
+                return false;
+            }
+            //Validacion de apellido de chofer
+            if($scope.newDriver.lastName == null || $scope.newDriver.lastName == ""){
+                //alert("Error, debe seleccionar digitar los apellidos");
+                return false;
+            }
+        };
         $scope.saveDriver=function() {
-            console.log("Envio ", $scope.newDriver);
-            DriverResources.setNewDriver($scope.newDriver);
-
-            responseData=MediaResource.setImg($scope.img, $scope.newDriver.identification,1);
-
-            swal({
-                title: "Chofer agregado",
-                type: "success",
-                confirmButtonColor: "#140e39",
-                timer: 2000,
-                showConfirmButton: false
-            });
-            $timeout( function(){
-                window.location.href = '#/admin/driverAdmin';
-            }, 2000 );
-
+            if(validateCreateDriver()){
+                console.log("Envio ", $scope.newDriver);
+                DriverResources.setNewDriver($scope.newDriver);
+                responseData=MediaResource.setImg($scope.img, $scope.newDriver.identification,1);
+                swal({
+                    title: "Chofer agregado",
+                    type: "success",
+                    confirmButtonColor: "#140e39",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                $timeout( function(){
+                    window.location.href = '#/admin/driverAdmin';
+                }, 2000 );
+            }else {
+                swal({
+                    title: "Campos vacios!",
+                    text: "El espacio no puede ir en blanco",
+                    timer: 2000,
+                    type: "error",
+                    showConfirmButton: false
+                });
+            }
         };
 
         function urltoFile(url, filename, mimeType){
