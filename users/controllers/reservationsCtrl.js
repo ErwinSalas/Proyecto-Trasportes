@@ -19,6 +19,8 @@ angular.module('userModule')
         $scope.distName = "";
         $scope.carInfoCheck = false;
         $scope.carInfoSize;
+        $scope.errorMessages = "";
+        $scope.errorMessagesPassager = "";
 
         $scope.usuariosD={};
         $scope.members = [];
@@ -87,45 +89,59 @@ angular.module('userModule')
 
         $scope.validateReservation=function () {
             if($scope.reservation.arrival == null || $scope.reservation.departure == null){
+                $scope.errorMessages = "Seleccione una fecha para la reserva";
                 return false;// fechas no proporcionadas
             }
             if($scope.reservation.vehicleId == null || $scope.reservation.vehicleId == ""){
+                $scope.errorMessages = "Seleccione un vehiculo";
                 return false;// Vehiculo no selecionado
             }
             if($scope.reservation.requestDriver == null || $scope.reservation.requestDriver == ""){
+                $scope.errorMessages = "Seleccione si desea chofer";
                 return false;// Chofer no selecionado
             }
             if($scope.reservation.responsable == null || $scope.reservation.responsable == ""){
+                $scope.errorMessages = "Digite el nombre del responsable de la reserva";
                 return false;// Encargado no digitado
             }
             if($scope.reservation.responsableTelephone == null || $scope.reservation.responsableTelephone == ""){
+                $scope.errorMessages = "Digite el telefono del responsable de la reserva";
                 return false;// telefono no digitado
             }
             if($scope.reservation.activityType == null || $scope.reservation.activityType == ""){
+                $scope.errorMessages = "Seleccione el tipo de actividad";
                 return false;// Actividad no selecionado
             }
             if($scope.reservation.functionalCenter == null  || $scope.reservation.functionalCenter == ""){
+                $scope.errorMessages = "Digite el centro funcional";
                 return false;// centro no digitado
             }
             if($scope.provinceSelected == null || $scope.provinceSelected == ""){
+                $scope.errorMessages = "Seleccione la provincia de destino";
                 return false;// Provincia no selecionado
             }
             if($scope.citySelected == null || $scope.citySelected == ""){
+                $scope.errorMessages = "Seleccione el cantón de destino";
                 return false;// canton no selecionado
             }
             if($scope.districtSelected == null || $scope.districtSelected == ""){
+                $scope.errorMessages = "Seleccione el distrito de destino";
                 return false;// distrito no selecionado
             }
             if($scope.additionalInfo == null  || $scope.additionalInfo == ""){
+                $scope.errorMessages = "Digite otras señas del destino";
                 return false;// señas no digitado
             }
             if($scope.reservation.justification == null  || $scope.reservation.justification == ""){
+                $scope.errorMessages = "Digite una justificacion para la reserva";
                 return false;// justificacion no digitado
             }
             if($scope.members.length == 0){
+                $scope.errorMessages = "Digite la información de los pasajeros";
                 return false;// sin miembros
             }
             if(($scope.reservation.requestDriver == "false" && $scope.members.length > $scope.carInfoSize) || ($scope.reservation.requestDriver == "true" && $scope.members.length >= $scope.carInfoSize)){
+                $scope.errorMessages = "El vehiculo seleccionado no tiene capacidad para los pasajeros digitados";
                 return false;// no capacidad en el carro
             }
             return true;
@@ -134,33 +150,43 @@ angular.module('userModule')
 
         $scope.validateAddMember=function () {
             if($scope.usuariosD.identification == null  || $scope.usuariosD.identification == ""){
+                $scope.errorMessagesPassager = "Digite la identificacion del pasajero";
                 return false;// identification no digitado
             }
             if($scope.usuariosD.firstName == null  || $scope.usuariosD.firstName == ""){
+                $scope.errorMessagesPassager = "Digite el nombre completo del pasajero";
                 return false;// nombre no digitado
             }
             if($scope.usuariosD.lastName == null  || $scope.usuariosD.lastName == ""){
+                $scope.errorMessagesPassager = "Digite los apellidos del pasajero";
                 return false;// apellido no digitado
             }
             if($scope.usuariosD.placeToCollect == null  || $scope.usuariosD.placeToCollect == ""){
+                $scope.errorMessagesPassager = "Digite el punto de encuentro";
                 return false;// lugar no digitado
             }
             if($scope.usuariosD.placeToLeave == null  || $scope.usuariosD.placeToLeave == ""){
+                $scope.errorMessagesPassager = "Digite el lugar donde sera dejado";
                 return false;// lugar no digitado
             }
             if($scope.reservation.arrival == null || $scope.reservation.departure == null){
+                $scope.errorMessagesPassager = "Seleccione las horas de salida y llegada";
                 return false;// fechas no proporcionadas
             }
             if($scope.departureTimePassager == null  || $scope.departureTimePassager == ""){
+                $scope.errorMessagesPassager = "Seleccione hora de salida del pasajero";
                 return false;// hora no digitado
             }
             if($scope.departureTimePassager > $scope.returnTimePassager || $scope.departureTimePassager < $scope.departureHour || $scope.departureTimePassager > $scope.arrivalHour){
+                $scope.errorMessagesPassager = "Horas incorrectas";
                 return false;// hora no digitado
             }
             if($scope.returnTimePassager == null  || $scope.returnTimePassager == ""){
+                $scope.errorMessagesPassager = "Seleccione hora de llegada del pasajero";
                 return false;// hora no digitado
             }
             if($scope.returnTimePassager < $scope.departureTimePassager || $scope.returnTimePassager < $scope.departureHour || $scope.returnTimePassager > $scope.arrivalHour){
+                $scope.errorMessagesPassager = "Horas incorrectas";
                 return false;// hora no digitado
             }
             return true;
@@ -189,7 +215,14 @@ angular.module('userModule')
                 }, 1000 );*/
                 alert("Exito");
             }else{
-                alert("Error");
+                //alert("Error");
+                swal({
+                    title: "Campos vacios!",
+                    text: $scope.errorMessages,
+                    timer:2000,
+                    type: "error",
+                    showConfirmButton: false
+                });
             }
 
 
@@ -223,7 +256,14 @@ angular.module('userModule')
                     showConfirmButton: false
                 });
             }else{
-                alert("Error2");
+                //alert("Error2");
+                swal({
+                    title: "Campos vacios!",
+                    text: $scope.errorMessagesPassager,
+                    timer:2000,
+                    type: "error",
+                    showConfirmButton: false
+                });
             }
 
         };

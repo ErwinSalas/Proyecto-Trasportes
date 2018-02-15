@@ -61,8 +61,8 @@ const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
  * Dirección raíz del API.
  * @type {string}
  */
-//const API_ROOT = "http://172.19.32.10:1901"
-const API_ROOT = "http://transportec-api.azurewebsites.net";
+const API_ROOT = "http://172.19.32.10:1901"
+//const API_ROOT = "http://transportec-api.azurewebsites.net";
 const IMG_ROOT_F = "http://transportec.s3.amazonaws.com/resources/fleet/";
 const IMG_ROOT_D = "http://transportec.s3.amazonaws.com/resources/driver/";
 
