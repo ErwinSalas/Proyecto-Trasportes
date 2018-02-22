@@ -62,16 +62,21 @@ angular.module('userModule')
         };
 
         $scope.carInfoDetails = function () {
-            if($scope.reservation.vehicleId != null){
+            if($scope.reservation.vehicleId != null && $scope.reservation.vehicleId != ""){
                 var PictureCanvas = document.getElementById('img');
                 PictureCanvas.src = IMG_ROOT_F+$scope.reservation.vehicleId+".jpg";
-                console.log($scope.reservation.vehicleId);
-                $scope.getCarInfo = FleetCarResource.getCarInfo($scope.reservation.vehicleId, function (res) {
-                    $scope.carInfo=res;
-                    $scope.carInfoSize = $scope.carInfo.capacity;
-                    console.log("La resInfo ", $scope.carInfo);
-                });
+                $scope.getCarDetailsInfo();
+
             }
+        };
+
+        $scope.getCarDetailsInfo = function () {
+            console.log($scope.reservation.vehicleId);
+            $scope.getCarInfo = FleetCarResource.getCarInfo($scope.reservation.vehicleId, function (res) {
+                $scope.carInfo=res;
+                $scope.carInfoSize = $scope.carInfo.capacity;
+                console.log("La resInfo ", $scope.carInfo);
+            });
         };
 
         $scope.enableCarInfoBtn = function () {
@@ -88,6 +93,7 @@ angular.module('userModule')
         };
 
         $scope.validateReservation=function () {
+            $scope.getCarDetailsInfo();
             if($scope.reservation.arrival == null || $scope.reservation.departure == null){
                 $scope.errorMessages = "Seleccione una fecha para la reserva";
                 return false;// fechas no proporcionadas
@@ -177,7 +183,7 @@ angular.module('userModule')
                 $scope.errorMessagesPassager = "Seleccione hora de salida del pasajero";
                 return false;// hora no digitado
             }
-            if($scope.departureTimePassager > $scope.returnTimePassager || $scope.departureTimePassager < $scope.departureHour || $scope.departureTimePassager > $scope.arrivalHour){
+            if($scope.departureTimePassager < $scope.departureHour){
                 $scope.errorMessagesPassager = "Horas incorrectas";
                 return false;// hora no digitado
             }
@@ -185,7 +191,7 @@ angular.module('userModule')
                 $scope.errorMessagesPassager = "Seleccione hora de llegada del pasajero";
                 return false;// hora no digitado
             }
-            if($scope.returnTimePassager < $scope.departureTimePassager || $scope.returnTimePassager < $scope.departureHour || $scope.returnTimePassager > $scope.arrivalHour){
+            if($scope.returnTimePassager > $scope.arrivalHour){
                 $scope.errorMessagesPassager = "Horas incorrectas";
                 return false;// hora no digitado
             }
@@ -282,22 +288,26 @@ angular.module('userModule')
                     start: datetimeToUrlParameter(departureDate,departureHour),
                     end : datetimeToUrlParameter(arrivalDate,arrivalHour)
                 };
-                if(new Date(String(departureDate)+" "+String(departureHour))>= new Date() && new Date(String(arrivalDate)+" "+String(arrivalHour)) > new Date(String(departureDate)+" "+String(departureHour))) {
-                    if (arrivalDate != null && arrivalHour != null && departureDate != null && departureHour != null){
-                        $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
-                            console.log("res ", res);
-                            $scope.fleets = res;
-                            /*console.log($scope.fleets.length);
-                            for (i = 0; i < $scope.fleets.length; i++) {
-                                console.log($scope.fleets[i].model);
-                                if ($scope.fleets[i].isLocked == true){
-                                    $scope.fleets.splice(i, 1);
-                                    console.log($scope.fleets[i].model)
-                                }
-                            }*/
-                        });
-                        $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
-                    }
+                if(new Date(String(departureDate)+" "+String(departureHour))>= new Date() && new Date(String(arrivalDate)+" "+String(arrivalHour)) > new Date(String(departureDate)+" "+String(departureHour)) && arrivalHour != null && departureHour != null && arrivalHour != "" && departureHour != "") {
+
+                    $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
+                        console.log("res ", res);
+                        $scope.fleets = res;
+                        /*console.log($scope.fleets.length);
+                        for (i = 0; i < $scope.fleets.length; i++) {
+                            console.log($scope.fleets[i].model);
+                            if ($scope.fleets[i].isLocked == true){
+                                $scope.fleets.splice(i, 1);
+                                console.log($scope.fleets[i].model)
+                            }
+                        }*/
+                    });
+                    $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
+                    document.getElementById("vehicleIdSelect").value = "";
+                    $scope.reservation.vehicleId = "";
+                    document.getElementById("carInfoBtn").style.display = 'none';
+                    $scope.carInfoCheck = false;
+
                     swal({
                         title: "Comprobación Exitosa",
                         type: "success",

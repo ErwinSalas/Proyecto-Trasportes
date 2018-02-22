@@ -42,7 +42,7 @@
                         <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label >Auto</label><i id="carInfoBtn" class="material-icons reservationCarInfo" data-toggle="modal" data-target="#defaultModalCarInfo" ng-click="carInfoDetails()">info_outline</i>
-                                <select class="form-control show-tick" ng-model="reservation.vehicleId" ng-change="enableCarInfoBtn()">
+                                <select id="vehicleIdSelect" class="form-control show-tick" ng-model="reservation.vehicleId" ng-change="enableCarInfoBtn()">
                                     <option ng-repeat="fleet in fleets" value="{{fleet}}">
                                         {{fleet}}
                                     </option>
