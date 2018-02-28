@@ -200,7 +200,7 @@ angular.module('userModule')
 
         $scope.postReservation=function() {
             if($scope.validateReservation()){
-                /*var user = JSON.parse( localStorage.getItem('session.owner') );
+                var user = JSON.parse( localStorage.getItem('session.owner') );
                 $scope.reservation.requestingUser= user.username;
                 $scope.reservation.members = $scope.members;
                 $scope.setPlaceNames($scope.provinceSelected,$scope.citySelected,$scope.districtSelected);
@@ -218,8 +218,8 @@ angular.module('userModule')
                 });
                 $timeout( function(){
                     window.location.href = '#/user';
-                }, 1000 );*/
-                alert("Exito");
+                }, 1000 );
+                //alert("Exito");
             }else{
                 //alert("Error");
                 swal({

@@ -42,6 +42,8 @@ angular.module('adminModule')
                 $scope.driverName = $scope.reserve.members[0].firstName + " " + $scope.reserve.members[0].lastName;
             }
             for (i = 0; i < $scope.reserve.members.length; i++) {
+                $scope.reserve.members[i].departureTime = $scope.setFormatTimeMembers($scope.reserve.members[i].departureTime )
+                $scope.reserve.members[i].returnTime = $scope.setFormatTimeMembers($scope.reserve.members[i].returnTime)
                 $scope.membersListTicket.push($scope.reserve.members[i])
             }
             if($scope.reserve.activityType == "Administrative"){
@@ -55,8 +57,6 @@ angular.module('adminModule')
             }
             if($scope.reserve.members.length > 4){
                 for (i = 4; i < $scope.membersListTicket.length; i++) {
-                    $scope.membersListTicket[i].departureTime = $scope.setFormatTimeMembers($scope.membersListTicket[i].departureTime)
-                    $scope.membersListTicket[i].returnTime = $scope.setFormatTimeMembers($scope.membersListTicket[i].returnTime)
                     $scope.membersListTicket2.push($scope.membersListTicket[i])
                 }
                 document.getElementById("ticketBtnTwo").innerHTML = "<button type='button\' class='btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float' data-toggle='modal' data-target='#defaultModal' style='position: fixed; bottom:11%; right: 2%'><i class='material-icons'>library_books</i></button>";
