@@ -29,7 +29,7 @@ angular.module('adminModule')
             }
         };
         $scope.saveDriver=function() {
-            if(validateCreateDriver()){
+            if($scope.validateCreateDriver()){
                 console.log("Envio ", $scope.newDriver);
                 DriverResources.setNewDriver($scope.newDriver);
                 responseData=MediaResource.setImg($scope.img, $scope.newDriver.identification,1);

@@ -49,7 +49,7 @@ angular.module('adminModule')
         };
         
         $scope.postCar=function() {
-            if(validateCreateFleet()){
+            if($scope.validateCreateFleet()){
                 console.log("enviPo",$scope.newCar);
                 var isPost = FleetCarResources.setNewCar($scope.newCar, function (res) {
                     isPost=res;

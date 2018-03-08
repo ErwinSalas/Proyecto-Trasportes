@@ -182,9 +182,11 @@ aside.ticket2Size table{
 	top:19%;
 	right: 2%;
 	opacity: 0.3;
+	display: none;
 }
 @media print {
 	.aguaP{
+		display: block;
 		width: 1050px;
 		height: 910px;
 		position: absolute;
@@ -203,4 +205,9 @@ aside.ticket2Size table{
 #infoLoader{
 	text-align: center;
 	margin-top: 18%;
+}
+.registerBTN{
+	float: right;
+	display: block;
+	margin-right: 15px;
 }
