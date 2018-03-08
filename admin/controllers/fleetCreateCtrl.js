@@ -5,47 +5,53 @@ angular.module('adminModule')
     .controller('fleetCreateCtrl', function($scope,$location,$timeout,FleetCarResources,MediaResource) {
         /* config object */
         checkUserType($location.absUrl());
+
+        var user = JSON.parse( localStorage.getItem('session.owner') );
+
         $scope.newCar={
-            headquarter:"SanCarlos"
+            headquarter: user.headquarter
         };
-        
+
+        $scope.errorMessage = "";
+
         $scope.validateCreateFleet=function () {
             /*-------------------VALIDACIONES---------------------*/
             //Validacion de marca de auto
             if($scope.newCar.brand == null || $scope.newCar.brand == ""){
-                //alert("Error, debe seleccionar digitar marca");
+                $scope.errorMessage = "Debe de digitar la marca del vehiculo";
                 return false;
             }
             //Validacion de modelo de auto
             if($scope.newCar.model == null || $scope.newCar.model == ""){
-                //alert("Error, debe seleccionar digitar modelo");
+                $scope.errorMessage = "Debe de digitar el modelo del vehiculo";
                 return false;
             }
             //Validacion de placa de auto
             if($scope.newCar.vehicleId == null || $scope.newCar.vehicleId == ""){
-                //alert("Error, debe seleccionar digitar los placa");
+                $scope.errorMessage = "Debe de digitar la placa del vehiculo";
                 return false;
             }
             //Validacion de transmision de auto
             if($scope.newCar.traction == null || $scope.newCar.traction == ""){
-                //alert("Error, debe seleccionar digitar los transmision");
+                $scope.errorMessage = "Debe de seleccionar el tipo de transmision";
                 return false;
             }
             //Validacion de capacidad de auto
             if($scope.newCar.capacity == null || $scope.newCar.capacity == ""){
-                //alert("Error, debe seleccionar digitar la capacidad");
+                $scope.errorMessage = "Debe de digitar la capacidad del vehiculo";
                 return false;
             }
             //Validacion de placa de auto
             if($scope.newCar.mileage == null || $scope.newCar.mileage == ""){
-                //alert("Error, debe seleccionar digitar el kilometraje");
+                $scope.errorMessage = "Debe de digitar el kilometraje del vehiculo";
                 return false;
             }
             //Validacion de dependencia de auto
             if($scope.newCar.dependence == null || $scope.newCar.dependence == ""){
-                //alert("Error, debe seleccionar digitar el dependencia");
+                $scope.errorMessage = "Debe de digitar la dependencia del vehiculo";
                 return false;
             }
+            return true;
         };
         
         $scope.postCar=function() {
@@ -68,7 +74,7 @@ angular.module('adminModule')
             }else {
                 swal({
                     title: "Campos vacios!",
-                    text: "El espacio no puede ir en blanco",
+                    text: $scope.errorMessage,
                     timer: 2000,
                     type: "error",
                     showConfirmButton: false

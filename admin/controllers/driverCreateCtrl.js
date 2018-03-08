@@ -10,23 +10,28 @@ angular.module('adminModule')
             isActive:true,
             headquarter:user.headquarter
         };
+
+        $scope.errorMessage = "";
+
         $scope.validateCreateDriver=function () {
             /*-------------------VALIDACIONES---------------------*/
             //Validacion de identificación de chofer
             if($scope.newDriver.identification == null || $scope.newDriver.identification == ""){
-                //alert("Error, debe seleccionar digitar identificación");
+                $scope.errorMessage = "Debe de digitar la identificación";
                 return false;
             }
             //Validacion de nombre de chofer
             if($scope.newDriver.firstName == null || $scope.newDriver.firstName == ""){
-                //alert("Error, debe seleccionar digitar nombre");
+                $scope.errorMessage = "Debe de digitar el nombre del conductor";
                 return false;
             }
             //Validacion de apellido de chofer
             if($scope.newDriver.lastName == null || $scope.newDriver.lastName == ""){
-                //alert("Error, debe seleccionar digitar los apellidos");
+                $scope.errorMessage = "Debe de digitar los apellidos del conductor";
                 return false;
             }
+            return true;
+
         };
         $scope.saveDriver=function() {
             if($scope.validateCreateDriver()){
@@ -46,7 +51,7 @@ angular.module('adminModule')
             }else {
                 swal({
                     title: "Campos vacios!",
-                    text: "El espacio no puede ir en blanco",
+                    text: $scope.errorMessage,
                     timer: 2000,
                     type: "error",
                     showConfirmButton: false
