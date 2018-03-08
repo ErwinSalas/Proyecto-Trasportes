@@ -1,9 +1,11 @@
+/**
+ * Modulo administrador, controlador de la información de la flotilla.
+ */
 angular.module('adminModule')
     .controller('fleetAdminInfoCtrl', function($scope,$location,$timeout,$routeParams,FleetCarResources,MediaResource) {
         /* config object */
         checkUserType($location.absUrl());
         $scope.valueID = $routeParams.valueID;
-        console.log(carSelectedID);
         /*$scope.getCarPicture = MediaResource.getImg(carSelectedID,2,function (res) {
             $scope.carPicture=res;
             setTimeout(function(){
@@ -12,17 +14,15 @@ angular.module('adminModule')
             }, 7000);
 
         });*/
-
+        //Consumir imagen de webservices
         var PictureCanvas = document.getElementById('img');
         PictureCanvas.src = IMG_ROOT_F+carSelectedID+".jpg";
-
         $scope.iconLock = "";
         $scope.isLockedSTR = "";
         $scope.isLockedSTRAction = "";
         $scope.isLockedStatusAction = false;
         $scope.getCarInfo = FleetCarResources.getCarInfo(carSelectedID, function (res) {
             $scope.carInfo=res;
-            console.log("La resInfo ", $scope.carInfo);
             if($scope.carInfo.Traction == 1){
                 $scope.carInfo.Traction = "Manual";
             }
@@ -41,7 +41,9 @@ angular.module('adminModule')
                 document.getElementById("lockedBtn").className = 'btn btn-danger btn-circle-lg waves-effect waves-circle waves-float';
             }
         });
-
+        /**
+         * Funcióon para eliminar un vehículo.
+         */
         $scope.deleteMessage =function() {
             swal({
                 title: "¿Esta seguro que desea eliminar este vehículo?",
@@ -61,30 +63,31 @@ angular.module('adminModule')
                     timer: 1000,
                     showConfirmButton: false
                 });
-
                 $scope.deleteCar = FleetCarResources.deleteCar(carSelectedID);
                 //$scope.deleteCarImg = MediaResource.deleteImgV(carSelectedID);
                 window.location.href = '#/admin/fleetAdmin/';
-
             });
         };
-
+        /**
+         * Función para editar el vehículo.
+         */
         $scope.editCar =function() {
-            var x = document.getElementsByClassName("ShowInfo");
-            var i;
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "block";
+            var showClass = document.getElementsByClassName("ShowInfo");
+            var cont;
+            for (cont = 0; cont < showClass.length; cont++) {
+                showClass[cont].style.display = "block";
             }
-            var x2 = document.getElementsByClassName("hideInfo");
-            var i2;
-            for (i2 = 0; i2 < x2.length; i2++) {
-                x2[i2].style.display = "none";
+            var showClass2 = document.getElementsByClassName("hideInfo");
+            var cont2;
+            for (cont2 = 0; cont2 < showClass2.length; cont2++) {
+                showClass2[cont2].style.display = "none";
             }
-
-            var x3 = document.getElementById("ShowBtnEditSave").style.display = 'block';
-            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'block';
-
+            var showEditSave = document.getElementById("ShowBtnEditSave").style.display = 'block';
+            var showEditCancel = document.getElementById("ShowBtnEditCancel").style.display = 'block';
         };
+        /**
+         * Función para bloquear o desbloquear vehículo.
+         */
         $scope.lockCar = function () {
             FleetCarResources.lockCar($routeParams.valueID,$scope.isLockedStatusAction);
             swal({
@@ -98,22 +101,24 @@ angular.module('adminModule')
                 window.location.href = '#/admin/fleetAdmin';
             }, 2000 );
         };
-
+        /**
+         * Función para cancelar la edición de los vehículos.
+         */
         $scope.cancelEditCar =function() {
-            var x = document.getElementsByClassName("ShowInfo");
-            var i;
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+            var showClass = document.getElementsByClassName("ShowInfo");
+            var cont;
+            for (cont = 0; cont < showClass.length; cont++) {
+                showClass[cont].style.display = "none";
             }
-            var x2 = document.getElementsByClassName("hideInfo");
-            var i2;
-            for (i2 = 0; i2 < x2.length; i2++) {
-                x2[i2].style.display = "block";
+            var showClass2 = document.getElementsByClassName("hideInfo");
+            var cont2;
+            for (cont2 = 0; cont2 < showClass2.length; cont2++) {
+                showClass2[cont2].style.display = "block";
             }
-
-            var  x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
-            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'none';
-            document.getElementById('img').style.display = "block";
+            var showEditSave = document.getElementById("ShowBtnEditSave").style.display = 'none';
+            var showEditCancel = document.getElementById("ShowBtnEditCancel").style.display = 'none';
+            //Restablecer valores de los campos de texto
+            document.getElementById('img').style.display = "none";//temporalmente se oculta por fallos en webservices
             document.getElementById('imgE').style.display = "none";
             document.getElementById("file-upload").value = "";
             document.getElementById("brand").value = "";
@@ -123,22 +128,22 @@ angular.module('adminModule')
             document.getElementById("mileage").value = "";
             document.getElementById("dependence").value = "";
         };
-
+        /**
+         * Función para convertir una imagen de base 64 a multipar.
+         * Esta función esta compuesta de readFile y de urltoFile.
+         * @returns {multipar} Retorna la imagen.
+         */
         function urltoFile(url, filename, mimeType){
             return (fetch(url)
                     .then(function(res){return res.arrayBuffer();})
                     .then(function(buf){return new File([buf], filename, {type:mimeType});})
             );
         }
-
         function readFile(evt) {
             var files = evt.target.files; // FileList object
-
             // Obtenemos la imagen del campo "file".
             for (var i = 0, f; f = files[i]; i++) {
-
                 var reader = new FileReader();
-
                 reader.onload = (function(e) {
                     document.getElementById('img').style.display = "none";
                     document.getElementById('imgE').style.display = "block";
@@ -158,12 +163,13 @@ angular.module('adminModule')
             }, 1000);
         }
         document.getElementById('file-upload').addEventListener('change', readFile, false);
-
+        //Inicializa Json
         $scope.newFleet={
-
         };
+        /**
+         * Función que muestra mensaje de exito cuando se edita me vehículo .
+         */        
         $scope.postFleet=function() {
-            console.log("envio",$scope.newFleet);
             FleetCarResources.editCar($routeParams.valueID,$scope.newFleet);
             if($scope.img != null){
                 MediaResource.setImg($scope.img,carSelectedID,2);
@@ -178,7 +184,5 @@ angular.module('adminModule')
             $timeout( function(){
                 window.location.href = '#/admin/fleetAdmin';
             }, 2000 );
-            //window.location.href = '#/admin/fleetAdmin';
         };
-
     });

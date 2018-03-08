@@ -1,3 +1,6 @@
+/**
+ * Modulo de administrador, controlador menu izquierdo de la parte de fron-end
+ */
 angular.module('adminModule')
     .controller('mainCtrl', function($scope,$location) {
     /* config object */
@@ -6,7 +9,7 @@ angular.module('adminModule')
     $scope.user = "Administrador";
     $scope.email = user.firstName + " " + user.lastName;
     window.location.href = ('#/admin');
-
+    //Cambiar color de los menus
     document.getElementById("homeTab").addEventListener("click", function(){
         document.getElementById("homeTab").classList.add("active");
         document.getElementById("reservesTab").classList.remove("active")
@@ -31,11 +34,13 @@ angular.module('adminModule')
         document.getElementById("fleetTab").classList.remove("active")
         document.getElementById("homeTab").classList.remove("active")
     });
-
+    /**
+     * Función que muestra a los desarrolladores del programa.
+     */
     $scope.showAbout=function() {
         swal({
             title: "Transportec",
-            text: "DESARROLLADORES\n \nLuis Alejandro Rodríguez\nAdrian Hernandez\nMiguel Rivas\nErwin Salas\n \nComunidad de Aplicaciones Móviles",
+            text: "DESARROLLADORES\n \nLuis Alejandro Rodríguez\nAdrián Hernández\nMiguel Rivas\nErwin Salas\n \nComunidad de Aplicaciones Móviles",
             imageUrl: "../assets/images/comunidad.png"
         });
     };

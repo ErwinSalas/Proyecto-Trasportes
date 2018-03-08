@@ -1,19 +1,21 @@
 /**
- * Created by Pavilion on 26/5/2017.
+ *Modulo administrador, controlador crear vehículo
  */
 angular.module('adminModule')
     .controller('fleetCreateCtrl', function($scope,$location,$timeout,FleetCarResources,MediaResource) {
         /* config object */
         checkUserType($location.absUrl());
-
+        //Se toma la sede del localStorage
         var user = JSON.parse( localStorage.getItem('session.owner') );
-
         $scope.newCar={
             headquarter: user.headquarter
         };
-
+        //Restablecer campo
         $scope.errorMessage = "";
-
+        /**
+         * Función para validar los campos cuando se crea un Vehículo.
+         * @returns {Boolean} True o False.
+         */
         $scope.validateCreateFleet=function () {
             /*-------------------VALIDACIONES---------------------*/
             //Validacion de marca de auto
@@ -53,7 +55,9 @@ angular.module('adminModule')
             }
             return true;
         };
-        
+        /**
+         * Función que muestra mensajes de exito o error cuando se crea kun vehículo .
+         */
         $scope.postCar=function() {
             if($scope.validateCreateFleet()){
                 console.log("enviPo",$scope.newCar);
@@ -81,14 +85,17 @@ angular.module('adminModule')
                 });
             }
         };
-
+        /**
+         * Función para convertir una imagen de base 64 a multipar.
+         * Esta función esta compuesta de readFile y de urltoFile.
+         * @returns {multipar} Retorna la imagen.
+         */
         function urltoFile(url, filename, mimeType){
             return (fetch(url)
                     .then(function(res){return res.arrayBuffer();})
                     .then(function(buf){return new File([buf], filename, {type:mimeType});})
             );
         }
-
         function readFile(evt) {
             var files = evt.target.files; // FileList object
             // Obtenemos la imagen del campo "file".

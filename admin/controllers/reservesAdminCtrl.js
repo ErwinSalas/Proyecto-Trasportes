@@ -1,11 +1,16 @@
+/**
+ * Modulo de administrador, controlador de las reservas
+ */
 angular.module('adminModule')
     .controller('reservesAdminCtrl', function($scope,$location,$compile,ReserveResources) {
-        
         checkUserType($location.absUrl());
-        
+        /**
+         * Aplica formato a una fecha.
+         * @param res res. Por la promesa
+         * @returns {res} res.
+         */
         $scope.getAllReservations = ReserveResources.getReservations(function (res) {
             $scope.reservations=res;
-
             $scope.noReservationsText = "Usted no posee reservas.";
             if ($scope.reservations.length > 0){
                 for (i = 0; i < $scope.reservations.length; i++) {
@@ -38,16 +43,17 @@ angular.module('adminModule')
             $compile(document.getElementById("actBtns") )($scope);
             document.getElementById('infoLoader').style.display = "none";
         });
-
-        console.log( $scope.reservations);
-
+        //Inicialización de las listas
         $scope.reservationsMain = [];
         $scope.reservationsAcepted = [];
         $scope.reservationsPending = [];
         $scope.reservationsDenied = [];
-
         $scope.reservationstatus = "query_builder";
-
+        /**
+         * Función para darle formato a las horas y fechas.
+         * @param Date Fecha and  Hours.
+         * @returns {String} Fecha con formato.
+         */
         $scope.setFormatDateTime = function (date) {
             reserveDate = new Date(date);
             reserveYear = reserveDate.getFullYear();
@@ -61,18 +67,20 @@ angular.module('adminModule')
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
             return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear+" - "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
         };
-
+        //Restablece el campo del ID
         $scope.reserveSelectedID = "";
-
+        /**
+         * Redirecciona a la reserva seleccionada.
+         * @param ID reserva.
+         */
         $scope.reserveSelected = function (reserveID) {
             reserveSelectedID = reserveID;
-            console.log("ID Salio");
-            console.log(reserveSelectedID);
-
             window.location.href = '#/admin/reserves/info/'+reserveSelectedID;
-
         };
-
+        /**
+         * Función para cambiar los estados entre las reservas.
+         * @param String Estdo de la reserca.
+         */
         $scope.changeList = function (status) {
             if (status == 1){
                 $scope.reservationsMain = $scope.reservationsAcepted;

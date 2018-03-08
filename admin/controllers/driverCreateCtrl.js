@@ -1,6 +1,4 @@
-/**
- * Created by Pavilion on 8/6/2017.
- */
+//Controlador de crear chofer
 angular.module('adminModule')
     .controller('driverCreateCtrl', function($scope,$location,$timeout,DriverResources,MediaResource) {
         /* config object */
@@ -10,9 +8,11 @@ angular.module('adminModule')
             isActive:true,
             headquarter:user.headquarter
         };
-
+        /**
+         * Función para validar que no este vacio el campon de identificación.
+         * @returns {Boolean} True o False.
+         */
         $scope.errorMessage = "";
-
         $scope.validateCreateDriver=function () {
             /*-------------------VALIDACIONES---------------------*/
             //Validacion de identificación de chofer
@@ -33,6 +33,9 @@ angular.module('adminModule')
             return true;
 
         };
+        /**
+         * Función para guardar un chofer, si se guarda bien muestra mensaje de exito sino muestra mensaje de error.
+         */
         $scope.saveDriver=function() {
             if($scope.validateCreateDriver()){
                 console.log("Envio ", $scope.newDriver);
@@ -58,22 +61,22 @@ angular.module('adminModule')
                 });
             }
         };
-
+        /**
+         * Función para convertir una imagen de base 64 a multipar.
+         * Esta función esta compuesta de readFile y de urltoFile.
+         * @returns {multipar} Retorna la imagen.
+         */
         function urltoFile(url, filename, mimeType){
             return (fetch(url)
                     .then(function(res){return res.arrayBuffer();})
                     .then(function(buf){return new File([buf], filename, {type:mimeType});})
             );
         }
-
         function readFile(evt) {
             var files = evt.target.files; // FileList object
-
             // Obtenemos la imagen del campo "file".
             for (var i = 0, f; f = files[i]; i++) {
-
                 var reader = new FileReader();
-
                 reader.onload = (function(e) {
                     document.getElementById('imgAddIcon').style.display = "none";
                     document.getElementById('img').style.display = "block";
@@ -93,5 +96,4 @@ angular.module('adminModule')
             }, 1000);
         }
         document.getElementById('file-upload').addEventListener('change', readFile, false);
-
     });

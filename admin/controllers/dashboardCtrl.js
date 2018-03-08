@@ -1,4 +1,4 @@
-
+//Controlador de mensajes del administrador
 angular.module('adminModule')
     .controller('dashboardCtrl', function($scope,$location,MessageResource) {
         /* config object */
@@ -18,7 +18,11 @@ angular.module('adminModule')
             });
         };
         $scope.getMessages();
-
+        /**
+         * Aplica formato a una fecha.
+         * @param Date Fecha.
+         * @returns {String} Fecha con formato.
+         */
         $scope.setFormatDateTime = function (date) {
             reserveDate = new Date(date);
             reserveYear = reserveDate.getFullYear();
@@ -36,7 +40,11 @@ angular.module('adminModule')
         var myVar = "";
         var d = 0;
         var messageID = "";
-
+        /**
+         * Función de eliminar mensaje cuando es presionado durante un segundo.
+         * Sino dura un segundo se limpia el contador de segundos y se ejecuta la función mouseUp
+         * @param ID mensaje.
+         */
         $scope.mouseDown = function(obj) {
             messageID = obj;
             console.log(messageID);
@@ -56,7 +64,10 @@ angular.module('adminModule')
                 clearInterval(myVar);
             }
         }
-
+        /**
+         * Función para validar sin los campos del mensaje estan vacios.
+         * @returns {Boolean} True o False.
+         */
         $scope.validateMessage=function () {
             if($scope.message.title == null || $scope.message.title == ""){
                 //alert("Error, campo titulo");
@@ -68,14 +79,18 @@ angular.module('adminModule')
             }
             return true;
         };
-
+        /**
+         * Función para borrar los campos.
+         */
         $scope.resetFields=function () {
             $scope.message.title = "";
             $scope.message.body = "";
             document.getElementById("titleMessage").value = "";
             document.getElementById("bodyMessage").value = "";
         };
-
+        /**
+         * Función que publica el mensaje al webservices.
+         */
         $scope.postMessage=function() {
             if($scope.validateMessage()){
                 console.log("envio",$scope.message);
@@ -100,7 +115,10 @@ angular.module('adminModule')
             }
 
         };
-
+        /**
+         * Función que publica el mensaje al webservices.
+         * @param id idMensaje.
+         */
         $scope.deleteMessages=function(id){
             swal({
                 title: "¿Esta seguro que desea eliminar este mensaje?",

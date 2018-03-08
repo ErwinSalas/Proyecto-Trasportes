@@ -1,3 +1,6 @@
+/**
+ * Modulo administrador, controlador de la boleta
+ */
 angular.module('adminModule')
     .controller('ticketCtrl', function($scope,$location,$routeParams,$compile,ReserveResources,FleetCarResources,DriverResources) {
         checkUserType($location.absUrl());
@@ -71,7 +74,6 @@ angular.module('adminModule')
             document.getElementById("printBtnB").innerHTML = "<button type='button\' class='btn bg-red btn-circle-lg waves-effect waves-circle waves-float' style='position: fixed; bottom:2%; right: 2%' ng-click='printElem()'><i class='material-icons'>print</i></button>";
             $compile(document.getElementById("printBtnB") )($scope);
         });
-
         $scope.setFormatDate = function (date) {
             reserveDate = new Date(date);
             reserveYear = reserveDate.getFullYear();
@@ -79,7 +81,6 @@ angular.module('adminModule')
             reserveDay = reserveDate.getDate();
             return reserveDay + "/" + reserveMonth + "/" + reserveYear;
         };
-
         $scope.setFormatTime = function (date) {
             reserveDate = new Date(date);
             reserveHours = reserveDate.getHours();
@@ -89,7 +90,6 @@ angular.module('adminModule')
             reserveHours = reserveHours ? reserveHours : 12;
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
             return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
-
         };
         $scope.setFormatTimeMembers = function (date) {
             var timeString = date;
@@ -98,13 +98,10 @@ angular.module('adminModule')
             var ampm = (H < 12 || H === 24) ? " am" : " pm";
             return timeString = h + timeString.substr(2, 3) + ampm;
         };
-
         $scope.goBackTicket = function() {
             window.location.href = '#/admin/reserves/info/'+reserveSelectedID;
         };
-
         $scope.printElem = function() {
-
             var contents = document.getElementById('ticketBody').innerHTML;
             var contents2;
             if ($scope.membersListTicket2.length > 0){
@@ -152,9 +149,7 @@ angular.module('adminModule')
 
             location.reload();*/
             //window.location.href = '#/admin/reserves/ticket/'+reserveSelectedID;
-
         }
-
     })
 
 .directive('printDiv', function () {

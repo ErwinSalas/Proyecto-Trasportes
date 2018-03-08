@@ -1,21 +1,24 @@
+/**
+ * Modulo de administrador controlador de la información de las reservas
+ */
 angular.module('adminModule')
     .controller('reservesAdminInfoCtrl', function($scope,$route,$location,$compile,$templateCache,$routeParams,ReserveResources,DriverResources) {
-        
         checkUserType($location.absUrl());
-
+        //Restablecer datos de los campos de texto
         $scope.valueID = $routeParams.valueID;
-
         $scope.reservedDepartureDate = "";
         $scope.reservedDepartureTime = "";
         $scope.reservedArrivalDate = "";
         $scope.reservedArrivalTime = "";
         $scope.reservationStatusAPD = "";
         $scope.reservationPassengers = "";
-
-        console.log(reserveSelectedID);
+        /**
+         * Función que recibe las reservaciones del webservices y le da formato.
+         * @param ID ID de la reserva selecionada.
+         * @param res res.Por la promesa.
+         */
         $scope.getReserve = ReserveResources.getReserve(reserveSelectedID, function (res) {
                 $scope.reserve=res;
-                console.log("La resInfo ", $scope.reserve);
             if($scope.reserve.requestDriver == false){
                 $scope.reserve.requestDriver = "No";
             }else {
@@ -59,13 +62,18 @@ angular.module('adminModule')
                 $scope.reservationStatusAPD = "Denegada";
                 $scope.addTableInfo(17,"Respuesta",$scope.reserve.responseNotes);
             }
+            //Da formato a las fechas
             $scope.reservationPassengers = $scope.reserve.members.length;
             $scope.reservedDepartureDate = $scope.setFormatDate($scope.reserve.departure);
             $scope.reservedArrivalDate = $scope.setFormatDate($scope.reserve.arrival);
             $scope.reservedDepartureTime = $scope.setFormatTime($scope.reserve.departure);
             $scope.reservedArrivalTime = $scope.setFormatTime($scope.reserve.arrival);
         });
-
+        /**
+         * Aplica formato a una fecha.
+         * @param Date Fecha.
+         * @returns {String} Fecha con formato.
+         */
         $scope.setFormatDate = function (date) {
             reserveDate = new Date(date);
             reserveYear = reserveDate.getFullYear();
@@ -73,7 +81,11 @@ angular.module('adminModule')
             reserveDay = reserveDate.getDate();
             return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear;
         };
-
+        /**
+         * Aplica formato a una hora.
+         * @param Date hora.
+         * @returns {String} Hora con formato.
+         */
         $scope.setFormatTime = function (date) {
             reserveDate = new Date(date);
             reserveHours = reserveDate.getHours();
@@ -85,7 +97,12 @@ angular.module('adminModule')
             return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
 
         };
-
+        /**
+         * Agregar espacios en la tabla de la información de la reserva según el estado.
+         * @param Int num.
+         * @param Int c1.
+         * @param Int c2.
+         */
         $scope.addTableInfo = function (num,c1,c2) {
             var table = document.getElementById("tableInfo");
             var row = table.insertRow(num);
@@ -94,7 +111,9 @@ angular.module('adminModule')
             cell1.innerHTML = c1;
             cell2.innerHTML = c2;
         };
-        
+        /**
+         * Función que responde a la administración de una reserva, ya sea aceptarla o denegarla.
+         */
         $scope.reserveAction1 = function () {
             $scope.assignedDriverSelected = "";
             $scope.inputAnswerA= "";
@@ -157,7 +176,13 @@ angular.module('adminModule')
                     });
             }
         };
-
+        /**
+         * Función que establece la información de respuesta de la reserva.
+         * @param String aDriver(Conductor seleccionado).
+         * @param String rNotes(Notas adicionales).
+         * @param String rID(Id de la reserva).
+         * @param Boolean rAction(True o False).
+         */
         $scope.setReservationStatus = function (aDriver,rNotes,rID,rAction) {
             $scope.reservationStatus={
                 assignedDriver :aDriver,
@@ -176,7 +201,9 @@ angular.module('adminModule')
                 showConfirmButton: false
             });
         };
-
+        /**
+         * Función que responde a la administración de una reserva, ya sea aceptarla o denegarla.
+         */
         $scope.reserveAction2 = function () {
             $scope.inputAnswer= "";
             swal({
@@ -200,13 +227,12 @@ angular.module('adminModule')
                 var currentPageTemplate = $route.current.templateUrl;
                 $templateCache.remove(currentPageTemplate);
                 $route.reload();
-
             });
-
         };
-
+        /**
+         * Función que redirecciona a la segunda boleta en caso de que esta sea aceptada.
+         */
         $scope.createTicket= function () {
             window.location.href = '#/admin/reserves/ticket/'+reserveSelectedID;
         };
-        
     }); 

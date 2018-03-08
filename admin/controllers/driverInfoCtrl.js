@@ -1,5 +1,5 @@
 /**
- * Created by ADRIAN on 21/4/2017.
+ * Modulo administrador, controlador de la información del chofer.
  */
 angular.module('adminModule')
     .controller('driverInfoCtrl', function($scope,$location,$timeout,$routeParams,DriverResources,MediaResource) {
@@ -16,6 +16,10 @@ angular.module('adminModule')
             console.log("La resInfo ", $scope.driverInfo);
 
         });
+        /**
+         * Función para eleminar un mensaje.
+         * Manda un mensaje de exito si no ocurre un problema de lo contrario mensaje de error.
+         */
         $scope.deleteMessageDriver =function() {
             swal({
                 title: "¿Esta seguro que desea eliminar este Chofer?",
@@ -42,45 +46,50 @@ angular.module('adminModule')
 
             });
         };
-
+        /**
+         * Función para editar choferes.
+         */
         $scope.editDriverBtn = function() {
-            var x = document.getElementsByClassName("ShowInfo");
-            var i;
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "block";
+            var showClass = document.getElementsByClassName("ShowInfo");
+            var cont;
+            for (cont = 0; cont < showClass.length; cont++) {
+                showClass[cont].style.display = "block";
             }
-            var x2 = document.getElementsByClassName("hideInfo");
-            var i2;
-            for (i2 = 0; i2 < x2.length; i2++) {
-                x2[i2].style.display = "none";
+            var hideClass = document.getElementsByClassName("hideInfo");
+            var cont2;
+            for (cont2 = 0; cont2 < hideClass.length; cont2++) {
+                hideClass[cont2].style.display = "none";
             }
 
-            var x3 = document.getElementById("ShowBtnEditSave").style.display = 'block';
-            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'block';
+            var showSave = document.getElementById("ShowBtnEditSave").style.display = 'block';
+            var showCancel = document.getElementById("ShowBtnEditCancel").style.display = 'block';
 
         };
-
+        /**
+         * Función para cancel la edicion de choferes.
+         */
         $scope.cancelEditDriverBtn = function() {
-            var x = document.getElementsByClassName("ShowInfo");
-            var i;
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+            var showClass = document.getElementsByClassName("ShowInfo");
+            var cont;
+            for (cont = 0; cont < showClass.length; cont++) {
+                showClass[cont].style.display = "none";
             }
-            var x2 = document.getElementsByClassName("hideInfo");
-            var i2;
-            for (i2 = 0; i2 < x2.length; i2++) {
-                x2[i2].style.display = "block";
+            var hideClass = document.getElementsByClassName("hideInfo");
+            var cont2;
+            for (cont2 = 0; cont2 < hideClass.length; cont2++) {
+                hideClass[cont2].style.display = "block";
             }
 
-            var  x3 = document.getElementById("ShowBtnEditSave").style.display = 'none';
-            var x4 = document.getElementById("ShowBtnEditCancel").style.display = 'none';
+            var showEditSave = document.getElementById("ShowBtnEditSave").style.display = 'none';
+            var showEditCancel = document.getElementById("ShowBtnEditCancel").style.display = 'none';
             document.getElementById("firstName").value = "";
             document.getElementById("lastName").value = "";
         };
-
         $scope.newDriver={
-
         };
+        /**
+         * Función para mostrar mensaje cuando el chofer fue editado con exito o no.
+         */
         $scope.postDrier=function() {
             console.log("envio",$scope.newDriver);
             DriverResources.editDriver($routeParams.valueID,$scope.newDriver);

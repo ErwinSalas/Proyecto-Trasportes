@@ -1,4 +1,6 @@
-
+/**
+ * Modulo administrador, controlar de la flotilla.
+ */
 angular.module('adminModule')
     .controller('fleetAdminCtrl', function($scope,$location,FleetCarResources) {
         /* config object */
@@ -7,7 +9,11 @@ angular.module('adminModule')
         $scope.newCar={
             headquarter:user.headquarter
         };
-
+        /**
+         * Función para obtener la lista de los vehículos.
+         * @param res res. Parte de la promesa 
+         * @returns {res}.
+         */
         $scope.getAllFleet=FleetCarResources.getFleet(function (res) {
             console.log("res ", res);
             $scope.fleetAdmin=res;
@@ -20,16 +26,10 @@ angular.module('adminModule')
             }
             document.getElementById('infoLoader').style.display = "none";
         });
-        
         $scope.carSelectedID = "";
         $scope.selectedId = function (carId) {
             carSelectedID = carId;
-            console.log("Entro ID");
-            console.log("<>_<>_<>_<>_<> "+carSelectedID);
             window.location.href = '#/admin/fleetAdmin/fleetAdminInfo/'+carSelectedID;
         };
-
-
-
     });
     
