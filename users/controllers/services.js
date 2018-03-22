@@ -1,16 +1,14 @@
+/*
+*Modulo de servicios de los usuarios
+*/
 angular.module('starter.services', [])
-
 .service('LoginService', function($q) {
     return {
         loginUser: function(username, password) {
             var deferred = $q.defer();
             var promise = deferred.promise;
-
             var USERS_LOCATION = API_ROOT+'/login/web?username={0}&password={1}'
               .format(Base64.toBase64(username, true).toString(), Base64.toBase64(password, true).toString());
-
-      
-            //console.log(usersRef.child($scope.data.username));
             if(username == null || password == null){                           //valida que el usuario no sea nulo
                 deferred.reject('Wrong credentials.');
                 promise.success = function(fn) {
@@ -31,8 +29,6 @@ angular.module('starter.services', [])
                 if(exists){                                             //valida que el usuario exista en firebase
                     if(arrayInfoBD.Contrasena == password){                   //valida la contraseña según el json obtenido de firebase
                         deferred.resolve(arrayInfoBD.Tipo);
-                        /*$cookieStore.put("name",name);
-                        console.log($cookies.get("name"));*/
                     }else{
                         deferred.reject('Wrong credentials.');
                     }
@@ -60,34 +56,13 @@ angular.module('starter.services', [])
                 return promise;
             }
             return promise;
-
-
-            /*
-
-            if (name == 'user' && pw == 'secret') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
-        }*/
         }
     }
 })
-
 /**
  * Servicio de gestión de mensajes.
  */
 .service("MessagesService", function ($firebaseArray, $q) {
-
   /**
    * Establece la fecha y hora del último mensaje en el servidor.
    * @param datetime Fecha y hora.
@@ -96,7 +71,6 @@ angular.module('starter.services', [])
     var ref = new Firebase("{0}/MessagesLastUpdate".format(FIREBASE_PATH));
     ref.set(datetime);
   }
-
   /**
    * Comprueba la fecha y hora del último mensaje del servidor.
    * @returns {Promise} Retorna la fecha y hora del último mensaje publicado en el servidor.
@@ -108,7 +82,6 @@ angular.module('starter.services', [])
     refLastUpdate.once('value', function (snapshot) {
       deferred.resolve(snapshot.val());
     });
-
     promise.success = function (fn) {
       promise.then(fn);
       return promise;
@@ -119,7 +92,6 @@ angular.module('starter.services', [])
     }
     return promise;
   }
-
   /**
    * Descarga los mensajes disponibles en el servidor.
    * @returns {Promise}
@@ -136,7 +108,6 @@ angular.module('starter.services', [])
         deferred.resolve();
       })
     });
-
     promise.success = function () {
       promise.then();
       return promise;
@@ -147,7 +118,6 @@ angular.module('starter.services', [])
     }
     return promise;
   }
-
   return {
     /**
      * Obtiene la última actualización de mensajes disponible en el servidor.
@@ -160,7 +130,6 @@ angular.module('starter.services', [])
     getMessages: function () {
       var deferred = $q.defer();
       var promise = deferred.promise;
-
       checkLastUpdate().success(function (lastUpdate) {
         if (lastUpdate == localStorage.getItem(LS_LOCAL_LAST_UPDATE)) {
           deferred.resolve(JSON.parse(localStorage.getItem(LS_LOCAL_MESSAGES)));
@@ -170,7 +139,6 @@ angular.module('starter.services', [])
           })
         }
       })
-
       promise.success = function (fn) {
         promise.then(fn);
         return promise;
@@ -179,10 +147,8 @@ angular.module('starter.services', [])
         promise.then(null, fn);
         return promise;
       }
-
       return promise;
     },
-
     /**
      * Publica un mensaje.
      * @param msg Mensaje a publicar.
@@ -201,7 +167,9 @@ angular.module('starter.services', [])
     }
   }
 })
-
+    /*
+    *
+    */
   .service('ReservasService', function($firebaseArray) {
     cargarReservas= function (listaMisReservas)
     {
@@ -211,15 +179,10 @@ angular.module('starter.services', [])
       vehiculos.$loaded()
         .then(function (data) {
           angular.forEach(data, function (value) {
-             console.log(value.Placa);
             if ( value.Usuario == localStorage.getItem("user")) { // valida que no este reservado
-
             listaMisReservas.push({title: value.Lugar, fechaIni: value.FechaSalida});
             }
-
           });
-          console.log(value.Placa);
-
         });
     };
     return{
@@ -227,25 +190,17 @@ angular.module('starter.services', [])
       cargarRes :cargarReservas()
     }
   })
-
   /**
    * Servicio para actualizar el estado de una reserva, recibe un json con los datos a actualizar
    */
-
   .factory('EvaluarReserva',function () {
-
     var evaluandoReservas = function (data) {
-
       // SE AGREGA AL AUTO EL HORARIO DE LA RESERVA
       var reservaReference = new Firebase("https://sideappprueba.firebaseio.com/Reserva/" + data.ID); //Reserva
       var vehiculoReference = new Firebase("https://sideappprueba.firebaseio.com/Vehiculo/" + data.PlacaAuto); //Vehiculo
 
       var resVehiculoReference = new Firebase("https://sideappprueba.firebaseio.com/Vehiculo/" + data.PlacaAuto +"/Reservas");
-
-
-
       //Reserva vehiculo
-
       reservaReference.update({Estado: data.Estado,Justificacion:data.Justificacion,Chofer:data.Chofer,FechaLlegada:data.fLlegada,FechaSalida:data.fSalida,
         HoraLlegada:data.hLlegada,HoraSalida:data.hSalida});
       vehiculoReference.update({Estado:"Reservado"});  // Se edita el estado del vehiculo
@@ -254,16 +209,12 @@ angular.module('starter.services', [])
       if(data.chofer != "No"){//SI TIENE CHOFER
         var resChoferReference = new Firebase("https://sideappprueba.firebaseio.com/Choferes/" + data.Chofer +"/Reservas");
         resChoferReference.child(data.ID).set({FechaLlegada:data.fLlegada,FechaSalida:data.fSalida});// se agregan los horarios al chofer
-
       }
-
-
     }
     return{
       setEstado: evaluandoReservas
     }
   })
-
     /**
      * Servicio para actualizar los datos de un vehiculo, recibe un json con los datos a actualizar
      */
@@ -292,38 +243,23 @@ angular.module('starter.services', [])
       BorraVehiculo: BorrarVehiculo
     }
   })
-
-
-
-
-
-
-
 .service('ConsultaChoferes', function ($firebaseArray, $firebaseObject,$cordovaCamera) {
   var choferesReference = new Firebase("https://sideappprueba.firebaseio.com/Choferes");
   var listaChoferes = [];
   this.consultarChoferes = function (callback) {
-
     var ref = new Firebase("https://sideappprueba.firebaseio.com/Choferes");
     var data = $firebaseObject(ref);
     callback(data);
-
     //código reemplazado por el anterior dado que el otro utiliza three way data binding, en caso de error usar el siguiente
     /*choferes = $firebaseArray(choferesReference);
     choferes.$loaded()
       .then(function (data) {
         angular.forEach(data, function (value) {
-
           listaChoferes.push({id: value.$id, nombre: value.Nombre, apellidos: value.Apellidos, estado: value.Estado, image: value.image});
-
         });
         callback(listaChoferes);
       });*/
-
   };
-
-
-
   this.cameraSave = function(typef, callback) {
     //inicialment+e se usa la referencia directa a la base da datos, osea se insertaba la imagen directo en la tabla, ahora se
     //mudo al sistema de que se envie a al front end y de ahí guardarla con los otros datos, en caso de error o prueba descomentar lo siguiente
@@ -355,43 +291,48 @@ angular.module('starter.services', [])
     }, function(error) {
       console.error(error);
     });
-
-
     //controlador para el menu contextual con las opciones de tomar video o usar imagenes de galería
-
   };
-
+  /*
+  * Servicio que consulta los choferes por ID
+  */
   this.consultarChoferesID = function (id) {
     var ref = choferesReference+"/"+id;
     var choferes = $firebaseArray(ref);
     return choferes;
   };
-
+  /*
+  * Servicio que agrega choferes
+  */
   this.AddChoferesH = function (data) {
     var userReference = new Firebase("https://sideappprueba.firebaseio.com/Choferes/" + data.cedula);
     var send = {Cedula:data.cedula, Nombre:data.nombre, Apellidos: data.apellidos, Estado: data.estado, image: data.image};
     userReference.update(send);
   };
-
+  /*
+  * Servicio que borra choferes
+  */
   this.borrarChofer = function (data) {
-    var userReference = new Firebase("https://sideappprueba.firebaseio.com/Choferes/" + data.ID);
-    userReference.remove();
+      var userReference = new Firebase("https://sideappprueba.firebaseio.com/Choferes/" + data.ID);
+      userReference.remove();
   };
-
 })
-
-.service('ConsultasFlotilla', function ($firebaseObject) {
-  //consulta los vehiculos de manera general
-  this.ConsultarVehiculos = function (callback) {
-    var ref = new Firebase("https://sideappprueba.firebaseio.com/Vehiculo");
-    var data = $firebaseObject(ref);
-    callback(data);
-  };
-
+    /*
+    * Servicio que consulta los vehiculos de manera general
+    */
+    .service('ConsultasFlotilla', function ($firebaseObject) {
+        this.ConsultarVehiculos = function (callback) {
+        var ref = new Firebase("https://sideappprueba.firebaseio.com/Vehiculo");
+        var data = $firebaseObject(ref);
+        callback(data);
+    };
+  /*
+  * Servicio que consulta los vehiculos por ID
+  */
   this.ConsultarVehiculoByID = function (placa, callback) {
-    var ref = new Firebase("https://sideappprueba.firebaseio.com/Vehiculo/" + placa);
-    var data = $firebaseObject(ref);
-    callback(data);
+      var ref = new Firebase("https://sideappprueba.firebaseio.com/Vehiculo/" + placa);
+      var data = $firebaseObject(ref);
+      callback(data);
   };
 
 });

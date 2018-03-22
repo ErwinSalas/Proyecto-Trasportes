@@ -1,9 +1,11 @@
-
+/**
+ * Modulo de usuarios, controlador de las reservas
+ */
 angular.module('userModule')
     .controller('reservationsCreateCtrl', function($scope,$location,$timeout,GetAvailableFleetResource,ReserveResource,FleetCarResource) {
 
         checkUserType($location.absUrl());
-
+        //Restablece los datos 
         $scope.reservation={};
 
         $scope.provincesCR = provinciasCR;
@@ -27,7 +29,9 @@ angular.module('userModule')
 
         document.getElementById("citiesSetect").disabled = true;
         document.getElementById("disctrictSetect").disabled = true;
-
+        /**
+         * Función que cambia los cantones dependiendo de la provincia seleccionada
+         */
         $scope.changeP = function () {
             $scope.citySelected = "";
             document.getElementById("citiesSetect").disabled = false;
@@ -38,11 +42,16 @@ angular.module('userModule')
                 document.getElementById("disctrictSetect").selectedIndex = -1;
             }
         };
+        /**
+         * Función para seleccionar el distrito
+         */
         $scope.changeC = function () {
             $scope.districtSelected = "";
             document.getElementById("disctrictSetect").disabled = false;
         };
-
+        /**
+         * Función que guarda la provicia, canton y distrito asignado en las variables
+         */
         $scope.setPlaceNames = function (valueP,valueC,valueD) {
             for (i = 0; i < $scope.provincesCR.length; i++) {
                 if ($scope.provincesCR[i].ID == valueP.PID){
@@ -60,7 +69,9 @@ angular.module('userModule')
                 }
             }
         };
-
+        /*
+        * Función que muestra la imagen del auto seleccionado
+        */
         $scope.carInfoDetails = function () {
             if($scope.reservation.vehicleId != null && $scope.reservation.vehicleId != ""){
                 var PictureCanvas = document.getElementById('img');
@@ -69,7 +80,9 @@ angular.module('userModule')
 
             }
         };
-
+        /*
+        * Función que muestra la información del auto seleccionado
+        */
         $scope.getCarDetailsInfo = function () {
             console.log($scope.reservation.vehicleId);
             $scope.getCarInfo = FleetCarResource.getCarInfo($scope.reservation.vehicleId, function (res) {
@@ -78,20 +91,25 @@ angular.module('userModule')
                 console.log("La resInfo ", $scope.carInfo);
             });
         };
-
+        /*
+        * Función que habilita el boton de ver información de vehículo
+        */
         $scope.enableCarInfoBtn = function () {
             if ($scope.carInfoCheck == false){
                 document.getElementById("carInfoBtn").style.display = 'block';
                 $scope.carInfoCheck = true;
             }
         };
-
+        /*
+        * Función que coloca las fechas de salida y llegada
+        */
         $scope.setDates=function(arrival,departure){
             $scope.reservation.arrival = arrival;
             $scope.reservation.departure = departure;
-
         };
-
+        /*
+        *Función que valida los campos de la reserva
+        */
         $scope.validateReservation=function () {
             $scope.getCarDetailsInfo();
             if($scope.reservation.arrival == null || $scope.reservation.departure == null){
@@ -153,7 +171,9 @@ angular.module('userModule')
             return true;
 
         };
-
+        /**
+         * Función de validación de los pasajeros los cuales van hacer agregados a la reserva
+         */
         $scope.validateAddMember=function () {
             if($scope.usuariosD.identification == null  || $scope.usuariosD.identification == ""){
                 $scope.errorMessagesPassager = "Digite la identificacion del pasajero";
@@ -197,7 +217,9 @@ angular.module('userModule')
             }
             return true;
         };
-
+        /**
+         * Función que publica el mensaje de reservación con exito al webservices
+        */
         $scope.postReservation=function() {
             if($scope.validateReservation()){
                 var user = JSON.parse( localStorage.getItem('session.owner') );
@@ -219,9 +241,7 @@ angular.module('userModule')
                 $timeout( function(){
                     window.location.href = '#/user';
                 }, 1000 );
-                //alert("Exito");
             }else{
-                //alert("Error");
                 swal({
                     title: "Campos vacios!",
                     text: $scope.errorMessages,
@@ -230,10 +250,10 @@ angular.module('userModule')
                     showConfirmButton: false
                 });
             }
-
-
         };
-
+        /*
+        * Función que agrega a un pasajero a la lista de la reserva
+        */
         $scope.agregarPasajero = function(){
             if($scope.validateAddMember()){
                 var departureHourE = document.getElementById("departureHourE").value;
@@ -245,7 +265,6 @@ angular.module('userModule')
                 $scope.usuariosD={};
                 $scope.departureTimePassager="";
                 $scope.returnTimePassager="";
-
                 document.getElementById("identificationE").value = "";
                 document.getElementById("firstNameE").value = "";
                 document.getElementById("lastNameE").value = "";
@@ -253,7 +272,6 @@ angular.module('userModule')
                 document.getElementById("placeToLeaveE").value = "";
                 document.getElementById("departureHourE").value = "";
                 document.getElementById("arrivalHourE").value = "";
-
                 swal({
                     title: "Pasajero Agregado",
                     type: "success",
@@ -262,7 +280,6 @@ angular.module('userModule')
                     showConfirmButton: false
                 });
             }else{
-                //alert("Error2");
                 swal({
                     title: "Campos vacios!",
                     text: $scope.errorMessagesPassager,
@@ -271,13 +288,17 @@ angular.module('userModule')
                     showConfirmButton: false
                 });
             }
-
         };
-
+        /*
+        *Función que elimina a los usuarios de la lista de pasajeros.
+        */
         $scope.eliminarPasajero = function(index){
             $scope.members.splice(index, 1);
         };
-
+        /*
+        *Función que verifica que hay vehículos disponibles para la fecha y hora seleccionada
+        * Además da aviso al usuario si hay disponibilidad
+        */
         document.getElementById("btnCheck").addEventListener("click", function(){
             $scope.members = [];
                 var arrivalDate= document.getElementById("arrivalDate").value;
@@ -293,14 +314,6 @@ angular.module('userModule')
                     $scope.getFleet = GetAvailableFleetResource.response(urlParams, function (res) {
                         console.log("res ", res);
                         $scope.fleets = res;
-                        /*console.log($scope.fleets.length);
-                        for (i = 0; i < $scope.fleets.length; i++) {
-                            console.log($scope.fleets[i].model);
-                            if ($scope.fleets[i].isLocked == true){
-                                $scope.fleets.splice(i, 1);
-                                console.log($scope.fleets[i].model)
-                            }
-                        }*/
                     });
                     $scope.setDates(datetimeToISO8601(arrivalDate,arrivalHour),datetimeToISO8601(departureDate,departureHour)) ;
                     document.getElementById("vehicleIdSelect").value = "";
@@ -317,12 +330,8 @@ angular.module('userModule')
                     });
                 }
                 else{
-
                     sweetAlert("Error...", "No existen autos disponibles en la fecha solicitada", "error");
                 }
             }
         );
-
-
-
     });

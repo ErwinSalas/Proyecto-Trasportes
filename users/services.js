@@ -1,5 +1,5 @@
-/**
- * Created by Erwin on 27/10/2016.
+/*
+* modulo servicios usuarios
  */
 angular.module('userModule')
     /*

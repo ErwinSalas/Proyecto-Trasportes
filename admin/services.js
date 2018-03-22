@@ -1,6 +1,3 @@
-/**
- * Created by ADRIAN on 24/3/2017.
- */
 angular.module('adminModule')
 /*
  Los factory en angular estan basados en el patron de diseño factoria el cual
@@ -12,7 +9,13 @@ angular.module('adminModule')
  del controlador
 
  */
-    //Fleet
+    /**
+     * La función flotilla hace una solicitud al servidor según la función que vaya a utilizar, ya sea un get o un post.
+     * Este factory puede hacer varios get y post _todo se utiliza según la petición que sea necesaria, ya que se
+     * muestra flotilla, se agrega flotilla, se elimina y se edita la flotilla.
+     * @param IdVevhiculo.
+     * @returns {Json} Json.
+     */
     .factory('FleetCarResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var user = JSON.parse( localStorage.getItem('session.owner') );
@@ -111,9 +114,13 @@ angular.module('adminModule')
         };
         return factory;
     })
-
-
-    //Driver 
+    /**
+     * La función chofer hace una solicitud al servidor según la función que vaya a utilizar, ya sea un get o un post.
+     * Este factory puede hacer varios get y post _todo se utiliza según la petición que sea necesaria, ya que se
+     * muestra choferes, se agrega choferes, se elimina y se edita la choferes.
+     * @param IdChofer.
+     * @returns {Json} Json.
+     */
     .factory('DriverResources',function($http){
         var authToken = localStorage.getItem('session.token');
         var user = JSON.parse( localStorage.getItem('session.owner') );
@@ -199,7 +206,11 @@ angular.module('adminModule')
         };
         return factory;
     })
-    
+    /**
+     * La función de la reservación hace una solicitud al servidor según la función que vaya a utilizar, ya sea un get o un post.
+     * @param Id de la reserva.
+     * @returns {Json} Json.
+     */
     .factory('ReserveResources', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var user = JSON.parse( localStorage.getItem('session.owner') );
@@ -258,11 +269,17 @@ angular.module('adminModule')
         };
         return factory;
     })
+    /**
+     * La función mensajes hace una solicitud al servidor según la función que vaya a utilizar, ya sea un get o un post.
+     * Este factory puede hacer varios get y post _todo se utiliza según la petición que sea necesaria, ya que se
+     * muestra mensajes, se agrega mensajes, se elimina mensajes.
+     * @param IdMensaje.
+     * @returns {Json} Json.
+     */
     .factory('MessageResource', function ($http) {
         var authToken = localStorage.getItem('session.token');
         var user = JSON.parse( localStorage.getItem('session.owner') );
         var factory = {
-
         setMessage: function (message){
             $http({
                 method  : 'POST',
@@ -313,6 +330,13 @@ angular.module('adminModule')
         };
         return factory;
     })
+    /**
+     * La función manejo de datos multimedoa hace una solicitud al servidor según la función que vaya a utilizar,
+     * ya sea un get o un post.
+     * Función para poner o quitar las imagenes.
+     * @param Id de la imagen
+     * @returns {Json} Json.
+     */
     .factory('MediaResource', function ($http) {
         /*
         Servicio para manejo de datos multimedia

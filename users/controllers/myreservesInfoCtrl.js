@@ -1,18 +1,23 @@
+/**
+ * Modulo de usuario controlador de la información de las reservas
+ */
 angular.module('userModule')
     .controller('myreservesInfoCtrl', function($scope,$location,$compile,$routeParams,ReserveResource,DriverResources) {
 
         checkUserType($location.absUrl());
-        
+        //Restablecer datos de los campos de texto
         $scope.valueID = $routeParams.valueID;
-
         $scope.reservedDepartureDate = "";
         $scope.reservedDepartureTime = "";
         $scope.reservedArrivalDate = "";
         $scope.reservedArrivalTime = "";
         $scope.reservationStatusAPD = "";
         $scope.reservationPassengers = "";
-
-        console.log(reserveSelectedID);
+        /**
+         * Función que recibe las reservaciones del webservices y le da formato.
+         * @param ID ID de la reserva selecionada.
+         * @param res res.Por la promesa.
+         */
         $scope.getReserve = ReserveResource.getReserve(reserveSelectedID, function (res) {
             $scope.reserve=res;
             console.log("La resInfo ", $scope.reserve);
@@ -61,7 +66,11 @@ angular.module('userModule')
             $scope.reservedDepartureTime = $scope.setFormatTime($scope.reserve.departure);
             $scope.reservedArrivalTime = $scope.setFormatTime($scope.reserve.arrival);
         });
-
+        /**
+         * Aplica formato a una fecha.
+         * @param Date Fecha.
+         * @returns {String} Fecha con formato.
+         */
         $scope.setFormatDate = function (date) {
             reserveDate = new Date(date);
             reserveYear = reserveDate.getFullYear();
@@ -69,7 +78,11 @@ angular.module('userModule')
             reserveDay = reserveDate.getDate();
             return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear;
         };
-
+        /**
+         * Aplica formato a una hora.
+         * @param Date hora.
+         * @returns {String} Hora con formato.
+         */
         $scope.setFormatTime = function (date) {
             reserveDate = new Date(date);
             reserveHours = reserveDate.getHours();
@@ -79,9 +92,13 @@ angular.module('userModule')
             reserveHours = reserveHours ? reserveHours : 12;
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
             return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
-
         };
-
+        /**
+         * Agregar espacios en la tabla de la información de la reserva según el estado.
+         * @param Int num.
+         * @param Int c1.
+         * @param Int c2.
+         */
         $scope.addTableInfo = function (num,c1,c2) {
             var table = document.getElementById("tableInfo");
             var row = table.insertRow(num);

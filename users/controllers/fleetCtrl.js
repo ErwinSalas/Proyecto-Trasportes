@@ -1,7 +1,15 @@
+/**
+ * Modulo usuario, controlar de la flotilla.
+ */
 angular.module('userModule')
     .controller('fleetIndexCtrl', function($scope,$location,GetFleetResource) {
         checkUserType($location.absUrl());
         /* config object */
+        /**
+         * Función para obtener la lista de los vehículos.
+         * @param res res. Parte de la promesa
+         * @returns {res}.
+         */
         $scope.getAllFleet=GetFleetResource.respuesta(function (res) {
             console.log("res ", res);
             $scope.fleets=res;
@@ -12,16 +20,10 @@ angular.module('userModule')
             }
             document.getElementById('infoLoader').style.display = "none";
         });
-
         $scope.fleetMain = [];
         $scope.carSelectedID = "";
-
         $scope.fleetSelected = function (carID) {
             carSelectedID = carID;
-            console.log("ID Salio");
-            console.log(carSelectedID);
-
             window.location.href = '#/user/fleet/info/'+carSelectedID;
-
         };
     });

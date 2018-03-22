@@ -1,4 +1,4 @@
-
+//Controlador de mensajes de los usuarios
 angular.module('userModule')
     .controller('dashboardCtrl', function($scope,$location,MessageResources) {
     /* config object */
@@ -11,7 +11,11 @@ angular.module('userModule')
             $scope.messages[i].publish = $scope.setFormatDateTime($scope.messages[i].publish);
         }
     });
-
+    /**
+     * Aplica formato a una fecha.
+     * @param Date Fecha.
+     * @returns {String} Fecha con formato.
+     */
     $scope.setFormatDateTime = function (date) {
         reserveDate = new Date(date);
         reserveYear = reserveDate.getFullYear();

@@ -17,17 +17,14 @@ angular.module('userModule')
         $scope.reservedDepartureTime = "";
         $scope.reservedArrivalDate = "";
         $scope.reservedArrivalTime = "";
-
-        console.log(reserveSelectedID);
+        /*
+        * Función que obtiene toda la informacion que se va a mostrar en la información de la boleta
+        */
         $scope.getReserve = ReserveResource.getReserve(reserveSelectedID, function (res) {
             $scope.reserve=res;
-            console.log("EL TICKET resInfo ", $scope.reserve);
-
             $scope.getCarInfo = FleetCarResource.getCarInfo($scope.reserve.vehicleId, function (res) {
                 $scope.carInfo=res;
-                console.log("Fleet resInfo ", $scope.carInfo);
             });
-
             if($scope.reserve.requestDriver == true){
                 $scope.getDriverInfo = DriverResources.getDriverInfo($scope.reserve.assignedDriver, function (res) {
                     $scope.driverInfo=res;
@@ -71,7 +68,9 @@ angular.module('userModule')
             document.getElementById("printBtnB").innerHTML = "<button type='button\' class='btn bg-red btn-circle-lg waves-effect waves-circle waves-float' style='position: fixed; bottom:2%; right: 2%' ng-click='printElem()'><i class='material-icons'>print</i></button>";
             $compile(document.getElementById("printBtnB") )($scope);
         });
-
+        /*
+        * Función que da formato de fecha
+        */
         $scope.setFormatDate = function (date) {
             reserveDate = new Date(date);
             reserveYear = reserveDate.getFullYear();
@@ -79,7 +78,9 @@ angular.module('userModule')
             reserveDay = reserveDate.getDate();
             return reserveDay + "/" + reserveMonth + "/" + reserveYear;
         };
-
+        /*
+        * Función que da formato a la hora
+         */
         $scope.setFormatTime = function (date) {
             reserveDate = new Date(date);
             reserveHours = reserveDate.getHours();
@@ -89,8 +90,10 @@ angular.module('userModule')
             reserveHours = reserveHours ? reserveHours : 12;
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
             return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
-
         };
+        /*
+        * Función que da formato en el script
+         */
         $scope.setFormatTimeMembers = function (date) {
             var timeString = date;
             var H = +timeString.substr(0, 2);
@@ -98,13 +101,14 @@ angular.module('userModule')
             var ampm = (H < 12 || H === 24) ? " am" : " pm";
             return timeString = h + timeString.substr(2, 3) + ampm;
         };
-
+        //Devolver de la vista
         $scope.goBackTicket = function() {
             window.location.href = '#/user/reserves/info/'+reserveSelectedID;
         };
-
+        /*
+        * Función que imprime la boleta
+        */
         $scope.printElem = function() {
-
             var contents = document.getElementById('ticketBody').innerHTML;
             var contents2;
             if ($scope.membersListTicket2.length > 0){
@@ -141,18 +145,6 @@ angular.module('userModule')
                 window.frames["frame1"].print();
                 document.body.removeChild(frame1);
             }, 500);
-            return false;/*
-            var headstr = "<html><head><title></title></head><body>";
-            var footstr = "</body>";
-            var newstr = document.all.item(divName).innerHTML;
-            var oldstr = document.body.innerHTML;
-            document.body.innerHTML = headstr+newstr+footstr;
-            window.print();
-            document.body.innerHTML = oldstr;
-
-            location.reload();*/
-            //window.location.href = '#/admin/reserves/ticket/'+reserveSelectedID;
-
+            return false;
         }
-
     })

@@ -1,4 +1,6 @@
-
+/**
+ * Modulo de usuario, controlador menu izquierdo de la parte de fron-end
+ */
 angular.module('userModule')
     .controller('mainCtrl', function($scope,$location) {
     /* config object */
@@ -32,7 +34,9 @@ angular.module('userModule')
         document.getElementById("fleetTab").classList.remove("active")
         document.getElementById("homeTab").classList.remove("active")
     });
-
+    /**
+     * Función que muestra a los desarrolladores del programa.
+     */
     $scope.showAbout=function() {
         swal({
             title: "Transportec",

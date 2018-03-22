@@ -95,7 +95,6 @@ angular.module('adminModule')
             reserveHours = reserveHours ? reserveHours : 12;
             reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
             return reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
-
         };
         /**
          * Agregar espacios en la tabla de la información de la reserva según el estado.

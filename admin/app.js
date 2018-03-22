@@ -4,6 +4,7 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
         $routeProvider.when("/",{
                 templateUrl:'index.html'
             })
+            //Se conecta la vista de los mensajes con el controlador
             .when("/admin",{
                 templateUrl:'dashboard.html',
                 controller: 'dashboardCtrl'
@@ -31,11 +32,12 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 templateUrl:'DriverAdmin/driverAdminInfo.html',
                 controller: 'driverInfoCtrl'
             })
+            //Se conecta la vista de reservas administrador con el controlador
             .when("/admin/reserves",{
                 templateUrl:'reservesAdmi/reservesAdmin.html',
                 controller: 'reservesAdminCtrl'
             })
-
+            //Se conecta la vista de información de la reserva con el controlador
             .when("/admin/reserves/info/:valueID",{
                 templateUrl:'reservesAdmi/reservesAdminInfo.html',
                 controller: 'reservesAdminInfoCtrl'
@@ -50,6 +52,7 @@ angular.module('adminModule',["ngRoute","ngResource","ui.calendar"])
                 templateUrl:'DriverAdmin/driverAdmin.html',
                 controller: 'driverAdminCtrl'
             })
+            //Se conecta la vista con el cotrolador de la boleta
             .when("/admin/reserves/ticket/:valueID",{
                 templateUrl:'Ticket/ticket.html',
                 controller: 'ticketCtrl'
