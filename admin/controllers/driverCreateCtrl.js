@@ -16,7 +16,7 @@ angular.module('adminModule')
         $scope.validateCreateDriver=function () {
             /*-------------------VALIDACIONES---------------------*/
             //Validacion de identificación de chofer
-            if($scope.newDriver.identification == null || $scope.newDriver.identification == ""){
+            if($scope.newDriver.identification == null || $scope.newDriver.identification == "" || isNaN($scope.newDriver.identification)== true){
                 $scope.errorMessage = "Debe de digitar la identificación";
                 return false;
             }
@@ -31,7 +31,6 @@ angular.module('adminModule')
                 return false;
             }
             return true;
-
         };
         /**
          * Función para guardar un chofer, si se guarda bien muestra mensaje de exito sino muestra mensaje de error.
@@ -39,6 +38,7 @@ angular.module('adminModule')
         $scope.saveDriver=function() {
             if($scope.validateCreateDriver()){
                 console.log("Envio ", $scope.newDriver);
+                $scope.newDriver.identification = $scope.newDriver.identification.toString();
                 DriverResources.setNewDriver($scope.newDriver);
                 responseData=MediaResource.setImg($scope.img, $scope.newDriver.identification,1);
                 swal({

@@ -1,14 +1,11 @@
 var app = angular.module('loginModule',["ngRoute","ngResource"])
     .controller('loginController', function($scope, $http) {
-
         // modelo de datos.
         $scope.username = "";
         $scope.password = "";
-
         /**
          * Ejecuta el inicio de sesión.
          */
-
         $scope.doLogin = function () {
             document.getElementById("inputUsuario").style.display = "none";
             document.getElementById("inputContraseña").style.display = "none";
@@ -23,7 +20,6 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                 console.log((API_ROOT + '/user/login/web?username={0}&password={1}')
                     .format(Base64.toBase64($scope.username, true).toString(), Base64.toBase64($scope.password, true).toString()))
                 var meta = response.data.metadata;
-
                 if (meta.operationResult == 'Ok') {
 
                     var content = response.data.content;
@@ -31,7 +27,6 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                     var userData = content.user;
                     console.log(userData);
                     saveSession(content);
-
                     window.location.href = ('{0}'.format(userData.userType == "Admin" ? "admin" : "users"));
                 } else {
                     document.getElementById("inputUsuario").style.display = "block";
@@ -49,7 +44,6 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
                 }
             });
         };
-
         /**
          * Guarda la sesión en el almacenamiento local del navegador.
          * @param json JSON de origen.
@@ -57,6 +51,5 @@ var app = angular.module('loginModule',["ngRoute","ngResource"])
         function saveSession(json) {
             localStorage.setItem("session.token", json.session.token);
             localStorage.setItem("session.owner", JSON.stringify(json.user));
-            console.log("Sesión guardada.");
         }
     });

@@ -1,7 +1,6 @@
 /**
  * Servicios genéricos.
  */
-
 angular.module('sharedServices')
     .factory('FleetResource', function ($http) {
         var token = localStorage.getItem("session.token");

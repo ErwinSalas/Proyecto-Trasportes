@@ -128,8 +128,8 @@ angular.module('userModule')
                 $scope.errorMessages = "Digite el nombre del responsable de la reserva";
                 return false;// Encargado no digitado
             }
-            if($scope.reservation.responsableTelephone == null || $scope.reservation.responsableTelephone == ""){
-                $scope.errorMessages = "Digite el telefono del responsable de la reserva";
+            if($scope.reservation.responsableTelephone == null || $scope.reservation.responsableTelephone == "" || isNaN($scope.reservation.responsableTelephone)== true){
+                $scope.errorMessages = "Digite el telefono del responsable usando numeros";
                 return false;// telefono no digitado
             }
             if($scope.reservation.activityType == null || $scope.reservation.activityType == ""){
@@ -223,6 +223,7 @@ angular.module('userModule')
         $scope.postReservation=function() {
             if($scope.validateReservation()){
                 var user = JSON.parse( localStorage.getItem('session.owner') );
+                $scope.reservation.responsableTelephone = $scope.reservation.responsableTelephone.toString();
                 $scope.reservation.requestingUser= user.username;
                 $scope.reservation.members = $scope.members;
                 $scope.setPlaceNames($scope.provinceSelected,$scope.citySelected,$scope.districtSelected);
