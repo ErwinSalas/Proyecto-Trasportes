@@ -290,6 +290,59 @@ angular.module('userModule')
                 });
             }
         };
+
+        $scope.importedFile = "";
+
+        function incomingfile(event) {
+            $scope.importedFile = event.target.files[0];
+            console.log($scope.importedFile)
+        }
+
+        document.getElementById('importBTN').addEventListener('click', upload, false);
+        function upload() {
+
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+                this.arrayBuffer = fileReader.result;
+                const data = new Uint8Array(this.arrayBuffer);
+                const arr = new Array();
+
+                for (i = 0; i !== data.length; ++i) {
+                    arr[i] = String.fromCharCode(data[i]);
+                }
+
+                const bstr = arr.join('');
+                const workbook = XLSX.read(bstr, {
+                    type: 'binary'
+                });
+                const first_sheet_name = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[first_sheet_name];
+                console.log(XLSX.utils.sheet_to_json(worksheet, {
+                    raw: true
+                }));
+            };
+            fileReader.readAsArrayBuffer($scope.importedFile);
+            setTimeout(function () {
+                for(var i=0; i <  $scope.importedFile.length; i++){
+                    $scope.usuariosDI = {};
+                    $scope.usuariosDI.identification = $scope.importedFile[i].Identificación.toString();
+                    $scope.usuariosDI.firstName = $scope.importedFile[i].Nombre;
+                    $scope.usuariosDI.lastName = $scope.importedFile[i].Apellidos;
+                    $scope.usuariosDI.placeToCollect = $scope.importedFile[i].Lugar_de_salida;
+                    $scope.usuariosDI.placeToLeave = $scope.importedFile[i].Lugar_de_llegada;
+                    $scope.usuariosDI.departureTime = $scope.importedFile[i].Hora_de_Salida;
+                    $scope.usuariosDI.returnTime = $scope.importedFile[i].Hora_de_Llegada;
+                    $scope.members.push($scope.usuariosDI);
+                    console.log($scope.usuariosDI);
+                }
+                console.log($scope.members);
+            },3000)
+
+        }
+        document.getElementById('importFile').addEventListener('change', incomingfile, false);
+        $scope.imprimir = function () {
+            console.log($scope.members);
+        }
         /*
         *Función que elimina a los usuarios de la lista de pasajeros.
         */

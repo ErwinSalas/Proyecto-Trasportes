@@ -285,6 +285,28 @@
                             </div>
                         </div>
 
+                        <div class="modal fade" id="defaultModalImport" tabindex="-1" role="dialog" style="display: none;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="defaultModalLabelImport">Importar Lista de Pasajéros</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="body">
+                                            <input id="importFile" type="file" style="display: inline-block;" value="import" placeholder="sfsfsdffsdf" accept=".xlsx">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link waves-effect" ng-click="imprimir()">Imprimir</button>
+                                        <button id="importBTN" type="button" class="btn btn-link waves-effect">Procesar</button>
+                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atras</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger m-t-18 waves-effect" data-toggle="modal" data-target="#defaultModalImport">Importar</button>
+
+
                         <button type="submit" style="display: block; margin: auto" class="btn bg-deep-orange m-t-18 waves-effect" ng-click="postReservation()">Reservar</button>
                     </form>
                 </div>
