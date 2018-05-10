@@ -291,7 +291,8 @@ angular.module('userModule')
             }
         };
 
-        $scope.importedFile = "";
+        $scope.importedFile = {};
+        $scope.importedFileJson = {};
 
         function incomingfile(event) {
             $scope.importedFile = event.target.files[0];
@@ -317,32 +318,38 @@ angular.module('userModule')
                 });
                 const first_sheet_name = workbook.SheetNames[0];
                 const worksheet = workbook.Sheets[first_sheet_name];
+                $scope.importedFileJson = XLSX.utils.sheet_to_json(worksheet, {
+                    raw: true
+                });
                 console.log(XLSX.utils.sheet_to_json(worksheet, {
                     raw: true
                 }));
             };
             fileReader.readAsArrayBuffer($scope.importedFile);
-            setTimeout(function () {
-                for(var i=0; i <  $scope.importedFile.length; i++){
+            $timeout(function () {
+                console.log($scope.importedFileJson.length);
+                console.log("entra esta madre5");
+
+                for(var i=0; i <  $scope.importedFileJson.length; i++){
+                    console.log("entra esta madre");
                     $scope.usuariosDI = {};
-                    $scope.usuariosDI.identification = $scope.importedFile[i].Identificación.toString();
-                    $scope.usuariosDI.firstName = $scope.importedFile[i].Nombre;
-                    $scope.usuariosDI.lastName = $scope.importedFile[i].Apellidos;
-                    $scope.usuariosDI.placeToCollect = $scope.importedFile[i].Lugar_de_salida;
-                    $scope.usuariosDI.placeToLeave = $scope.importedFile[i].Lugar_de_llegada;
-                    $scope.usuariosDI.departureTime = $scope.importedFile[i].Hora_de_Salida;
-                    $scope.usuariosDI.returnTime = $scope.importedFile[i].Hora_de_Llegada;
+                    $scope.usuariosDI.identification = $scope.importedFileJson[i].Identificación.toString();
+
+                    $scope.usuariosDI.firstName = $scope.importedFileJson[i].Nombre_Usuario;
+                    $scope.usuariosDI.lastName = $scope.importedFileJson[i].Apellidos_Usuario;
+                    $scope.usuariosDI.placeToCollect = $scope.importedFileJson[i].Lugar_de_salida;
+                    $scope.usuariosDI.placeToLeave = $scope.importedFileJson[i].Lugar_de_llegada;
+                    $scope.usuariosDI.departureTime = $scope.importedFileJson[i].Hora_de_Salida;
+                    $scope.usuariosDI.returnTime = $scope.importedFileJson[i].Hora_de_Llegada;
                     $scope.members.push($scope.usuariosDI);
                     console.log($scope.usuariosDI);
                 }
                 console.log($scope.members);
-            },3000)
+            },1000)
 
         }
         document.getElementById('importFile').addEventListener('change', incomingfile, false);
-        $scope.imprimir = function () {
-            console.log($scope.members);
-        }
+
         /*
         *Función que elimina a los usuarios de la lista de pasajeros.
         */
