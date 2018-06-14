@@ -10,7 +10,7 @@ form{
     background-color:white;
     border-radius: 2px;
     border-color:#140e39 ;
-    border-style: double;
+    border-style: solid;
     margin-top: 8em;
 }
 #loginLoader{
@@ -23,11 +23,11 @@ form{
 }
 @media (max-width: 800px) {
     #LoginDiv{
-        width: 80%;
+        width: 90%;
         height: 60%;
     }
     form{
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
     }
     .btn-login{

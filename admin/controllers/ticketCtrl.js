@@ -79,7 +79,7 @@ angular.module('adminModule')
             reserveYear = reserveDate.getFullYear();
             reserveMonth = reserveDate.getMonth();
             reserveDay = reserveDate.getDate();
-            return reserveDay + "/" + reserveMonth + "/" + reserveYear;
+            return reserveDay + "/" + (reserveMonth + 1) + "/" + reserveYear;
         };
         $scope.setFormatTime = function (date) {
             reserveDate = new Date(date);

@@ -17,16 +17,16 @@ angular.module('userModule')
      * @returns {String} Fecha con formato.
      */
     $scope.setFormatDateTime = function (date) {
-        reserveDate = new Date(date);
-        reserveYear = reserveDate.getFullYear();
-        reserveMonth = reserveDate.getMonth();
-        reserveDay = reserveDate.getDate();
-        reserveHours = reserveDate.getHours();
-        reserveMinutes = reserveDate.getMinutes();
-        reserve_AM_PM = reserveHours >= 12 ? 'pm' : 'am';
-        reserveHours = reserveHours % 12;
-        reserveHours = reserveHours ? reserveHours : 12;
-        reserveMinutes = reserveMinutes < 10 ? '0'+reserveMinutes : reserveMinutes;
-        return reserveDay + " de " + months[reserveMonth] + " de " + reserveYear+" - "+reserveHours + ':' + reserveMinutes + ' ' + reserve_AM_PM;
+        messagesDate = new Date(date);
+        messagesYear = messagesDate.getFullYear();
+        messagesMonth = messagesDate.getMonth();
+        messagesDay = messagesDate.getDate();
+        messagesHours = messagesDate.getHours();
+        messagesMinutes = messagesDate.getMinutes();
+        messages_AM_PM = messagesHours >= 12 ? 'pm' : 'am';
+        messagesHours = messagesHours % 12;
+        messagesHours = messagesHours ? messagesHours : 12;
+        messagesMinutes = messagesMinutes < 10 ? '0'+messagesMinutes : messagesMinutes;
+        return messagesDay + " de " + months[messagesMonth] + " de " + messagesYear+" - "+messagesHours + ':' + messagesMinutes + ' ' + messages_AM_PM;
     };
 });

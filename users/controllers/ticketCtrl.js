@@ -76,7 +76,7 @@ angular.module('userModule')
             reserveYear = reserveDate.getFullYear();
             reserveMonth = reserveDate.getMonth();
             reserveDay = reserveDate.getDate();
-            return reserveDay + "/" + reserveMonth + "/" + reserveYear;
+            return reserveDay + "/" + (reserveMonth + 1) + "/" + reserveYear;
         };
         /*
         * Función que da formato a la hora

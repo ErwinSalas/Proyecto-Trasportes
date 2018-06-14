@@ -7,7 +7,7 @@ angular.module('userModule')
         checkUserType($location.absUrl());
         $scope.valueID = $routeParams.valueID;
         var PictureCanvas = document.getElementById('img');
-        PictureCanvas.src = IMG_ROOT_F+carSelectedID+".jpg";
+        PictureCanvas.src = API_ROOT+'/fleet/picture/get?vehicleId='+carSelectedID;
 
         $scope.getCarInfo = FleetCarResource.getCarInfo(carSelectedID, function (res) {
             $scope.carInfo=res;

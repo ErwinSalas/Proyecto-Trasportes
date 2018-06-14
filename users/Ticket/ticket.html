@@ -40,7 +40,7 @@
                             <thead>
                             <caption><b>INFORMACIÓN GENERAL</b></caption><!-- Representa el titulo de la tabla -->
                             <tr><!-- Con tr se define cada fila de la tabla y encierra las columnas -->
-                                <th rowspan="2" scope="col">Dependecia solicitante<BR>DIRECCIÓN ADMINISTRATIVA</th><!-- Representa cada celda (th) -->
+                                <th rowspan="2" scope="col">Dependecia solicitante<BR>{{dependenceName}}</th><!-- Representa cada celda (th) -->
                                 <th colspan="2" >Placa del Vehiculo<br>{{reserve.vehicleId}}</th>
                                 <th colspan="2" >Tipo de Vehiculo<br>{{carInfo.brand}} {{carInfo.model}}</th>
                             </tr>
@@ -62,7 +62,8 @@
                             </tr>
                             <tr>
                                 <th scope="col">Tipo de atividad: {{reserve.activityType}}</th>
-                                <th colspan="4">Centro Funcional {{reserve.functionalCenter}}</th>
+                                <th colspan="2">Centro Funcional: {{functionalCenterNumber}}</th>
+                                <th colspan="2">Monto: {{functionalCenterAmount}}</th>
                             </tr>
                             </tbody>
                             <!-- Representa la parte final de la tabla -->

@@ -8,15 +8,15 @@ angular.module('adminModule')
         $scope.valueID = $routeParams.valueID;
         /*$scope.getCarPicture = MediaResource.getImg(carSelectedID,2,function (res) {
             $scope.carPicture=res;
-            setTimeout(function(){
-                var PictureCanvas = document.getElementById('img');
-                PictureCanvas.src = $scope.carPicture;
-            }, 7000);
+            console.log($scope.carPicture)
+            var PictureCanvas = document.getElementById('img');
+            PictureCanvas.src = $scope.carPicture;
+
 
         });*/
         //Consumir imagen de webservices
         var PictureCanvas = document.getElementById('img');
-        PictureCanvas.src = IMG_ROOT_F+carSelectedID+".jpg";
+        PictureCanvas.src = API_ROOT+'/fleet/picture/get?vehicleId='+carSelectedID;
         $scope.iconLock = "";
         $scope.isLockedSTR = "";
         $scope.isLockedSTRAction = "";
@@ -225,7 +225,7 @@ angular.module('adminModule')
         };
         /**
          * Función que muestra mensaje de exito cuando se edita me vehículo .
-         */        
+         */
         $scope.postFleet=function() {
             FleetCarResources.editCar($routeParams.valueID,$scope.newFleet);
             if($scope.img != null){
