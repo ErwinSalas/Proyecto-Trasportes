@@ -35,13 +35,13 @@ angular.module('userModule')
         document.getElementById("homeTab").classList.remove("active")
     });
     /**
-     * Función que muestra a los desarrolladores del programa.
-     */
-    $scope.showAbout=function() {
-        swal({
-            title: "Transportec",
-            text: "DESARROLLADORES\n \nLuis Alejandro Rodríguez\nAdrian Hernandez\nMiguel Rivas\nErwin Salas\n \nComunidad de Aplicaciones Móviles",
-            imageUrl: "../assets/images/comunidad.png"
-        });
-    };
+         * Función que muestra a los desarrolladores del programa.
+         */
+        $scope.showAbout=function() {
+            swal({
+                title: "Transportec",
+                text: "DESARROLLADORES\n \nLuis Alejandro Rodríguez\nAdrian Hernandez\nMiguel Rivas\nErwin Salas\n \nComunidad de Aplicaciones Móviles",
+                imageUrl: "../assets/images/comunidad.png"
+            });
+        };
 });
