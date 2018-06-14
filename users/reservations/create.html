@@ -73,6 +73,12 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-sm-6">
+                                <label for="place">Correo electronico</label>
+                                <div class="form-line">
+                                    <input ng-model="responsableEmail" type="text" id="responsableEmail" class="form-control" placeholder="Correo electronico del responsable">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <label for="place">Tipo Actividad</label>
                                 <select class="form-control show-tick" ng-model="reservation.activityType" >
                                     <option value="Academic">
@@ -92,10 +98,19 @@
                                     </option>
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="row clearfix">
                             <div class="col-sm-6">
                                 <label for="place">Centro Funcional</label>
                                 <div class="form-line">
                                     <input ng-model="reservation.functionalCenter" type="text" id="functionalCenter" class="form-control" placeholder="Centro Funcional">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="place">Monto del Centro Funcional</label>
+                                <div class="form-line">
+                                    <input ng-model="reservation.amount" type="number" id="functionalCenterAmount" class="form-control" placeholder="Monto del Centro Funcional">
                                 </div>
                             </div>
                         </div>

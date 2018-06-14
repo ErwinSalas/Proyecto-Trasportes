@@ -21,15 +21,20 @@ var closeSideBar=function () {
     if ($body.hasClass('overlay-open')) { $overlay.fadeIn(); } else { $overlay.fadeOut(); }
   }
 };
+
+/**
+ * Constante de los meses del año
+ */
+const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
 /**
  * Dirección raíz del API.
  * @type {string}
  */
   //const API_ROOT = "http://172.19.32.10:1901";
 const API_ROOT = "http://172.24.4.41:7100";
-//const API_ROOT = "http://transportec-api.azurewebsites.net";
-const IMG_ROOT_F = "http://transportec.s3.amazonaws.com/resources/fleet/";
-const IMG_ROOT_D = "http://transportec.s3.amazonaws.com/resources/driver/";
+const IMG_ROOT_F = "http://172.24.4.41/TranporTecResources/fleet/";
+const IMG_ROOT_D = "http://172.24.4.41/TranporTecResources/drivers/";
 /**
  * Formatea una cadena de texto en base a los parámetros proporcionados.
  * Tomado de: http://stackoverflow.com/a/4256130/3288599

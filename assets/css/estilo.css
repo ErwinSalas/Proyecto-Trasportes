@@ -127,7 +127,7 @@ aside.ticket2Size table{
 	margin-bottom: 2%;
 }
 .imgInfoDisplay{
-	display: none;
+	display: block;
 	margin: auto;
 	margin-top: 2%;
 	margin-bottom: 2%;
