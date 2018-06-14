@@ -22,7 +22,13 @@ angular.module('adminModule')
         $scope.isLockedSTRAction = "";
         $scope.isLockedStatusAction = false;
         $scope.getCarInfo = FleetCarResources.getCarInfo(carSelectedID, function (res) {
+
+            // Remove when the backend is ready
             $scope.carInfo=res;
+            $scope.extraCarInfo = {gasolina:3,estado:0,observaciones:"Todo bien",kmOilChange: 0};
+            $scope.extraCarInfo.kmOilChange = $scope.carInfo.mileage + 3000;
+            const estados = ["En buen estado","Pendiente Revisión","En mantenimiento"]
+            $scope.extraCarInfo.estado = estados[$scope.extraCarInfo.estado];
             if($scope.carInfo.Traction == 1){
                 $scope.carInfo.Traction = "Manual";
             }
@@ -85,6 +91,21 @@ angular.module('adminModule')
             var showEditSave = document.getElementById("ShowBtnEditSave").style.display = 'block';
             var showEditCancel = document.getElementById("ShowBtnEditCancel").style.display = 'block';
         };
+
+        $scope.editMaintenanceInfo =function() {
+            var showClass = document.getElementsByClassName("ShowInfoModal");
+            var cont;
+            for (cont = 0; cont < showClass.length; cont++) {
+                showClass[cont].style.display = "block";
+            }
+            var showClass2 = document.getElementsByClassName("hideInfoModal");
+            var cont2;
+            for (cont2 = 0; cont2 < showClass2.length; cont2++) {
+                showClass2[cont2].style.display = "none";
+            }
+            var showEditSave = document.getElementById("ShowBtnEditSaveModal").style.display = 'block';
+            var showEditCancel = document.getElementById("ShowBtnEditCancelModal").style.display = 'block';
+        };
         /**
          * Función para bloquear o desbloquear vehículo.
          */
@@ -104,6 +125,27 @@ angular.module('adminModule')
         /**
          * Función para cancelar la edición de los vehículos.
          */
+        $scope.cancelModalEditInfo =function() {
+            var showClass = document.getElementsByClassName("ShowInfoModal");
+            var cont;
+            for (cont = 0; cont < showClass.length; cont++) {
+                showClass[cont].style.display = "none";
+            }
+            var showClass2 = document.getElementsByClassName("hideInfoModal");
+            var cont2;
+            for (cont2 = 0; cont2 < showClass2.length; cont2++) {
+                showClass2[cont2].style.display = "block";
+            }
+            var showEditSave = document.getElementById("ShowBtnEditSaveModal").style.display = 'none';
+            var showEditCancel = document.getElementById("ShowBtnEditCancelModal").style.display = 'none';
+            //Restablecer valores de los campos de texto
+            document.getElementById("MaintenanceModel").value = "";
+            document.getElementById("MaintenanceTraction").value = "";
+            document.getElementById("CarStatus").value = "";
+            document.getElementById("MaintenanceMileage").value = "";
+            document.getElementById("Observations").value = "";
+        };
+
         $scope.cancelEditCar =function() {
             var showClass = document.getElementsByClassName("ShowInfo");
             var cont;
@@ -165,6 +207,21 @@ angular.module('adminModule')
         document.getElementById('file-upload').addEventListener('change', readFile, false);
         //Inicializa Json
         $scope.newFleet={
+        };
+        $scope.newExtraInfo={};
+        $scope.postExtraInfo=function() {
+            $('#ExtraInfoModal').modal('hide');
+            //FleetCarResources.editCarExtraInfo($routeParams.valueID,$scope.newExtraInfo);
+            swal({
+                title: "Pendiente de Crear Endpoint",
+                type: "success",
+                confirmButtonColor: "#140e39",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            $timeout( function(){
+                window.location.href = '#/admin/fleetAdmin';
+            }, 2000 );
         };
         /**
          * Función que muestra mensaje de exito cuando se edita me vehículo .

@@ -73,5 +73,81 @@
     <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="deleteMessage()">
         <i class="material-icons">delete</i>
     </button>
+    <button type="button" class="btn bg-deep-orange btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:32%; right: 2%" data-toggle="modal" data-target="#ExtraInfoModal">
+        <i class="material-icons">build</i>
+    </button>
 </div>
 
+
+<div class="modal fade" id="ExtraInfoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <form class="modal-content"  >
+            <div class="modal-header bagTecBlue">
+                <h4 class=" whiteText" id="defaultModalLabel" align="">Información de mantenimiento</h4>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-hover dashboard-task-infos">
+                    <thead>
+                    <tr>
+                        <th>Dato</th>
+                        <th>Información</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Marca</td>
+                        <td><div class="hideInfoModal">{{carInfo.brand}}</div></td>
+                    </tr>
+                    <tr>
+                        <td>Modelo</td>
+                        <td><div class="hideInfoModal">{{carInfo.model}}</div></td>
+                    </tr>
+                    <tr>
+                        <td>Placa</td>
+                        <td>{{carInfo.vehicleId}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gasolina</td>
+                        <td><div class="hideInfoModal">{{extraCarInfo.gasolina}}</div> <div class="ShowInfoModal"><select class="form-control show-tick" ng-model="newExtraInfo.gasolina" id="MaintenanceTraction">
+                            <option value=""></option>
+                            <option value="4">lleno</option>
+                            <option value="3">3 cuartos</option>
+                            <option value="2">2 cuartos</option>
+                            <option value="1">1 cuarto</option>
+                            <option value="0">Vacío</option>
+                        </select></div></td>
+                    </tr>
+                    <tr>
+                        <td>Estado</td>
+                        <td><div class="hideInfoModal">{{extraCarInfo.estado}}</div> <div id="CarStatus" class="ShowInfoModal"><select ng-model="newExtraInfo.estado" class="form-control form-control-lg">
+                            <option value="0">En buen estado</option>
+                            <option value="1">Pendiente revisar </option>
+                            <option value="2">En mantenimiento</option>
+                        </select>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kilometraje del proximo cambio de aceite</td>
+                        <td><div class="hideInfoModal">{{extraCarInfo.kmOilChange}}</div><div class="ShowInfoModal"><input  ng-model="newExtraInfo.kmOilChange" type="text" id="kmOilChange" class="form-control" placeholder="El kilometraje del proximo cambio de Aceite"></div></td>
+                    <tr>
+                        <td>Observaciones</td>
+                        <td><div class="hideInfoModal">{{extraCarInfo.observaciones}}</div> <div class="ShowInfoModal"><input  ng-model="newExtraInfo.observaciones" type="text" id="Observations" class="form-control" placeholder="Ingrese el Observaciones"></div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+            <button type="button" class="btn btn-success waves-effect" style="display: none; position: fixed; bottom: 0.8%; right: 80%" id="ShowBtnEditSaveModal"   ng-click="postExtraInfo()">Guardar</button>
+            <button type="button" class="btn btn-danger waves-effect" style="display: none; position: fixed; bottom: 0.8%; right: 88%" id="ShowBtnEditCancelModal"  style="position: fixed; bottom:2%; right: 22%" ng-click="cancelModalEditInfo()">Cancelar</button>
+            </div>
+            <button type="button" class="btn bg-blue btn-circle-lg waves-effect waves-circle waves-float" style="position: fixed; bottom:2%; right: 2%" ng-click="editMaintenanceInfo()" >
+                <i class="material-icons">mode_edit</i>
+            </button>
+            <div class="atrasStyle">
+                <a class="btn-floating btn-sm " data-dismiss="modal"><i class="material-icons" style="cursor:pointer; color: white; float:left">arrow_back</i></a>
+            </div>
+
+        </form>
+    </div>
+</div>

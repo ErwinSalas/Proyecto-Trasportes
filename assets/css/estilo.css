@@ -49,11 +49,17 @@ aside.ticket2Size table{
 .hideInfo{
 	display: block;
 }
+.hideInfoModal{
+	display: block;
+}
 .texto{
 	margin-top: 5px;
 	color: black;
 }
 .ShowInfo{
+	display: none;
+}
+.ShowInfoModal{
 	display: none;
 }
 #ShowBtnEditSave{
